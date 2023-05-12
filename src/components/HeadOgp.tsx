@@ -19,7 +19,7 @@ const HeadOgp: FC<Props> = ({ index }) => {
       {typeof index === 'string' && (
         <>
           <title>{title}</title>
-          <meta property={'og:title'} content={title + desc} />
+          <meta property={'og:title'} content={title + '｜' + desc} />
           <meta property={'og:url'} content={path} />
         </>
       )}
@@ -37,12 +37,9 @@ const HeadOgp: FC<Props> = ({ index }) => {
       {/* ページの種類 */}
       <meta property={'og:type'} content={'website'} />
       {/* サイト名 */}
-      <meta property={'og:site_name'} content={title + desc} />
+      <meta property={'og:site_name'} content={title + '｜' + desc} />
       {/* サムネイル画像の URL */}
-      <meta
-        property={'og:image'}
-        content={imgPath + 'img_032_06.jpg'}
-      />
+      <meta property={'og:image'} content={imgPath + 'img_032_06.jpg'} />
       <meta name={'twitter:card'} content={'summary'} />
     </Head>
   );
