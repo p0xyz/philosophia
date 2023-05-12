@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Head from 'next/head';
-import { desc, imgPath, path, title } from '@/constant/data';
+import { desc, imgPath, path, title, years } from '@/constant/data';
 
 type Props = {
   index: number | string | undefined;
@@ -11,9 +11,9 @@ const HeadOgp: FC<Props> = ({ index }) => {
     <Head>
       {typeof index === 'number' && (
         <>
-          <title>{path + '｜' + title}</title>
-          <meta property={'og:title'} content={index + '｜' + title} />
-          <meta property={'og:url'} content={path + index} />
+          <title>{years[index] + '｜' + title}</title>
+          <meta property={'og:title'} content={years[index] + '｜' + title} />
+          <meta property={'og:url'} content={path + years[index]} />
         </>
       )}
       {typeof index === 'string' && (
