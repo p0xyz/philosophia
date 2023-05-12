@@ -43,7 +43,7 @@ const Navigation: FC<Props> = ({ path }) => {
         },
       }}
     >
-      <NextLink passHref href={'/2022'}>
+      <NextLink passHref href={`/${years[0]}`}>
         Philosophia
       </NextLink>
     </Flex>
