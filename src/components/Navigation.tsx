@@ -67,13 +67,13 @@ const Navigation: FC<Props> = ({ path }) => {
           sx={{
             ...(isLargerThan721
               ? {
+                  justifyContent: 'center',
                   width: '72px',
                   height: '32px',
                   position: 'relative',
                   // a: {
                   background: 'transparent',
                   transition: 'color 0.2s, background 0.2s',
-                  justifyContent: 'center',
                   ...(path === i && {
                     color: 'white',
                     background: 'black800',
@@ -86,10 +86,10 @@ const Navigation: FC<Props> = ({ path }) => {
                 }
               : {
                   h: '56px',
+                  color: 'white',
                   // a: {
                   ...(typeof path === 'number' &&
                     years[path] === item && {
-                      color: 'white',
                       '&::after': {
                         content: '""',
                         display: 'block',
@@ -141,10 +141,12 @@ const Navigation: FC<Props> = ({ path }) => {
               h: '56px',
               a: {
                 ...(isSmallerThan720 && {
-                  color: 'black300',
+                  display: 'flex',
+                  alignItems: 'center',
+                  // color: 'black300',
                 }),
                 ...(typeof path === 'string' && {
-                  color: 'white',
+                  // color: 'white',
                   '&::after': {
                     content: '""',
                     display: 'block',
@@ -193,15 +195,15 @@ const Navigation: FC<Props> = ({ path }) => {
       <Header />
       <Flex
         as={'ul'}
-        justifyContent={'flex-start'}
+        alignItems={'flex-start'}
         fontFamily={{ base: 'logo', md: 'nav' }}
         zIndex={'20'}
         sx={{
           // '>li>a': {
-          'li': {
-            display: 'flex',
+          '>li': {
+            // display: 'flex',
             // w: '100%',
-            // height: '100%',
+            // h: '100%',
             alignItems: 'center',
             '&:hover': {
               cursor: 'pointer',
@@ -246,7 +248,13 @@ const Navigation: FC<Props> = ({ path }) => {
         <NavLink />
         <AboutLink />
         {isSmallerThan720 && (
-          <Center as={'li'} flexDir={'column'} gap={'16px'} mt={'24px'}>
+          <Center
+            as={'li'}
+            flexDir={'column'}
+            gap={'16px'}
+            w={'100%'}
+            mt={'24px'}
+          >
             <Sns />
             <Copy />
           </Center>
