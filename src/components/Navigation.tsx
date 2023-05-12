@@ -5,15 +5,24 @@ import { name, years } from '@/constant/data';
 import Footer from '@/components/Footer';
 import Sns from '@/components/Sns';
 import Copy from '@/components/Copy';
+import { useRouter } from 'next/router';
 
 type Props = {
   path: number | string | undefined;
 };
 
 const Navigation: FC<Props> = ({ path }) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLargerThan721] = useMediaQuery('(min-width: 721px)');
   const [isSmallerThan720] = useMediaQuery('(max-width: 720px)');
+
+  const push = (item: number) => {
+    setIsOpen(false);
+    router.push({
+      pathname: `/${item}`,
+    });
+  };
 
   const modalOpen = () => {
     setIsOpen(!isOpen);
@@ -54,49 +63,50 @@ const Navigation: FC<Props> = ({ path }) => {
         <Center
           as={'li'}
           key={item}
+          onClick={() => push(item)}
           sx={{
             ...(isLargerThan721
               ? {
                   width: '72px',
                   height: '32px',
                   position: 'relative',
-                  a: {
-                    background: 'transparent',
-                    transition: 'color 0.2s, background 0.2s',
-                    justifyContent: 'center',
-                    ...(path === i && {
-                      color: 'white',
-                      background: 'black800',
-                    }),
-                    '&:hover': {
-                      color: 'white',
-                      background: 'black800',
-                    },
+                  // a: {
+                  background: 'transparent',
+                  transition: 'color 0.2s, background 0.2s',
+                  justifyContent: 'center',
+                  ...(path === i && {
+                    color: 'white',
+                    background: 'black800',
+                  }),
+                  '&:hover': {
+                    color: 'white',
+                    background: 'black800',
                   },
+                  // },
                 }
               : {
                   h: '56px',
-                  a: {
-                    ...(typeof path === 'number' &&
-                      years[path] === item && {
-                        color: 'white',
-                        '&::after': {
-                          content: '""',
-                          display: 'block',
-                          background: 'black300',
-                          width: '12px',
-                          height: '12px',
-                          ml: '16px',
-                          borderRadius: '9999px',
-                        },
-                      }),
-                  },
+                  // a: {
+                  ...(typeof path === 'number' &&
+                    years[path] === item && {
+                      color: 'white',
+                      '&::after': {
+                        content: '""',
+                        display: 'block',
+                        background: 'black300',
+                        width: '12px',
+                        height: '12px',
+                        ml: '16px',
+                        borderRadius: '9999px',
+                      },
+                    }),
+                  // },
                 }),
           }}
         >
-          <NextLink passHref href={`/${item}`}>
-            {item}
-          </NextLink>
+          {/* <NextLink passHref href={`/${item}`}> */}
+          {item}
+          {/* </NextLink> */}
         </Center>
       ))}
     </>
@@ -187,10 +197,11 @@ const Navigation: FC<Props> = ({ path }) => {
         fontFamily={{ base: 'logo', md: 'nav' }}
         zIndex={'20'}
         sx={{
-          '>li>a': {
+          // '>li>a': {
+          'li': {
             display: 'flex',
-            w: '100%',
-            h: '100%',
+            // w: '100%',
+            // height: '100%',
             alignItems: 'center',
             '&:hover': {
               cursor: 'pointer',
