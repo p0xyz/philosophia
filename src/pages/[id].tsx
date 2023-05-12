@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 
 import Contents from '@/components/Contents';
 
-import { imgPath, thumbnailPath, years } from '@/libs/const';
+import { imgPath, thumbnailPath, years } from '@/constant/data';
 import { client } from '@/libs/client';
 
 import { ImgType } from '@/types/microCMS';

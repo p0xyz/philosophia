@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 
 import Contents from '@/components/Contents';
 
-import { links, name } from '@/libs/const';
+import { links, name } from '@/constant/data';
 
 const About: NextPage = () => {
   const PATH = 'about';
@@ -71,7 +71,6 @@ const About: NextPage = () => {
       />
     </Center>
   );
-
   const Component = () => (
     <Flex
       sx={{

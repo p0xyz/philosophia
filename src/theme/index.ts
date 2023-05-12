@@ -47,13 +47,6 @@ const breakpoints = {
   md: '720px',
 };
 const textStyles = {
-  // bodyWidth: {
-  //   width: {
-  //     base: '90vw',
-  //     sm: '80vw',
-  //   },
-  //   mx: 'auto',
-  // },
   modalArrow: {
     width: '64px',
     position: 'relative',
@@ -71,6 +64,16 @@ const textStyles = {
       '&::after': {
         backgroundColor: 'black300',
       },
+    },
+  },
+  circle: {
+    '&::after': {
+      content: '""',
+      display: 'block',
+      background: 'white',
+      width: '24px',
+      height: '24px',
+      borderRadius: '9999px',
     },
   },
 };

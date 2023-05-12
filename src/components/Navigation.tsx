@@ -1,8 +1,10 @@
 import { FC, useState } from 'react';
 import { Box, Center, Flex, Text, useMediaQuery } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { name, years } from '@/libs/const';
+import { name, years } from '@/constant/data';
 import Footer from '@/components/Footer';
+import Sns from '@/components/Sns';
+import Copy from '@/components/Copy';
 
 type Props = {
   path: number | string | undefined;
@@ -49,14 +51,12 @@ const Navigation: FC<Props> = ({ path }) => {
   const NavLink = () => (
     <>
       {years.map((item, i) => (
-        <Flex
+        <Center
           as={'li'}
           key={item}
-          justifyContent={'center'}
           sx={{
             ...(isLargerThan721
               ? {
-                  alignItems: 'center',
                   width: '72px',
                   height: '32px',
                   position: 'relative',
@@ -75,16 +75,29 @@ const Navigation: FC<Props> = ({ path }) => {
                   },
                 }
               : {
-                  a: {
-                    // justifyContent: 'flex-start',
+                  h: '56px',
+                }),
+            a: {
+              ...(typeof path === 'number' &&
+                years[path] === item && {
+                  color: 'white',
+                  '&::after': {
+                    content: '""',
+                    display: 'block',
+                    background: 'black300',
+                    width: '12px',
+                    height: '12px',
+                    ml: '16px',
+                    borderRadius: '9999px',
                   },
                 }),
+            },
           }}
         >
           <NextLink passHref href={`/${item}`}>
             {item}
           </NextLink>
-        </Flex>
+        </Center>
       ))}
     </>
   );
@@ -92,27 +105,49 @@ const Navigation: FC<Props> = ({ path }) => {
     <Box
       as={'li'}
       sx={{
-        ...(isLargerThan721 && {
-          width: '64px',
-          height: '64px',
-          borderRadius: '50%',
-          borderColor: 'transparent',
-          borderStyle: 'solid',
-          borderWidth: '4px',
-          ml: '24px',
-          opacity: '1',
-          overflow: 'hidden',
-          transition: '0.2s opacity, 0.2s border-color',
-          ...(typeof path === 'string' && {
-            borderColor: 'black800',
-            borderStyle: 'solid',
-            borderWidth: '4px',
+        ...(isLargerThan721
+          ? {
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              borderColor: 'transparent',
+              borderStyle: 'solid',
+              borderWidth: '4px',
+              ml: '24px',
+              opacity: '1',
+              overflow: 'hidden',
+              transition: '0.2s opacity, 0.2s border-color',
+              ...(typeof path === 'string' && {
+                borderColor: 'black800',
+                borderStyle: 'solid',
+                borderWidth: '4px',
+              }),
+              '&:hover': {
+                opacity: 0.6,
+                borderColor: 'black800',
+              },
+            }
+          : {
+              h: '56px',
+            }),
+        a: {
+          ...(isSmallerThan720 && {
+            color: 'black300',
           }),
-          '&:hover': {
-            opacity: 0.6,
-            borderColor: 'black800',
-          },
-        }),
+          ...(typeof path === 'string' && {
+            color: 'white',
+
+            '&::after': {
+              content: '""',
+              display: 'block',
+              background: 'black300',
+              width: '12px',
+              height: '12px',
+              ml: '16px',
+              borderRadius: '9999px',
+            },
+          }),
+        },
       }}
     >
       {/* <NextLink passHref href={'/about'}> */}
@@ -184,9 +219,6 @@ const Navigation: FC<Props> = ({ path }) => {
                   opacity: 1,
                   transform: 'translateX(0)',
                 }),
-                li: {
-                  height: '56px',
-                },
                 a: {
                   justifyContent: 'flex-start',
                   alignItems: 'center',
@@ -204,8 +236,9 @@ const Navigation: FC<Props> = ({ path }) => {
         <NavLink />
         <AboutLink />
         {isSmallerThan720 && (
-          <Center as={'li'}>
-            <Footer />
+          <Center as={'li'} flexDir={'column'} gap={'16px'} mt={'24px'}>
+            <Sns />
+            <Copy />
           </Center>
         )}
       </Flex>
