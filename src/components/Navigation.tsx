@@ -76,22 +76,22 @@ const Navigation: FC<Props> = ({ path }) => {
                 }
               : {
                   h: '56px',
-                }),
-            a: {
-              ...(typeof path === 'number' &&
-                years[path] === item && {
-                  color: 'white',
-                  '&::after': {
-                    content: '""',
-                    display: 'block',
-                    background: 'black300',
-                    width: '12px',
-                    height: '12px',
-                    ml: '16px',
-                    borderRadius: '9999px',
+                  a: {
+                    ...(typeof path === 'number' &&
+                      years[path] === item && {
+                        color: 'white',
+                        '&::after': {
+                          content: '""',
+                          display: 'block',
+                          background: 'black300',
+                          width: '12px',
+                          height: '12px',
+                          ml: '16px',
+                          borderRadius: '9999px',
+                        },
+                      }),
                   },
                 }),
-            },
           }}
         >
           <NextLink passHref href={`/${item}`}>
@@ -129,25 +129,24 @@ const Navigation: FC<Props> = ({ path }) => {
             }
           : {
               h: '56px',
+              a: {
+                ...(isSmallerThan720 && {
+                  color: 'black300',
+                }),
+                ...(typeof path === 'string' && {
+                  color: 'white',
+                  '&::after': {
+                    content: '""',
+                    display: 'block',
+                    background: 'black300',
+                    width: '12px',
+                    height: '12px',
+                    ml: '16px',
+                    borderRadius: '9999px',
+                  },
+                }),
+              },
             }),
-        a: {
-          ...(isSmallerThan720 && {
-            color: 'black300',
-          }),
-          ...(typeof path === 'string' && {
-            color: 'white',
-
-            '&::after': {
-              content: '""',
-              display: 'block',
-              background: 'black300',
-              width: '12px',
-              height: '12px',
-              ml: '16px',
-              borderRadius: '9999px',
-            },
-          }),
-        },
       }}
     >
       {/* <NextLink passHref href={'/about'}> */}
