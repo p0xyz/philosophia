@@ -58,3 +58,5 @@ export const shereLinks: linkType[] = [
   //   svg: 'facebook',
   // },
 ];
+
+export const ABOUT_PATH = 'about';

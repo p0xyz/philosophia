@@ -1,11 +1,12 @@
-import { FC, useState } from 'react';
-import { Box, Center, Flex, Text, useMediaQuery } from '@chakra-ui/react';
+import { FC, useEffect, useState } from 'react';
 import NextLink from 'next/link';
-import { name, years } from '@/constant/data';
-import Footer from '@/components/Footer';
+import { useRouter } from 'next/router';
+import { Box, Center, Flex, Text, useMediaQuery } from '@chakra-ui/react';
+
+import { ABOUT_PATH, name, years } from '@/constant/data';
+
 import Sns from '@/components/Sns';
 import Copy from '@/components/Copy';
-import { useRouter } from 'next/router';
 
 type Props = {
   path: number | string | undefined;
@@ -17,12 +18,18 @@ const Navigation: FC<Props> = ({ path }) => {
   const [isLargerThan721] = useMediaQuery('(min-width: 721px)');
   const [isSmallerThan720] = useMediaQuery('(max-width: 720px)');
 
-  const push = (item: number) => {
+  const openFuncFalse = () => {
     setIsOpen(false);
-    router.push({
-      pathname: `/${item}`,
-    });
   };
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', openFuncFalse);
+    window.addEventListener('beforeunload', openFuncFalse);
+    return () => {
+      router.events.off('routeChangeStart', openFuncFalse);
+      window.removeEventListener('beforeunload', openFuncFalse);
+    };
+  }, []);
 
   const modalOpen = () => {
     setIsOpen(!isOpen);
@@ -63,50 +70,51 @@ const Navigation: FC<Props> = ({ path }) => {
         <Center
           as={'li'}
           key={item}
-          onClick={() => push(item)}
           sx={{
             ...(isLargerThan721
               ? {
-                  justifyContent: 'center',
-                  width: '72px',
+                  width: '80px',
                   height: '32px',
                   position: 'relative',
-                  // a: {
-                  background: 'transparent',
-                  transition: 'color 0.2s, background 0.2s',
-                  ...(path === i && {
-                    color: 'white',
-                    background: 'black800',
-                  }),
-                  '&:hover': {
-                    color: 'white',
-                    background: 'black800',
+                  a: {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    w: '100%',
+                    h: '100%',
+                    background: 'transparent',
+                    transition: 'color 0.2s, background 0.2s',
+                    ...(path === i && {
+                      color: 'white',
+                      background: 'black800',
+                    }),
+                    '&:hover': {
+                      color: 'white',
+                      background: 'black800',
+                    },
                   },
-                  // },
                 }
               : {
-                  h: '56px',
-                  color: 'white',
-                  // a: {
-                  ...(typeof path === 'number' &&
-                    years[path] === item && {
-                      '&::after': {
-                        content: '""',
-                        display: 'block',
-                        background: 'black300',
-                        width: '12px',
-                        height: '12px',
-                        ml: '16px',
-                        borderRadius: '9999px',
-                      },
-                    }),
-                  // },
+                  a: {
+                    ...(typeof path === 'number' &&
+                      years[path] === item && {
+                        '&::after': {
+                          content: '""',
+                          display: 'block',
+                          background: 'black300',
+                          width: '12px',
+                          height: '12px',
+                          ml: '16px',
+                          borderRadius: '9999px',
+                        },
+                      }),
+                  },
                 }),
           }}
         >
-          {/* <NextLink passHref href={`/${item}`}> */}
-          {item}
-          {/* </NextLink> */}
+          <NextLink passHref href={`/${item}`}>
+            {item}
+          </NextLink>
         </Center>
       ))}
     </>
@@ -138,15 +146,12 @@ const Navigation: FC<Props> = ({ path }) => {
               },
             }
           : {
-              h: '56px',
               a: {
                 ...(isSmallerThan720 && {
                   display: 'flex',
                   alignItems: 'center',
-                  // color: 'black300',
                 }),
                 ...(typeof path === 'string' && {
-                  // color: 'white',
                   '&::after': {
                     content: '""',
                     display: 'block',
@@ -161,22 +166,22 @@ const Navigation: FC<Props> = ({ path }) => {
             }),
       }}
     >
-      {/* <NextLink passHref href={'/about'}> */}
-      <a href={'/about'}>
-        {isLargerThan721 ? (
-          <Box
-            as={'img'}
-            src={'/img/icon.jpg'}
-            alt={name}
-            w={'100%'}
-            h={'100%'}
-            objectFit={'cover'}
-          />
-        ) : (
-          <>About</>
-        )}
-      </a>
-      {/* </NextLink> */}
+      <NextLink passHref href={`/${ABOUT_PATH}`}>
+        <a>
+          {isLargerThan721 ? (
+            <Box
+              as={'img'}
+              src={'/img/icon.jpg'}
+              alt={name}
+              w={'100%'}
+              h={'100%'}
+              objectFit={'cover'}
+            />
+          ) : (
+            <>About</>
+          )}
+        </a>
+      </NextLink>
     </Box>
   );
 
@@ -199,12 +204,7 @@ const Navigation: FC<Props> = ({ path }) => {
         fontFamily={{ base: 'logo', md: 'nav' }}
         zIndex={'20'}
         sx={{
-          // '>li>a': {
-          '>li': {
-            // display: 'flex',
-            // w: '100%',
-            // h: '100%',
-            alignItems: 'center',
+          '>li>a': {
             '&:hover': {
               cursor: 'pointer',
             },
@@ -232,10 +232,11 @@ const Navigation: FC<Props> = ({ path }) => {
                   transform: 'translateX(0)',
                 }),
                 a: {
+                  display: 'flex',
                   justifyContent: 'flex-start',
                   alignItems: 'center',
                   color: 'white',
-                  height: '100%',
+                  h: '56px',
                   opacity: 1,
                   transition: 'opacity 0.2s',
                   '&::hover': {

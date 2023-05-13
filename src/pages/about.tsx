@@ -2,12 +2,11 @@ import { Box, Center, Flex, Link, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 
 import Contents from '@/components/Contents';
+import PageTransition from '@/components/PageTransition';
 
-import { links, name } from '@/constant/data';
+import { ABOUT_PATH, links, name } from '@/constant/data';
 
 const About: NextPage = () => {
-  const PATH = 'about';
-
   const Name = () => (
     <Box>
       <Text fontFamily={'nav'} fontSize={'1.6rem'}>
@@ -30,7 +29,7 @@ const About: NextPage = () => {
     </Box>
   );
   const Description = () => (
-    <Text lineHeight={'2.5rem'}>
+    <Text fontSize={'1.3rem'} lineHeight={'2.5rem'}>
       21歳 関西圏で写真を撮ります。
       <br />
       使用機材：Canon EOS RP / Canon EOS Kiss X3
@@ -108,7 +107,12 @@ const About: NextPage = () => {
     </Flex>
   );
 
-  return <Contents path={PATH} component={<Component />} />;
+  return (
+    <Contents
+      path={ABOUT_PATH}
+      component={<PageTransition component={<Component />} />}
+    />
+  );
 };
 
 export default About;

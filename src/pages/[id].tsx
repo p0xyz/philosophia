@@ -1,13 +1,15 @@
-import { Box, Center, Flex, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { NextPage } from 'next';
+import { Box, Center, Flex, Text } from '@chakra-ui/react';
 
 import Contents from '@/components/Contents';
+import PageTransition from '@/components/PageTransition';
 
 import { imgPath, thumbnailPath, years } from '@/constant/data';
+
 import { client } from '@/libs/client';
 
 import { ImgType } from '@/types/microCMS';
-import { useEffect, useState } from 'react';
 
 type Props = {
   data: ImgType[];
@@ -381,7 +383,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
 
   const Component = () => (
     <>
-      <Thumbnail />
+      <PageTransition component={<Thumbnail />} />
       <Modal />
     </>
   );
