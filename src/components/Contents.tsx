@@ -1,12 +1,9 @@
-import { FC, useEffect, useState } from 'react';
-import { Box } from '@chakra-ui/react';
+import { FC } from 'react';
 
-import Navigation from '@/components/Navigation';
-import OriginalSpacer from '@/components/OriginalSpacer';
 import Footer from '@/components/Footer';
+import Navigation from '@/components/Navigation';
 import HeadOgp from '@/components/HeadOgp';
-import { useRouter } from 'next/router';
-import { log } from 'console';
+import OriginalSpacer from '@/components/OriginalSpacer';
 
 type Props = {
   path: string | number | undefined;
@@ -14,7 +11,6 @@ type Props = {
 };
 
 const Contents: FC<Props> = ({ path, component }) => {
-
   return (
     <>
       <HeadOgp index={path} />

@@ -45,13 +45,14 @@ const fonts = {
 const breakpoints = {
   sm: '480px',
   md: '720px',
+  lg: '1000px',
 };
 const textStyles = {
   modalArrow: {
     width: '64px',
     position: 'relative',
     '@media screen and (min-width: 481px)': {
-      height: '100vh',
+      height: '160px',
     },
     '@media screen and (max-width: 480px)': {
       height: '64px',

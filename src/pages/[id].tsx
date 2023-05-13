@@ -30,6 +30,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
   const modalFunc = (i: number) => {
     setIsModal(!isModal);
     setSelected(i);
+    console.log(data[i]);
   };
 
   const Thumbnail = () => (
@@ -202,11 +203,12 @@ const Photo: NextPage<Props> = ({ data, index }) => {
             {/* Img */}
             <Center
               as={'ul'}
-              w={{ base: '100vw', sm: '80vw', md: '60vw' }}
+              w={{ base: '100vw', sm: '90vw', md: '70vw', lg: '60vw' }}
               h={{
                 base: '60vh',
-                sm: 'calc(80vw / 3 * 2)',
-                md: 'calc(60vw / 3 * 2)',
+                sm: 'calc(90vw / 3 * 2)',
+                md: 'calc(70vw / 3 * 2)',
+                lg: 'calc(60vw / 3 * 2)',
               }}
               pos={'relative'}
             >
@@ -238,12 +240,13 @@ const Photo: NextPage<Props> = ({ data, index }) => {
             {/* Data */}
             <Flex
               display={{ base: 'grid', sm: 'flex' }}
-              w={{ base: '90vw', sm: '80vw', md: '60vw' }}
+              w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
               sx={{
                 '@media screen and (min-width: 481px)': {
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  fontSize: '1.5rem',
+                  // fontSize: '1.5rem',
+                  fontSize: '1.4rem',
                   minHeight: '48px',
                 },
                 '@media screen and (max-width: 480px)': {
@@ -308,7 +311,8 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                   },
                 }}
               >
-                {selectedItem.place}, {selectedItem.prefecture}
+                {selectedItem.place}
+                {selectedItem.prefecture && <>, {selectedItem.prefecture}</>}
               </Text>
             </Flex>
             {/* Operation */}
@@ -316,7 +320,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               alignItems={'center'}
               justifyContent={'space-between'}
               w={{ base: '100vw', sm: '95vw' }}
-              h={{ base: 'auto', sm: '100vh' }}
+              h={{ base: 'auto', sm: '160px' }}
               pos={'absolute'}
               zIndex={'50'}
               m={'auto'}

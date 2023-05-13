@@ -16,6 +16,6 @@ export type ImgType = MicroCMSObjectType & {
   img: number;
   date: string;
   place: string;
-  prefecture: string;
+  prefecture: string | undefined;
   alt: string;
 };
