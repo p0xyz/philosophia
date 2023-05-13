@@ -205,7 +205,8 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               as={'ul'}
               w={{ base: '100vw', sm: '90vw', md: '70vw', lg: '60vw' }}
               h={{
-                base: '60vh',
+                base: '120vw',
+                // base: '60vh',
                 sm: 'calc(90vw / 3 * 2)',
                 md: 'calc(70vw / 3 * 2)',
                 lg: 'calc(60vw / 3 * 2)',
@@ -240,7 +241,12 @@ const Photo: NextPage<Props> = ({ data, index }) => {
             {/* Data */}
             <Flex
               display={{ base: 'grid', sm: 'flex' }}
-              w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
+              w={{
+                base: 'calc(120vw / 3 * 2)',
+                sm: '80vw',
+                md: '70vw',
+                lg: '60vw',
+              }}
               sx={{
                 '@media screen and (min-width: 481px)': {
                   justifyContent: 'space-between',
