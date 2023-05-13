@@ -300,6 +300,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                 ))}
               </Center>
               <Flex
+                justifyContent={'flex-end'}
                 alignItems={'center'}
                 textAlign={'right'}
                 sx={{
