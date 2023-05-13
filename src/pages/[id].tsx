@@ -129,17 +129,21 @@ const Photo: NextPage<Props> = ({ data, index }) => {
   );
 
   const Modal = () => {
-    const [index, setIndex] = useState(0);
+    const [modalIndex, setModalIndex] = useState(0);
 
-    const selectIndex = (i: number) => {
-      setIndex(i);
+    const selectModalIndex = (i: number) => {
+      setModalIndex(i);
     };
 
     const next = () => {
-      index + 1 === array.length ? setIndex(0) : setIndex(index + 1);
+      modalIndex + 1 === array.length
+        ? setModalIndex(0)
+        : setModalIndex(modalIndex + 1);
     };
     const prev = () => {
-      index === 0 ? setIndex(array.length - 1) : setIndex(index - 1);
+      modalIndex === 0
+        ? setModalIndex(array.length - 1)
+        : setModalIndex(modalIndex - 1);
     };
 
     const Back = () => {
@@ -221,7 +225,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                   h={'100%'}
                   pos={'absolute'}
                   transition={'opacity 0.2s'}
-                  opacity={item === index ? 1 : 0}
+                  opacity={item === modalIndex ? 1 : 0}
                 >
                   <Box
                     as={'img'}
@@ -232,7 +236,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                     h={'100%'}
                     objectFit={'contain'}
                     transition={'opacity 0.2s'}
-                    opacity={item === index ? 1 : 0}
+                    opacity={item === modalIndex ? 1 : 0}
                   />
                 </Center>
               ))}
@@ -261,6 +265,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                 },
               }}
             >
+              {/* Date */}
               <Flex
                 alignItems={'center'}
                 sx={{
@@ -275,6 +280,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               >
                 {selectedItem.date.split('T')[0]}
               </Flex>
+              {/* Circle */}
               <Center
                 gap={'12px'}
                 sx={{
@@ -291,19 +297,21 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                     background={'black300'}
                     transition={'0.2s background'}
                     borderRadius={'9999px'}
-                    onClick={() => selectIndex(i)}
+                    onClick={() => selectModalIndex(i)}
+                    key={'array' + i}
                     _hover={{
                       cursor: 'pointer',
                       background: 'black600',
                     }}
                     sx={{
-                      ...(i === index && {
+                      ...(i === modalIndex && {
                         background: 'black600',
                       }),
                     }}
                   />
                 ))}
               </Center>
+              {/* Place */}
               <Flex
                 justifyContent={'flex-end'}
                 alignItems={'center'}
@@ -336,7 +344,17 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               <Center
                 onClick={() => prev()}
                 textStyle={'modalArrow'}
+                transition={'opacity 0.2s'}
                 sx={{
+                  ...(modalIndex === 0
+                    ? {
+                        opacity: 0,
+                        pointerEvents: 'none',
+                      }
+                    : {
+                        opacity: 1,
+                        pointerEvents: 'auto',
+                      }),
                   '&::before': {
                     content: '""',
                     display: 'block',
@@ -365,6 +383,15 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                 onClick={() => next()}
                 textStyle={'modalArrow'}
                 sx={{
+                  ...(modalIndex === array.length - 1
+                    ? {
+                        opacity: 0,
+                        pointerEvents: 'none',
+                      }
+                    : {
+                        opacity: 1,
+                        pointerEvents: 'auto',
+                      }),
                   '&::before': {
                     content: '""',
                     display: 'block',
