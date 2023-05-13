@@ -245,7 +245,6 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                 '@media screen and (min-width: 481px)': {
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  // fontSize: '1.5rem',
                   fontSize: '1.4rem',
                   minHeight: '48px',
                 },
@@ -257,7 +256,8 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                 },
               }}
             >
-              <Text
+              <Flex
+                alignItems={'center'}
                 sx={{
                   '@media screen and (min-width: 481px)': {
                     width: '20%',
@@ -269,7 +269,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                 }}
               >
                 {selectedItem.date.split('T')[0]}
-              </Text>
+              </Flex>
               <Center
                 gap={'12px'}
                 sx={{
@@ -299,7 +299,8 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                   />
                 ))}
               </Center>
-              <Text
+              <Flex
+                alignItems={'center'}
                 textAlign={'right'}
                 sx={{
                   '@media screen and (min-width: 481px)': {
@@ -313,14 +314,14 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               >
                 {selectedItem.place}
                 {selectedItem.prefecture && <>, {selectedItem.prefecture}</>}
-              </Text>
+              </Flex>
             </Flex>
             {/* Operation */}
             <Flex
               alignItems={'center'}
               justifyContent={'space-between'}
               w={{ base: '100vw', sm: '95vw' }}
-              h={{ base: 'auto', sm: '160px' }}
+              h={'160px'}
               pos={'absolute'}
               zIndex={'50'}
               m={'auto'}
