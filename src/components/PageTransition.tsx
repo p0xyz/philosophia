@@ -28,15 +28,12 @@ const PageTransition: FC<Props> = ({ component }) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   loadFuncTure();
-  // }, [path]);
   return (
     <Box
       as={'main'}
       opacity={0}
       transform={'translateX(-2vw)'}
-      transition={'transform 0.2s, opacity 0.2s'}
+      transition={'transform 0.3s, opacity 0.3s'}
       sx={{
         ...(isLoad && {
           opacity: 1,

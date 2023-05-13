@@ -202,8 +202,12 @@ const Photo: NextPage<Props> = ({ data, index }) => {
             {/* Img */}
             <Center
               as={'ul'}
-              w={{ base: '100vw', sm: '80vw' }}
-              h={{ base: '60vh', sm: 'calc(80vw / 3 * 2)' }}
+              w={{ base: '100vw', sm: '80vw', md: '60vw' }}
+              h={{
+                base: '60vh',
+                sm: 'calc(80vw / 3 * 2)',
+                md: 'calc(60vw / 3 * 2)',
+              }}
               pos={'relative'}
             >
               {array.map((item, i) => (
@@ -234,7 +238,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
             {/* Data */}
             <Flex
               display={{ base: 'grid', sm: 'flex' }}
-              w={{ base: '90vw', sm: '80vw' }}
+              w={{ base: '90vw', sm: '80vw', md: '60vw' }}
               sx={{
                 '@media screen and (min-width: 481px)': {
                   justifyContent: 'space-between',
