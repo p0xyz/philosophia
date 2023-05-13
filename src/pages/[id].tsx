@@ -30,7 +30,6 @@ const Photo: NextPage<Props> = ({ data, index }) => {
   const modalFunc = (i: number) => {
     setIsModal(!isModal);
     setSelected(i);
-    console.log(data[i]);
   };
 
   const Thumbnail = () => (
