@@ -26,7 +26,7 @@ export const desc: string = '月波’s Photography Portfolio';
 
 export const links: linkType[] = [
   {
-    text: 'Contact(Instagram)',
+    text: '@p0.xyz',
     url: 'https://www.instagram.com/p0.xyz/',
     svg: 'instagram',
   },
