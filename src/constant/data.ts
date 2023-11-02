@@ -21,7 +21,7 @@ export const links: linkType[] = [
   },
 ];
 
-export const shereLinks: linkType[] = [
+export const shareLinks: linkType[] = [
   {
     text: 'LINE',
     url: 'https://social-plugins.line.me/lineit/share?url=https://www.philosophia000.xyz/',

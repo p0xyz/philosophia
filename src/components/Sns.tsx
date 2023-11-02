@@ -1,4 +1,4 @@
-import { shereLinks } from '@/constant/data';
+import { shareLinks } from '@/constant/data';
 import { Box, Flex } from '@chakra-ui/react';
 import { FC } from 'react';
 
@@ -8,7 +8,7 @@ type Props = {
 
 const Sns: FC<Props> = ({ isFoot }) => (
   <Flex as={'ul'} gap={'8px'}>
-    {shereLinks.map((item, i) => (
+    {shareLinks.map((item, i) => (
       <Box as={'li'} key={item.svg + i}>
         <Box
           as={'a'}
