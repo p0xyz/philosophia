@@ -1,4 +1,4 @@
-type MicroCMSObjectType = {
+type MicroCMSType = {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -6,15 +6,16 @@ type MicroCMSObjectType = {
   revisedAt: string;
 };
 
-export type YearType = MicroCMSObjectType & {
-  year: number;
+export type MicroCMSImageType = {
+  url: string;
+  height: number;
+  width: number;
 };
 
-export type ImgType = MicroCMSObjectType & {
+export type MicroCMSArticleType = MicroCMSType & {
   contentId: string;
-  year: YearType[];
-  img: number;
   date: string;
+  images: MicroCMSImageType[];
   place: string;
   prefecture: string | undefined;
   alt: string;

@@ -1,23 +1,12 @@
 import { linkType } from '@/types/link';
 
-// export const indexImg: string[] = [
-//   'https://manami-sato.github.io/philosophia-img/img/img_032_06.jpg',
-//   'https://manami-sato.github.io/philosophia-img/img/img_029_02.jpg',
-//   'https://manami-sato.github.io/philosophia-img/img/img_027_09.jpg',
-//   'https://manami-sato.github.io/philosophia-img/img/img_033_01.jpg',
-// ];
-
 export const years: number[] = [2022, 2021, 2020, 2019, 2018];
-
 export const path: string = 'https://www.philosophia000.xyz/';
 
 export const imgPath: string =
   'https://raw.githubusercontent.com/manami-sato/philosophia-img/main/1200/';
-
 export const thumbnailPath: string =
   'https://raw.githubusercontent.com/manami-sato/philosophia-img/main/thumbnail/';
-
-// productsData='https://philosophia.herokuapp.com/';
 
 export const name: string = '月波';
 export const furigana: string = 'Tsukinami';

@@ -1,31 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NextPage } from 'next';
 import { Box, Center, Flex, Text } from '@chakra-ui/react';
 
 import Contents from '@/components/Contents';
 import PageTransition from '@/components/PageTransition';
 
-import { imgPath, thumbnailPath, years } from '@/constant/data';
+import { years } from '@/constant/data';
 
 import { client } from '@/libs/client';
 
-import { ImgType } from '@/types/microCMS';
+import { MicroCMSArticleType } from '@/types/microCMS';
 
 type Props = {
-  data: ImgType[];
+  data: MicroCMSArticleType[];
   index: number;
 };
 
 const Photo: NextPage<Props> = ({ data, index }) => {
   const [selected, setSelected] = useState<number>(0);
-  const [selectedItem, setSelectedItem] = useState<ImgType>(data[0]);
-  const [array, setArray] = useState<number[]>([]);
   const [isModal, setIsModal] = useState<boolean>(false);
-
-  useEffect(() => {
-    setSelectedItem(data[selected]);
-    setArray(Array.from(Array(data[selected].img).keys()));
-  }, [selected]);
 
   const modalFunc = (i: number) => {
     setIsModal(!isModal);
@@ -115,7 +108,9 @@ const Photo: NextPage<Props> = ({ data, index }) => {
         >
           <Box
             as={'img'}
-            src={`${thumbnailPath}img_thumbnail_${item.contentId}.jpg`}
+            src={`${item.images[0].url}?${
+              item.images[0].width > item.images[0].height ? 'w' : 'h'
+            }=400`}
             alt={item.alt}
             w={'100%'}
             h={'100%'}
@@ -136,13 +131,13 @@ const Photo: NextPage<Props> = ({ data, index }) => {
     };
 
     const next = () => {
-      modalIndex + 1 === array.length
+      modalIndex + 1 === data[selected].images.length
         ? setModalIndex(0)
         : setModalIndex(modalIndex + 1);
     };
     const prev = () => {
       modalIndex === 0
-        ? setModalIndex(array.length - 1)
+        ? setModalIndex(data[selected].images.length - 1)
         : setModalIndex(modalIndex - 1);
     };
 
@@ -203,7 +198,6 @@ const Photo: NextPage<Props> = ({ data, index }) => {
             zIndex={50}
           >
             <Back />
-            {/* Img */}
             <Center
               as={'ul'}
               w={{ base: '100vw', sm: '90vw', md: '70vw', lg: '60vw' }}
@@ -216,27 +210,27 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               }}
               pos={'relative'}
             >
-              {array.map((item, i) => (
+              {data[selected].images.map((item, i) => (
                 <Center
                   as={'li'}
-                  key={item + 'img'}
+                  key={item.url}
                   flexDir={'column'}
                   w={'100%'}
                   h={'100%'}
                   pos={'absolute'}
                   transition={'opacity 0.2s'}
-                  opacity={item === modalIndex ? 1 : 0}
+                  opacity={i === modalIndex ? 1 : 0}
                 >
                   <Box
                     as={'img'}
-                    src={`${imgPath}img_${selectedItem.contentId}_${
-                      item < 9 ? '0' + (item + 1) : '' + item + 1
-                    }.jpg`}
+                    src={`${item.url}?${
+                      item.width > item.height ? 'w' : 'h'
+                    }=1200`}
                     w={'100%'}
                     h={'100%'}
                     objectFit={'contain'}
                     transition={'opacity 0.2s'}
-                    opacity={item === modalIndex ? 1 : 0}
+                    opacity={i === modalIndex ? 1 : 0}
                   />
                 </Center>
               ))}
@@ -278,7 +272,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                   },
                 }}
               >
-                {selectedItem.date.split('T')[0]}
+                {data[selected].date.split('T')[0]}
               </Flex>
               {/* Circle */}
               <Center
@@ -290,7 +284,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                   },
                 }}
               >
-                {array.map((item, i) => (
+                {data[selected].images.map((item, i) => (
                   <Box
                     w={'12px'}
                     h={'12px'}
@@ -326,8 +320,10 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                   },
                 }}
               >
-                {selectedItem.place}
-                {selectedItem.prefecture && <>, {selectedItem.prefecture}</>}
+                {data[selected].place}
+                {data[selected].prefecture && (
+                  <>, {data[selected].prefecture}</>
+                )}
               </Flex>
             </Flex>
             {/* Operation */}
@@ -383,7 +379,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                 onClick={() => next()}
                 textStyle={'modalArrow'}
                 sx={{
-                  ...(modalIndex === array.length - 1
+                  ...(modalIndex === data[selected].images.length - 1
                     ? {
                         opacity: 0,
                         pointerEvents: 'none',
@@ -459,9 +455,11 @@ export const getStaticProps = async ({
 
   const path = Number(params.id);
   const index = years.findIndex((item: number) => item === path);
-  const data = microCMSData.contents.filter(
-    (item: ImgType) => item.year[0].year === path
-  );
+  const data = microCMSData.contents.filter((item: MicroCMSArticleType) => {
+    const contentsDate = new Date(item.date);
+    return contentsDate.getFullYear() === path;
+  });
+
   return {
     props: {
       data: data,
