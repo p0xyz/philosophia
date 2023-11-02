@@ -7,19 +7,19 @@ type Props = {
 };
 
 const Sns: FC<Props> = ({ isFoot }) => (
-  <Flex as={'ul'} gap={'8px'}>
+  <Flex as="ul" gap="8px">
     {shareLinks.map((item, i) => (
-      <Box as={'li'} key={item.svg + i}>
+      <Box as="li" key={item.svg + i}>
         <Box
-          as={'a'}
+          as="a"
           href={item.url}
-          target={'_blank'}
-          display={'block'}
-          w={'40px'}
-          h={'40px'}
+          target="_blank"
+          display="block"
+          w="40px"
+          h="40px"
         >
           <Box
-            as={'img'}
+            as="img"
             src={`/img/icon_${item.svg}${!isFoot ? '_white' : ''}.svg`}
           />
         </Box>

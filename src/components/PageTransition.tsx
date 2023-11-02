@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, transition } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 type Props = {
@@ -30,10 +30,10 @@ const PageTransition: FC<Props> = ({ component }) => {
 
   return (
     <Box
-      as={'main'}
+      as="main"
       opacity={0}
-      transform={'translateX(-2vw)'}
-      transition={'transform 0.3s, opacity 0.3s'}
+      transform="translateX(-2vw)"
+      transition="transform 0.3s, opacity 0.3s"
       sx={{
         ...(isLoad && {
           opacity: 1,

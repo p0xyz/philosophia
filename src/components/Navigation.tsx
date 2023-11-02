@@ -37,14 +37,14 @@ const Navigation: FC<Props> = ({ path }) => {
 
   const Header = () => (
     <Flex
-      as={'h1'}
-      justifyContent={'flex-start'}
-      alignItems={'center'}
-      height={'100%'}
-      pos={'relative'}
-      fontSize={'3.2rem'}
-      fontFamily={'logo'}
-      zIndex={'25'}
+      as="h1"
+      justifyContent="flex-start"
+      alignItems="center"
+      height="100%"
+      pos="relative"
+      fontSize="3.2rem"
+      fontFamily="logo"
+      zIndex="25"
       sx={{
         '>a': {
           color: 'black800',
@@ -68,7 +68,7 @@ const Navigation: FC<Props> = ({ path }) => {
     <>
       {years.map((item, i) => (
         <Center
-          as={'li'}
+          as="li"
           key={item}
           sx={{
             ...(isLargerThan721
@@ -121,7 +121,7 @@ const Navigation: FC<Props> = ({ path }) => {
   );
   const AboutLink = () => (
     <Box
-      as={'li'}
+      as="li"
       sx={{
         ...(isLargerThan721
           ? {
@@ -170,12 +170,12 @@ const Navigation: FC<Props> = ({ path }) => {
         <a>
           {isLargerThan721 ? (
             <Box
-              as={'img'}
-              src={'/img/icon.jpg'}
+              as="img"
+              src="/img/icon.jpg"
               alt={name}
-              w={'100%'}
-              h={'100%'}
-              objectFit={'cover'}
+              w="100%"
+              h="100%"
+              objectFit="cover"
             />
           ) : (
             <>About</>
@@ -187,22 +187,22 @@ const Navigation: FC<Props> = ({ path }) => {
 
   return (
     <Flex
-      justifyContent={'space-between'}
-      alignItems={'center'}
-      w={'100vw'}
-      h={'160px'}
-      p={'0 5vw'}
-      background={'rgba(255, 255, 255, 0.8)'}
-      pos={'fixed'}
-      top={'0'}
-      zIndex={'25'}
+      justifyContent="space-between"
+      alignItems="center"
+      w="100vw"
+      h="160px"
+      p="0 5vw"
+      background="rgba(255, 255, 255, 0.8)"
+      pos="fixed"
+      top="0"
+      zIndex="25"
     >
       <Header />
       <Flex
-        as={'ul'}
-        alignItems={'flex-start'}
+        as="ul"
+        alignItems="flex-start"
         fontFamily={{ base: 'logo', md: 'nav' }}
-        zIndex={'20'}
+        zIndex="20"
         sx={{
           '>li>a': {
             '&:hover': {
@@ -249,13 +249,7 @@ const Navigation: FC<Props> = ({ path }) => {
         <NavLink />
         <AboutLink />
         {isSmallerThan720 && (
-          <Center
-            as={'li'}
-            flexDir={'column'}
-            gap={'16px'}
-            w={'100%'}
-            mt={'24px'}
-          >
+          <Center as="li" flexDir="column" gap="16px" w="100%" mt="24px">
             <Sns />
             <Copy />
           </Center>
@@ -263,12 +257,12 @@ const Navigation: FC<Props> = ({ path }) => {
       </Flex>
       {isSmallerThan720 && (
         <Center
-          as={'button'}
+          as="button"
           onClick={() => modalOpen()}
-          flexDir={'column'}
-          width={'32px'}
-          height={'32px'}
-          zIndex={'25'}
+          flexDir="column"
+          width="32px"
+          height="32px"
+          zIndex="25"
           sx={{
             '&::before': {
               content: '""',

@@ -14,40 +14,40 @@ const HeadOgp: FC<Props> = ({ index }) => {
         <>
           <title>{years[index] + '｜' + title + ' - ' + desc}</title>
           <meta
-            property={'og:title'}
+            property="og:title"
             content={years[index] + '｜' + title + ' - ' + desc}
           />
-          <meta property={'og:url'} content={path + years[index]} />
+          <meta property="og:url" content={path + years[index]} />
         </>
       )}
       {typeof index === 'string' && (
         <>
           <title>{title + ' - ' + desc}</title>
-          <meta property={'og:title'} content={title + ' - ' + desc} />
-          <meta property={'og:url'} content={path} />
+          <meta property="og:title" content={title + ' - ' + desc} />
+          <meta property="og:url" content={path} />
         </>
       )}
       {typeof index === 'undefined' && (
         <>
           <title>{404 + '｜' + title + ' - ' + desc}</title>
           <meta
-            property={'og:title'}
+            property="og:title"
             content={404 + '｜' + title + ' - ' + desc}
           />
-          <meta property={'og:url'} content={path + 404} />
+          <meta property="og:url" content={path + 404} />
         </>
       )}
       <meta
-        property={'og:description'}
-        content={'月波の写真ポートフォリオです。'}
+        property="og:description"
+        content="月波の写真ポートフォリオです。"
       />
       {/* ページの種類 */}
-      <meta property={'og:type'} content={'website'} />
+      <meta property="og:type" content="website" />
       {/* サイト名 */}
-      <meta property={'og:site_name'} content={title + ' - ' + desc} />
+      <meta property="og:site_name" content={title + ' - ' + desc} />
       {/* サムネイル画像の URL */}
-      <meta property={'og:image'} content={imgPath + 'img_032_06.jpg'} />
-      <meta name={'twitter:card'} content={'summary'} />
+      <meta property="og:image" content={imgPath + 'img_032_06.jpg'} />
+      <meta name="twitter:card" content="summary" />
     </Head>
   );
 };

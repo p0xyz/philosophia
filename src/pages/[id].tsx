@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NextPage } from 'next';
-import { Box, Center, Flex, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Modal, Text } from '@chakra-ui/react';
 
 import Contents from '@/components/Contents';
 import PageTransition from '@/components/PageTransition';
@@ -27,11 +27,11 @@ const Photo: NextPage<Props> = ({ data, index }) => {
 
   const Thumbnail = () => (
     <Flex
-      as={'ul'}
-      flexWrap={'wrap'}
-      alignItems={'center'}
-      w={'fit-content'}
-      m={'0 auto'}
+      as="ul"
+      flexWrap="wrap"
+      alignItems="center"
+      w="fit-content"
+      m="0 auto"
       sx={{
         '@media screen and (min-width: 481px)': {
           gap: '16px',
@@ -61,10 +61,10 @@ const Photo: NextPage<Props> = ({ data, index }) => {
     >
       {data.map((item, i) => (
         <Center
-          as={'li'}
+          as="li"
           key={item.contentId + item.alt}
           onClick={() => modalFunc(i)}
-          overflow={'hidden'}
+          overflow="hidden"
           sx={{
             '@media screen and (max-width: 480px)': {
               width: '200px',
@@ -107,16 +107,16 @@ const Photo: NextPage<Props> = ({ data, index }) => {
           }}
         >
           <Box
-            as={'img'}
+            as="img"
             src={`${item.images[0].url}?${
               item.images[0].width > item.images[0].height ? 'w' : 'h'
             }=400`}
             alt={item.alt}
-            w={'100%'}
-            h={'100%'}
-            transform={'scale(1)'}
-            objectFit={'cover'}
-            transition={'0.6s transform'}
+            w="100%"
+            h="100%"
+            transform="scale(1)"
+            objectFit="cover"
+            transition="0.6s transform"
           />
         </Center>
       ))}
@@ -145,10 +145,10 @@ const Photo: NextPage<Props> = ({ data, index }) => {
       return (
         <Center
           onClick={() => modalFunc(0)}
-          w={'56px'}
-          h={'56px'}
+          w="56px"
+          h="56px"
           zIndex={60}
-          pos={'absolute'}
+          pos="absolute"
           inset={{ base: '3% 3% auto auto', sm: '10% 10% auto auto' }}
           _hover={{
             '&::before': {
@@ -188,18 +188,18 @@ const Photo: NextPage<Props> = ({ data, index }) => {
       <>
         {isModal && (
           <Center
-            flexDir={'column'}
+            flexDir="column"
             gap={{ base: '16px', sm: '24px' }}
-            w={'100vw'}
-            h={'100vh'}
-            pos={'fixed'}
-            inset={'0 0 0 0'}
-            bgColor={'rgba(255, 255, 255, 0.9)'}
+            w="100vw"
+            h="100vh"
+            pos="fixed"
+            inset="0 0 0 0"
+            bgColor="rgba(255, 255, 255, 0.9)"
             zIndex={50}
           >
             <Back />
             <Center
-              as={'ul'}
+              as="ul"
               w={{ base: '100vw', sm: '90vw', md: '70vw', lg: '60vw' }}
               h={{
                 base: '120vw',
@@ -208,28 +208,28 @@ const Photo: NextPage<Props> = ({ data, index }) => {
                 md: 'calc(70vw / 3 * 2)',
                 lg: 'calc(60vw / 3 * 2)',
               }}
-              pos={'relative'}
+              pos="relative"
             >
               {data[selected].images.map((item, i) => (
                 <Center
-                  as={'li'}
+                  as="li"
                   key={item.url}
-                  flexDir={'column'}
-                  w={'100%'}
-                  h={'100%'}
-                  pos={'absolute'}
-                  transition={'opacity 0.2s'}
+                  flexDir="column"
+                  w="100%"
+                  h="100%"
+                  pos="absolute"
+                  transition="opacity 0.2s"
                   opacity={i === modalIndex ? 1 : 0}
                 >
                   <Box
-                    as={'img'}
+                    as="img"
                     src={`${item.url}?${
                       item.width > item.height ? 'w' : 'h'
                     }=1200`}
-                    w={'100%'}
-                    h={'100%'}
-                    objectFit={'contain'}
-                    transition={'opacity 0.2s'}
+                    w="100%"
+                    h="100%"
+                    objectFit="contain"
+                    transition="opacity 0.2s"
                     opacity={i === modalIndex ? 1 : 0}
                   />
                 </Center>
@@ -261,7 +261,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
             >
               {/* Date */}
               <Flex
-                alignItems={'center'}
+                alignItems="center"
                 sx={{
                   '@media screen and (min-width: 481px)': {
                     width: '20%',
@@ -276,7 +276,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               </Flex>
               {/* Circle */}
               <Center
-                gap={'12px'}
+                gap="12px"
                 sx={{
                   '@media screen and (max-width: 480px)': {
                     gridColumn: '1/3',
@@ -286,11 +286,11 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               >
                 {data[selected].images.map((item, i) => (
                   <Box
-                    w={'12px'}
-                    h={'12px'}
-                    background={'black300'}
-                    transition={'0.2s background'}
-                    borderRadius={'9999px'}
+                    w="12px"
+                    h="12px"
+                    background="black300"
+                    transition="0.2s background"
+                    borderRadius="9999px"
                     onClick={() => selectModalIndex(i)}
                     key={'array' + i}
                     _hover={{
@@ -307,9 +307,9 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               </Center>
               {/* Place */}
               <Flex
-                justifyContent={'flex-end'}
-                alignItems={'center'}
-                textAlign={'right'}
+                justifyContent="flex-end"
+                alignItems="center"
+                textAlign="right"
                 sx={{
                   '@media screen and (min-width: 481px)': {
                     width: '20%',
@@ -328,19 +328,19 @@ const Photo: NextPage<Props> = ({ data, index }) => {
             </Flex>
             {/* Operation */}
             <Flex
-              alignItems={'center'}
-              justifyContent={'space-between'}
+              alignItems="center"
+              justifyContent="space-between"
               w={{ base: '100vw', sm: '95vw' }}
-              h={'160px'}
-              pos={'absolute'}
-              zIndex={'50'}
-              m={'auto'}
-              inset={'0 0 0 0'}
+              h="160px"
+              pos="absolute"
+              zIndex="50"
+              m="auto"
+              inset="0 0 0 0"
             >
               <Center
                 onClick={() => prev()}
-                textStyle={'modalArrow'}
-                transition={'opacity 0.2s'}
+                textStyle="modalArrow"
+                transition="opacity 0.2s"
                 sx={{
                   ...(modalIndex === 0
                     ? {
@@ -377,7 +377,7 @@ const Photo: NextPage<Props> = ({ data, index }) => {
               />
               <Center
                 onClick={() => next()}
-                textStyle={'modalArrow'}
+                textStyle="modalArrow"
                 sx={{
                   ...(modalIndex === data[selected].images.length - 1
                     ? {

@@ -15,7 +15,7 @@ const Contents: FC<Props> = ({ path, component }) => {
     <>
       <HeadOgp index={path} />
       <Navigation path={path} />
-      <OriginalSpacer size={'160px'} />
+      <OriginalSpacer size="160px" />
       <>{component}</>
       <Footer />
     </>
