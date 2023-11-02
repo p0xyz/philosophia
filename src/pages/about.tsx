@@ -30,7 +30,7 @@ const About: NextPage = () => {
   );
   const Description = () => (
     <Text fontSize={'1.3rem'} lineHeight={'2.5rem'}>
-      21歳 関西圏で写真を撮ります。
+      22歳 関西圏で写真を撮ります。
       <br />
       使用機材：Canon EOS RP / Canon EOS Kiss X3
     </Text>
