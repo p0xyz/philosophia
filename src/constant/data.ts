@@ -19,16 +19,6 @@ export const links: linkType[] = [
     url: 'https://www.instagram.com/p0.xyz/',
     svg: 'instagram',
   },
-  // {
-  //   text: 'mail',
-  //   url: 'mailto:manamisato2001@gmail.com',
-  //   svg: 'mail',
-  // },
-  // {
-  //   text: 'Portfolio(Web)',
-  //   url: 'https://puddle.vercel.app/',
-  //   svg: 'link',
-  // },
 ];
 
 export const shereLinks: linkType[] = [
@@ -42,10 +32,6 @@ export const shereLinks: linkType[] = [
     url: 'https://twitter.com/intent/tweet?url=https://www.philosophia000.xyz/&text=Philosophia%20-%20%E6%9C%88%E6%B3%A2%E2%80%99s%20Photography%20Portfolio',
     svg: 'twitter',
   },
-  // {
-  //   url: 'https://www.facebook.com/sharer/sharer.php?u=https://www.philosophia000.xyz/',
-  //   svg: 'facebook',
-  // },
 ];
 
 export const ABOUT_PATH = 'about';

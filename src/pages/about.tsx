@@ -101,7 +101,7 @@ const About: NextPage = () => {
       >
         <Name />
         <Description />
-        <Sns />
+        {/* <Sns /> */}
       </Flex>
       <Icon />
     </Flex>
