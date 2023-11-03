@@ -43,7 +43,7 @@ export const PATH_39 = 'contact/39';
 export const PATH_NOTFOUND = '404';
 
 export const APP_OGP: {
-  [key in typeof PATH_ABOUT | typeof PATH_CONTACT | typeof PATH_NOTFOUND]: {
+  [key in typeof PATH_ABOUT | typeof PATH_CONTACT]: {
     title: string;
     description: string;
   };
@@ -55,9 +55,5 @@ export const APP_OGP: {
   contact: {
     title: 'お問い合わせ',
     description: '月波へのお問い合わせフォームです。',
-  },
-  404: {
-    title: '404',
-    description: '月波の写真ポートフォリオです。',
   },
 };

@@ -91,7 +91,7 @@ const Navigation: FC<Props> = ({ path }) => {
                 h: '100%',
                 background: 'transparent',
                 transition: 'color 0.2s, background 0.2s',
-                ...(path === i && {
+                ...(path === item && {
                   color: 'white',
                   background: 'black800',
                 }),

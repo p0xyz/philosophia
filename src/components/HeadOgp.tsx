@@ -15,13 +15,17 @@ import {
 import { AppPathType } from '@/types/link';
 
 type Props = {
-  path: AppPathType;
+  path: AppPathType | string;
 };
 
 const HeadOgp: FC<Props> = ({ path }) => {
   return (
     <Head>
-      {path === (2022 || 2021 || 2020 || 2019 || 2018) && (
+      {(path === 2022 ||
+        path === 2021 ||
+        path === 2020 ||
+        path === 2019 ||
+        path === 2018) && (
         <>
           <title>{`${path}｜${APP_TITLE_FULL}`}</title>
           <meta property="og:title" content={`${path}｜${APP_TITLE_FULL}`} />
