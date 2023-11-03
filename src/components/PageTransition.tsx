@@ -11,7 +11,7 @@ const PageTransition: FC<Props> = ({ children }) => {
   const [isLoad, setIsLoad] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLoad(true);
+    if (!isLoad) setIsLoad(true);
     router.events.on('routeChangeStart', () => setIsLoad(false));
     window.addEventListener('beforeunload', () => setIsLoad(false));
     return () => {
@@ -21,7 +21,7 @@ const PageTransition: FC<Props> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    setIsLoad(true);
+    if (!isLoad) setIsLoad(true);
   }, [router]);
 
   return (
