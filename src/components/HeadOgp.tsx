@@ -35,7 +35,7 @@ const HeadOgp: FC<Props> = ({ path }) => {
           />
         </>
       )}
-      {path === (PATH_ABOUT || PATH_CONTACT || PATH_NOTFOUND) && (
+      {(path === PATH_ABOUT || path === PATH_CONTACT) && (
         <>
           <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
           <meta property="og:title" content={APP_TITLE_FULL} />
