@@ -10,23 +10,19 @@ const PageTransition: FC<Props> = ({ children }) => {
   const router = useRouter();
   const [isLoad, setIsLoad] = useState<boolean>(false);
 
-  const loadFuncFalse = () => {
-    setIsLoad(false);
-  };
-
-  const loadFuncTure = () => {
-    setIsLoad(true);
-  };
-
   useEffect(() => {
-    loadFuncTure();
-    router.events.on('routeChangeStart', loadFuncFalse);
-    window.addEventListener('beforeunload', loadFuncFalse);
+    setIsLoad(true);
+    router.events.on('routeChangeStart', () => setIsLoad(false));
+    window.addEventListener('beforeunload', () => setIsLoad(false));
     return () => {
-      router.events.off('routeChangeStart', loadFuncTure);
-      window.removeEventListener('beforeunload', loadFuncTure);
+      router.events.off('routeChangeStart', () => setIsLoad(true));
+      window.removeEventListener('beforeunload', () => setIsLoad(true));
     };
   }, []);
+
+  useEffect(() => {
+    setIsLoad(true);
+  }, [router]);
 
   return (
     <Box
