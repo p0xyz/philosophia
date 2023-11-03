@@ -18,10 +18,6 @@ const PageTransition: FC<Props> = ({ children }) => {
       router.events.off('routeChangeStart', () => setIsLoad(true));
       window.removeEventListener('beforeunload', () => setIsLoad(true));
     };
-  }, []);
-
-  useEffect(() => {
-    if (!isLoad) setIsLoad(true);
   }, [router]);
 
   return (
