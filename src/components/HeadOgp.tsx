@@ -1,52 +1,57 @@
 import { FC } from 'react';
 import Head from 'next/head';
 
-import { desc, imgPath, path, title, years } from '@/constant/data';
+import {
+  APP_URL,
+  PATH_39,
+  PATH_ABOUT,
+  PATH_CONTACT,
+  PATH_NOTFOUND,
+  APP_OGP,
+  APP_TITLE_FULL,
+  APP_MAIN_IMAGE,
+} from '@/constant/data';
+
+import { AppPathType } from '@/types/link';
 
 type Props = {
-  index: number | string | undefined;
+  path: AppPathType;
 };
 
-const HeadOgp: FC<Props> = ({ index }) => {
+const HeadOgp: FC<Props> = ({ path }) => {
   return (
     <Head>
-      {typeof index === 'number' && (
+      {path === (2022 || 2021 || 2020 || 2019 || 2018) && (
         <>
-          <title>{years[index] + '｜' + title + ' - ' + desc}</title>
+          <title>{`${path}｜${APP_TITLE_FULL}`}</title>
+          <meta property="og:title" content={`${path}｜${APP_TITLE_FULL}`} />
           <meta
-            property="og:title"
-            content={years[index] + '｜' + title + ' - ' + desc}
+            property="og:description"
+            content="月波の写真ポートフォリオです。"
           />
-          <meta property="og:url" content={path + years[index]} />
         </>
       )}
-      {typeof index === 'string' && (
+      {path === (PATH_ABOUT || PATH_CONTACT || PATH_NOTFOUND) && (
         <>
-          <title>{title + ' - ' + desc}</title>
-          <meta property="og:title" content={title + ' - ' + desc} />
-          <meta property="og:url" content={path} />
+          <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
+          <meta property="og:title" content={APP_TITLE_FULL} />
+          <meta property="og:description" content={APP_OGP[path].description} />
         </>
       )}
-      {typeof index === 'undefined' && (
+      {path === PATH_39 && (
         <>
-          <title>{404 + '｜' + title + ' - ' + desc}</title>
+          <title>{`お問い合わせ完了｜${APP_TITLE_FULL}`}</title>
+          <meta property="og:title" content={APP_TITLE_FULL} />
           <meta
-            property="og:title"
-            content={404 + '｜' + title + ' - ' + desc}
+            property="og:description"
+            content="月波へのお問い合わせフォームです。"
           />
-          <meta property="og:url" content={path + 404} />
         </>
       )}
-      <meta
-        property="og:description"
-        content="月波の写真ポートフォリオです。"
-      />
-      {/* ページの種類 */}
+      <meta property="og:url" content={`${APP_URL}/${path}`} />
       <meta property="og:type" content="website" />
-      {/* サイト名 */}
-      <meta property="og:site_name" content={title + ' - ' + desc} />
-      {/* サムネイル画像の URL */}
-      <meta property="og:image" content={imgPath + 'img_032_06.jpg'} />
+      <meta property="og:site_name" content={APP_TITLE_FULL} />
+      <meta property="og:image" content={APP_MAIN_IMAGE} />
       <meta name="twitter:card" content="summary" />
     </Head>
   );

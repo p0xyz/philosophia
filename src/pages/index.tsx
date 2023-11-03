@@ -1,21 +1,18 @@
-import { years } from '@/constant/data';
-import { Box } from '@chakra-ui/react';
+import { APP_PAGE_YEARS } from '@/constant/data';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const send = () => {
-    router.push({
-      pathname: years[0] + '',
-    });
-  };
+
   useEffect(() => {
-    send();
+    router.push({
+      pathname: APP_PAGE_YEARS[0] + '',
+    });
   }, []);
 
-  return <Box />;
+  return <></>;
 };
 
 export default Home;

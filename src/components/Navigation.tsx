@@ -1,15 +1,23 @@
 import { FC, useEffect, useState } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { Box, Center, Flex, Text, useMediaQuery } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  Text,
+  transition,
+  useMediaQuery,
+} from '@chakra-ui/react';
 
-import { ABOUT_PATH, name, years } from '@/constant/data';
+import { PATH_ABOUT, APP_NAME, APP_PAGE_YEARS } from '@/constant/data';
 
 import Sns from '@/components/Sns';
 import Copy from '@/components/Copy';
+import { AppPathType } from '@/types/link';
 
 type Props = {
-  path: number | string | undefined;
+  path: AppPathType;
 };
 
 const Navigation: FC<Props> = ({ path }) => {
@@ -59,61 +67,64 @@ const Navigation: FC<Props> = ({ path }) => {
         },
       }}
     >
-      <NextLink passHref href={`/${years[0]}`}>
+      <NextLink passHref href={`/${APP_PAGE_YEARS[0]}`}>
         Philosophia
       </NextLink>
     </Flex>
   );
   const NavLink = () => (
     <>
-      {years.map((item, i) => (
+      {APP_PAGE_YEARS.map((item, i) => (
         <Center
           as="li"
           key={item}
           sx={{
-            ...(isLargerThan721
-              ? {
-                  width: '80px',
-                  height: '32px',
-                  position: 'relative',
-                  a: {
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    w: '100%',
-                    h: '100%',
-                    background: 'transparent',
-                    transition: 'color 0.2s, background 0.2s',
-                    ...(path === i && {
-                      color: 'white',
-                      background: 'black800',
-                    }),
-                    '&:hover': {
-                      color: 'white',
-                      background: 'black800',
-                    },
-                  },
-                }
-              : {
-                  a: {
-                    ...(typeof path === 'number' &&
-                      years[path] === item && {
-                        '&::after': {
-                          content: '""',
-                          display: 'block',
-                          background: 'black300',
-                          width: '12px',
-                          height: '12px',
-                          ml: '16px',
-                          borderRadius: '9999px',
-                        },
-                      }),
-                  },
+            ...(isLargerThan721 && {
+              width: '80px',
+              height: '32px',
+              position: 'relative',
+              a: {
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                w: '100%',
+                h: '100%',
+                background: 'transparent',
+                transition: 'color 0.2s, background 0.2s',
+                ...(path === i && {
+                  color: 'white',
+                  background: 'black800',
                 }),
+                '&:hover': {
+                  color: 'white',
+                  background: 'black800',
+                },
+              },
+            }),
           }}
         >
           <NextLink passHref href={`/${item}`}>
-            {item}
+            <Text
+              as="a"
+              sx={{
+                ...(!isLargerThan721 &&
+                  path === item && {
+                    a: {
+                      '&::after': {
+                        content: '""',
+                        display: 'block',
+                        background: 'black300',
+                        width: '12px',
+                        height: '12px',
+                        ml: '16px',
+                        borderRadius: '9999px',
+                      },
+                    },
+                  }),
+              }}
+            >
+              {item}
+            </Text>
           </NextLink>
         </Center>
       ))}
@@ -123,56 +134,55 @@ const Navigation: FC<Props> = ({ path }) => {
     <Box
       as="li"
       sx={{
-        ...(isLargerThan721
-          ? {
-              width: '64px',
-              height: '64px',
-              borderRadius: '50%',
-              borderColor: 'transparent',
-              borderStyle: 'solid',
-              borderWidth: '4px',
-              ml: '24px',
-              opacity: '1',
-              overflow: 'hidden',
-              transition: '0.2s opacity, 0.2s border-color',
-              ...(typeof path === 'string' && {
-                borderColor: 'black800',
-                borderStyle: 'solid',
-                borderWidth: '4px',
-              }),
-              '&:hover': {
-                opacity: 0.6,
-                borderColor: 'black800',
-              },
-            }
-          : {
-              a: {
-                ...(isSmallerThan720 && {
-                  display: 'flex',
-                  alignItems: 'center',
-                }),
-                ...(typeof path === 'string' && {
-                  '&::after': {
-                    content: '""',
-                    display: 'block',
-                    background: 'black300',
-                    width: '12px',
-                    height: '12px',
-                    ml: '16px',
-                    borderRadius: '9999px',
-                  },
-                }),
-              },
-            }),
+        ...(isLargerThan721 && {
+          width: '64px',
+          height: '64px',
+          borderRadius: '50%',
+          borderColor: 'transparent',
+          borderStyle: 'solid',
+          borderWidth: '4px',
+          ml: '24px',
+          opacity: '1',
+          overflow: 'hidden',
+          transition: '0.2s opacity, 0.2s border-color',
+          ...(path === PATH_ABOUT && {
+            borderColor: 'black800',
+            borderStyle: 'solid',
+            borderWidth: '4px',
+          }),
+          '&:hover': {
+            opacity: 0.6,
+            borderColor: 'black800',
+          },
+        }),
       }}
     >
-      <NextLink passHref href={`/${ABOUT_PATH}`}>
-        <a>
+      <NextLink passHref href={`/${PATH_ABOUT}`}>
+        <Text
+          as="a"
+          sx={{
+            ...(isSmallerThan720 && {
+              display: 'flex',
+              alignItems: 'center',
+              ...(path === PATH_ABOUT && {
+                '&::after': {
+                  content: '""',
+                  display: 'block',
+                  background: 'black300',
+                  width: '12px',
+                  height: '12px',
+                  ml: '16px',
+                  borderRadius: '9999px',
+                },
+              }),
+            }),
+          }}
+        >
           {isLargerThan721 ? (
             <Box
               as="img"
               src="/img/icon.jpg"
-              alt={name}
+              alt={APP_NAME}
               w="100%"
               h="100%"
               objectFit="cover"
@@ -180,7 +190,7 @@ const Navigation: FC<Props> = ({ path }) => {
           ) : (
             <>About</>
           )}
-        </a>
+        </Text>
       </NextLink>
     </Box>
   );

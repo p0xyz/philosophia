@@ -1,10 +1,9 @@
-import { Box, Center, Flex, Link, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, HStack, Image, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 
-import Contents from '@/components/Contents';
-import PageTransition from '@/components/PageTransition';
+import Layout from '@/components/Layout';
 
-import { ABOUT_PATH, links, name } from '@/constant/data';
+import { APP_SNS_LINKS, APP_NAME } from '@/constant/data';
 
 const About: NextPage = () => {
   const Name = () => (
@@ -12,9 +11,9 @@ const About: NextPage = () => {
       <Text fontFamily="nav" fontSize="1.6rem">
         All photo by
       </Text>
-      <Flex alignItems="center" gap="8px">
+      <HStack gap="8px">
         <Text as="span" fontSize="2.2rem" fontWeight="bold">
-          {name}
+          {APP_NAME}
         </Text>
         <Text
           as="span"
@@ -25,7 +24,7 @@ const About: NextPage = () => {
         >
           - Amateur photographer
         </Text>
-      </Flex>
+      </HStack>
     </Box>
   );
   const Description = () => (
@@ -37,7 +36,7 @@ const About: NextPage = () => {
   );
   const Sns = () => (
     <Flex as="ul" flexDir="column" gap="8px">
-      {links.map((item, i) => (
+      {APP_SNS_LINKS.map((item, i) => (
         <Box as="li" key={item.url + i}>
           <Flex
             as="a"
@@ -59,11 +58,10 @@ const About: NextPage = () => {
     </Flex>
   );
   const Icon = () => (
-    <Center w="304px" h="304px">
-      <Box
-        as="img"
+    <Center w="304px" aspectRatio={1}>
+      <Image
         src="/img/icon.jpg"
-        alt={name}
+        alt={APP_NAME}
         w="100%"
         h="100%"
         objectFit="cover"
@@ -108,10 +106,9 @@ const About: NextPage = () => {
   );
 
   return (
-    <Contents
-      path={ABOUT_PATH}
-      component={<PageTransition component={<Component />} />}
-    />
+    <Layout>
+      <Component />
+    </Layout>
   );
 };
 

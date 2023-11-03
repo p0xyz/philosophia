@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Text } from '@chakra-ui/react';
 
-import { furigana } from '@/constant/data';
+import { APP_NAME_FURIGANA } from '@/constant/data';
 
 type Props = {
   isFoot?: boolean;
@@ -17,7 +17,7 @@ const Copy: FC<Props> = ({ isFoot }) => (
     fontFamily="nav"
     textAlign="center"
   >
-    &copy; 2020-2023 {furigana}.
+    &copy; 2020-2023 {APP_NAME_FURIGANA}.
   </Text>
 );
 export default Copy;

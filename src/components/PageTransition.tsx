@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import { Box, transition } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 type Props = {
-  component: JSX.Element;
+  children: JSX.Element;
 };
 
-const PageTransition: FC<Props> = ({ component }) => {
+const PageTransition: FC<Props> = ({ children }) => {
   const router = useRouter();
   const [isLoad, setIsLoad] = useState<boolean>(false);
 
@@ -41,7 +41,7 @@ const PageTransition: FC<Props> = ({ component }) => {
         }),
       }}
     >
-      {component}
+      {children}
     </Box>
   );
 };
