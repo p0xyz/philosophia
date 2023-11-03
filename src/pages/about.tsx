@@ -64,7 +64,7 @@ const About: NextPage = () => {
   const Icon = () => (
     <Center w="304px" aspectRatio={1}>
       <Image
-        src="/img/icon.jpg"
+        src="/images/icon.jpg"
         alt={APP_NAME}
         w="100%"
         h="100%"

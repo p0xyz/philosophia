@@ -183,7 +183,7 @@ const Navigation: FC<Props> = ({ path }) => {
           {isLargerThan721 ? (
             <Box
               as="img"
-              src="/img/icon.jpg"
+              src="/images/icon.jpg"
               alt={APP_NAME}
               w="100%"
               h="100%"
