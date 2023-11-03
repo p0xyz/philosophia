@@ -12,11 +12,11 @@ const PageTransition: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!isLoad) setIsLoad(true);
-    router.events.on('routeChangeStart', () => setIsLoad(false));
-    window.addEventListener('beforeunload', () => setIsLoad(false));
+    router.events.on('routeChangeStart', () => setIsLoad(true));
+    window.addEventListener('beforeunload', () => setIsLoad(true));
     return () => {
-      router.events.off('routeChangeStart', () => setIsLoad(true));
-      window.removeEventListener('beforeunload', () => setIsLoad(true));
+      router.events.off('routeChangeStart', () => setIsLoad(false));
+      window.removeEventListener('beforeunload', () => setIsLoad(false));
     };
   }, [router]);
 
@@ -26,6 +26,7 @@ const PageTransition: FC<Props> = ({ children }) => {
       opacity={0}
       transform="translateX(-2vw)"
       transition="transform 0.3s, opacity 0.3s"
+      pt="160px"
       sx={{
         ...(isLoad && {
           opacity: 1,

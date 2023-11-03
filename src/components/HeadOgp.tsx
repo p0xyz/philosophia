@@ -3,14 +3,11 @@ import Head from 'next/head';
 
 import {
   APP_URL,
-  PATH_39,
-  PATH_ABOUT,
-  PATH_CONTACT,
-  PATH_NOTFOUND,
   APP_OGP,
   APP_TITLE_FULL,
   APP_MAIN_IMAGE,
-} from '@/constant/data';
+} from '@/constant/app';
+import { PATH_ABOUT, PATH_CONTACT, PATH_CONTACT_39 } from '@/constant/path';
 
 import { AppPathType } from '@/types/link';
 
@@ -42,7 +39,7 @@ const HeadOgp: FC<Props> = ({ path }) => {
           <meta property="og:description" content={APP_OGP[path].description} />
         </>
       )}
-      {path === PATH_39 && (
+      {path === PATH_CONTACT_39 && (
         <>
           <title>{`お問い合わせ完了｜${APP_TITLE_FULL}`}</title>
           <meta property="og:title" content={APP_TITLE_FULL} />

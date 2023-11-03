@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Script from 'next/script';
 import { Box } from '@chakra-ui/react';
 
-import { PATH_CONTACT } from '@/constant/data';
+import { PATH_CONTACT } from '@/constant/path';
 
 import HeadOgp from '@/components/HeadOgp';
 

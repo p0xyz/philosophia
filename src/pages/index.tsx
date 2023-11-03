@@ -1,4 +1,4 @@
-import { APP_PAGE_YEARS } from '@/constant/data';
+import { APP_PAGE_YEARS } from '@/constant/app';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';

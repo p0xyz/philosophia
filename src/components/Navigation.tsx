@@ -10,10 +10,12 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 
-import { PATH_ABOUT, APP_NAME, APP_PAGE_YEARS } from '@/constant/data';
+import { APP_NAME, APP_PAGE_YEARS } from '@/constant/app';
+import { PATH_ABOUT } from '@/constant/path';
 
-import Sns from '@/components/Sns';
-import Copy from '@/components/Copy';
+import ShareLink from '@/components/ShareLink';
+import Copyright from '@/components/Copyright';
+
 import { AppPathType } from '@/types/link';
 
 type Props = {
@@ -72,7 +74,7 @@ const Navigation: FC<Props> = ({ path }) => {
       </NextLink>
     </Flex>
   );
-  const NavLink = () => (
+  const NavigationLink = () => (
     <>
       {APP_PAGE_YEARS.map((item, i) => (
         <Center
@@ -106,19 +108,18 @@ const Navigation: FC<Props> = ({ path }) => {
           <NextLink passHref href={`/${item}`}>
             <Text
               as="a"
+              _hover={{ cursor: 'pointer' }}
               sx={{
                 ...(!isLargerThan721 &&
                   path === item && {
-                    a: {
-                      '&::after': {
-                        content: '""',
-                        display: 'block',
-                        background: 'black300',
-                        width: '12px',
-                        height: '12px',
-                        ml: '16px',
-                        borderRadius: '9999px',
-                      },
+                    '&::after': {
+                      content: '""',
+                      display: 'block',
+                      background: 'black300',
+                      width: '12px',
+                      height: '12px',
+                      ml: '16px',
+                      borderRadius: '9999px',
                     },
                   }),
               }}
@@ -160,6 +161,7 @@ const Navigation: FC<Props> = ({ path }) => {
       <NextLink passHref href={`/${PATH_ABOUT}`}>
         <Text
           as="a"
+          _hover={{ cursor: 'pointer' }}
           sx={{
             ...(isSmallerThan720 && {
               display: 'flex',
@@ -214,11 +216,6 @@ const Navigation: FC<Props> = ({ path }) => {
         fontFamily={{ base: 'logo', md: 'nav' }}
         zIndex="20"
         sx={{
-          '>li>a': {
-            '&:hover': {
-              cursor: 'pointer',
-            },
-          },
           ...(isLargerThan721
             ? {
                 alignItems: 'center',
@@ -256,12 +253,12 @@ const Navigation: FC<Props> = ({ path }) => {
               }),
         }}
       >
-        <NavLink />
+        <NavigationLink />
         <AboutLink />
         {isSmallerThan720 && (
           <Center as="li" flexDir="column" gap="16px" w="100%" mt="24px">
-            <Sns />
-            <Copy />
+            <ShareLink />
+            <Copyright />
           </Center>
         )}
       </Flex>

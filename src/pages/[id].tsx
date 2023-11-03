@@ -4,7 +4,7 @@ import { Box, Center, Flex, Image, useMediaQuery } from '@chakra-ui/react';
 
 import Layout from '@/components/Layout';
 
-import { APP_PAGE_YEARS } from '@/constant/data';
+import { APP_PAGE_YEARS } from '@/constant/app';
 
 import { client } from '@/libs/client';
 
@@ -16,31 +16,24 @@ type Props = {
 
 const Photo: NextPage<Props> = ({ microCMSData }) => {
   const [isSP] = useMediaQuery('(max-width: 480px)');
-  const [selected, setSelected] = useState<number>(0);
   const [isModal, setIsModal] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [modalIndex, setModalIndex] = useState(0);
 
-  const onModal = () => {
-    setIsModal(!isModal);
-  };
   const modalFunc = (i: number) => {
-    setSelected(i);
+    setSelectedIndex(i);
     setModalIndex(0);
-    onModal();
-  };
-
-  const selectModalIndex = (i: number) => {
-    setModalIndex(i);
+    setIsModal(!isModal);
   };
 
   const next = () => {
-    modalIndex + 1 === microCMSData[selected].images.length
+    modalIndex + 1 === microCMSData[selectedIndex].images.length
       ? setModalIndex(0)
       : setModalIndex(modalIndex + 1);
   };
   const prev = () => {
     modalIndex === 0
-      ? setModalIndex(microCMSData[selected].images.length - 1)
+      ? setModalIndex(microCMSData[selectedIndex].images.length - 1)
       : setModalIndex(modalIndex - 1);
   };
 
@@ -212,7 +205,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           }}
           pos="relative"
         >
-          {microCMSData[selected].images.map((item, i) => (
+          {microCMSData[selectedIndex].images.map((item, i) => (
             <Center
               as="li"
               key={item.url}
@@ -271,7 +264,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               }),
             }}
           >
-            {microCMSData[selected].date.split('T')[0]}
+            {microCMSData[selectedIndex].date.split('T')[0]}
           </Flex>
           {/* Circle */}
           <Center
@@ -283,14 +276,14 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               }),
             }}
           >
-            {microCMSData[selected].images.map((item, i) => (
+            {microCMSData[selectedIndex].images.map((item, i) => (
               <Box
                 w="12px"
                 h="12px"
                 background="black300"
                 transition="0.2s background"
                 borderRadius="9999px"
-                onClick={() => selectModalIndex(i)}
+                onClick={() => setModalIndex(i)}
                 key={'array' + i}
                 _hover={{
                   cursor: 'pointer',
@@ -317,9 +310,9 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               }),
             }}
           >
-            {microCMSData[selected].place}
-            {microCMSData[selected].prefecture && (
-              <>, {microCMSData[selected].prefecture}</>
+            {microCMSData[selectedIndex].place}
+            {microCMSData[selectedIndex].prefecture && (
+              <>, {microCMSData[selectedIndex].prefecture}</>
             )}
           </Flex>
         </Flex>
@@ -376,7 +369,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             onClick={() => next()}
             textStyle="modalArrow"
             sx={{
-              ...(modalIndex === microCMSData[selected].images.length - 1
+              ...(modalIndex === microCMSData[selectedIndex].images.length - 1
                 ? {
                     opacity: 0,
                     pointerEvents: 'none',

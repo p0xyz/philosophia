@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { VStack, Heading, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { PATH_INDEX } from '@/constant/data';
+
+import { PATH_INDEX } from '@/constant/path';
 
 type Props = {
   title: string;
@@ -9,7 +10,14 @@ type Props = {
 };
 
 const TextPageLayout: FC<Props> = ({ title, description }) => (
-  <VStack alignItems="stretch" gap="16px" w="80vw" maxW="800px" m="0 auto" pt="40px">
+  <VStack
+    alignItems="stretch"
+    gap="16px"
+    w="80vw"
+    maxW="800px"
+    m="0 auto"
+    pt="40px"
+  >
     <Heading as="h2" fontFamily="logo" fontSize="2rem">
       {title}
     </Heading>

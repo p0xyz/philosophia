@@ -4,10 +4,9 @@ import { Flex } from '@chakra-ui/react';
 
 import Navigation from '@/components/Navigation';
 import HeadOgp from '@/components/HeadOgp';
-import OriginalSpacer from '@/components/OriginalSpacer';
 import PageTransition from '@/components/PageTransition';
-import Copy from '@/components/Copy';
-import Sns from '@/components/Sns';
+import Copyright from '@/components/Copyright';
+import ShareLink from '@/components/ShareLink';
 import { AppPathType } from '@/types/link';
 
 type Props = {
@@ -29,8 +28,8 @@ const Layout: FC<Props> = ({ children }) => {
       p="64px 0 88px"
       gap="16px"
     >
-      <Sns isFoot />
-      <Copy isFoot />
+      <ShareLink isFoot />
+      <Copyright isFoot />
     </Flex>
   );
 
@@ -38,7 +37,6 @@ const Layout: FC<Props> = ({ children }) => {
     <>
       <HeadOgp path={path} />
       <Navigation path={path} />
-      <OriginalSpacer size="160px" />
       <PageTransition>
         <>{children}</>
       </PageTransition>

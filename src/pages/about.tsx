@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 
 import Layout from '@/components/Layout';
 
-import { APP_SNS_LINKS, APP_NAME } from '@/constant/data';
+import { APP_OTHER_LINKS, APP_NAME } from '@/constant/app';
 
 const About: NextPage = () => {
   const Name = () => (
@@ -34,9 +34,9 @@ const About: NextPage = () => {
       使用機材：Canon EOS RP / Canon EOS Kiss X3
     </Text>
   );
-  const Sns = () => (
+  const OtherLink = () => (
     <Flex as="ul" flexDir="column" gap="8px">
-      {APP_SNS_LINKS.map((item, i) => (
+      {APP_OTHER_LINKS.map((item, i) => (
         <Box as="li" key={item.url + i}>
           <Flex
             as="a"
@@ -46,9 +46,13 @@ const About: NextPage = () => {
             opacity={1}
             transition="0.3s opacity"
           >
-            <Center as="figure" w="16px" m="0 4px 0 0" opacity={1}>
-              <Box as="img" src={`/img/icon_${item.svg}.svg`} />
-            </Center>
+            <Image
+              src={item.svg}
+              alt={item.text}
+              w="16px"
+              m="0 4px 0 0"
+              opacity={1}
+            />
             <Text as="span" fontFamily="nav">
               {item.text}
             </Text>
@@ -99,7 +103,7 @@ const About: NextPage = () => {
       >
         <Name />
         <Description />
-        {/* <Sns /> */}
+        <OtherLink />
       </Flex>
       <Icon />
     </Flex>
