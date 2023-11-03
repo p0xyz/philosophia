@@ -1,8 +1,6 @@
 import { Box, Center, Flex, HStack, Image, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 
-import ICON from '@/assets/images/icon.jpg';
-
 import Layout from '@/components/Layout';
 
 import { APP_OTHER_LINKS, APP_NAME } from '@/constant/app';
@@ -66,7 +64,7 @@ const About: NextPage = () => {
   const Icon = () => (
     <Center w="304px" aspectRatio={1}>
       <Image
-        src={ICON}
+        src="/images/icon.jpg"
         alt={APP_NAME}
         w="100%"
         h="100%"
