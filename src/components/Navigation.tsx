@@ -26,26 +26,26 @@ type Props = {
 
 const Navigation: FC<Props> = ({ path }) => {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenNavigationDrawer, setIsOpenNavigationDrawer] =
+    useState<boolean>(false);
   const [isLargerThan721] = useMediaQuery('(min-width: 721px)');
-  const [isSmallerThan720] = useMediaQuery('(max-width: 720px)');
-
-  const openFuncFalse = () => {
-    setIsOpen(false);
-  };
 
   useEffect(() => {
-    router.events.on('routeChangeStart', openFuncFalse);
-    window.addEventListener('beforeunload', openFuncFalse);
+    router.events.on('routeChangeStart', () =>
+      setIsOpenNavigationDrawer(false)
+    );
+    window.addEventListener('beforeunload', () =>
+      setIsOpenNavigationDrawer(false)
+    );
     return () => {
-      router.events.off('routeChangeStart', openFuncFalse);
-      window.removeEventListener('beforeunload', openFuncFalse);
+      router.events.off('routeChangeStart', () =>
+        setIsOpenNavigationDrawer(false)
+      );
+      window.removeEventListener('beforeunload', () =>
+        setIsOpenNavigationDrawer(false)
+      );
     };
   }, []);
-
-  const modalOpen = () => {
-    setIsOpen(!isOpen);
-  };
 
   const Header = () => (
     <Heading
@@ -64,7 +64,7 @@ const Navigation: FC<Props> = ({ path }) => {
           sx={{
             opacity: 1,
             transition: 'opacity 0.2s, color 0.2s',
-            ...(isOpen && {
+            ...(isOpenNavigationDrawer && {
               color: 'white',
             }),
             '&:hover': {
@@ -240,7 +240,7 @@ const Navigation: FC<Props> = ({ path }) => {
                 p: '160px 5vw 0',
                 transition: 'transform 0.2s',
                 transform: 'translateX(100%)',
-                ...(isOpen && {
+                ...(isOpenNavigationDrawer && {
                   opacity: 1,
                   transform: 'translateX(0)',
                 }),
@@ -249,17 +249,17 @@ const Navigation: FC<Props> = ({ path }) => {
       >
         <NavigationLink />
         <AboutLink />
-        {isSmallerThan720 && (
+        {!isLargerThan721 && (
           <Center flexDir="column" gap="16px" w="100%" mt="24px">
             <ShareLink />
             <Copyright />
           </Center>
         )}
       </Flex>
-      {isSmallerThan720 && (
+      {!isLargerThan721 && (
         <Center
           as="button"
-          onClick={() => modalOpen()}
+          onClick={() => setIsOpenNavigationDrawer(!isOpenNavigationDrawer)}
           flexDir="column"
           width="32px"
           height="32px"
@@ -273,7 +273,7 @@ const Navigation: FC<Props> = ({ path }) => {
               background: 'black800',
               mb: '8px',
               transition: 'background 0.2s',
-              ...(isOpen && {
+              ...(isOpenNavigationDrawer && {
                 background: 'white',
               }),
             },
@@ -284,7 +284,7 @@ const Navigation: FC<Props> = ({ path }) => {
               height: '2px',
               background: 'black800',
               transition: 'background 0.2s',
-              ...(isOpen && {
+              ...(isOpenNavigationDrawer && {
                 background: 'white',
               }),
             },
