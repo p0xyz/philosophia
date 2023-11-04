@@ -221,7 +221,7 @@ const Navigation: FC<Props> = ({ path }) => {
       <Header />
       <Spacer />
       <Flex
-        fontFamily={{ base: 'logo', md: 'nav' }}
+        fontFamily={{ base: 'logo', md: 'en' }}
         sx={{
           ...(isLargerThan721
             ? {

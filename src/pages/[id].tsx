@@ -336,8 +336,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             as="button"
             type="button"
             onClick={() => prev()}
-            textStyle="modalArrow"
-            transition="opacity 0.2s"
+            textStyle="imageModalArrowButton"
             sx={{
               ...(modalIndex === 0
                 ? {
@@ -376,7 +375,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             as="button"
             type="button"
             onClick={() => next()}
-            textStyle="modalArrow"
+            textStyle="imageModalArrowButton"
             sx={{
               ...(modalIndex === microCMSData[selectedIndex].images.length - 1
                 ? {

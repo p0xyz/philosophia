@@ -49,7 +49,7 @@ const breakpoints = {
   lg: '1000px',
 };
 const textStyles = {
-  modalArrow: {
+  imageModalArrowButton: {
     width: '64px',
     position: 'relative',
     '@media screen and (min-width: 481px)': {
@@ -66,16 +66,6 @@ const textStyles = {
       '&::after': {
         backgroundColor: 'black300',
       },
-    },
-  },
-  circle: {
-    '&::after': {
-      content: '""',
-      display: 'block',
-      background: 'white',
-      width: '24px',
-      height: '24px',
-      borderRadius: '9999px',
     },
   },
 };
