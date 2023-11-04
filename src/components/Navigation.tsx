@@ -232,7 +232,7 @@ const Navigation: FC<Props> = ({ path }) => {
             : {
                 flexDirection: 'column',
                 width: '100vw',
-                height: '100vh',
+                height: '100dvh',
                 background: 'black900',
                 fontSize: '2.2rem',
                 position: 'fixed',

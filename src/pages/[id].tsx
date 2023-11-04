@@ -121,7 +121,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         flexDir="column"
         gap={{ base: '16px', sm: '24px' }}
         w="100vw"
-        h="100vh"
+        h="100dvh"
         pos="fixed"
         inset="0 0 0 0"
         bgColor="rgba(255, 255, 255, 0.9)"
@@ -143,7 +143,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           <Box
             onClick={() => setIsSelectedModal(!isSelectedModal)}
             w="100vw"
-            h="100vh"
+            h="100dvh"
             pos="absolute"
             inset="0 0 0 0"
           />
@@ -151,7 +151,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         <Center
           as="ul"
           w="100vw"
-          h={{ base: 'calc(100vw / 2 * 3)', sm: '100vh' }}
+          h={{ base: 'calc(100vw / 2 * 3)', sm: '100dvh' }}
           pos="relative"
         >
           {microCMSData[selectedIndex].images.map((item, i) => (
@@ -181,7 +181,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           justifyContent={{ base: 'space-between', sm: 'flex-start' }}
           alignItems={{ base: 'flex-end', sm: 'flex-end' }}
           w="100vw"
-          h={{ base: 'calc(100vw / 2 * 3)', sm: '100vh' }}
+          h={{ base: 'calc(100vw / 2 * 3)', sm: '100dvh' }}
           m="auto"
           pos="absolute"
           inset={{
