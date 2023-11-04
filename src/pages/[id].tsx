@@ -191,11 +191,11 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         >
           <Center
             textAlign="left"
-            h="64px"
+            h="56px"
             bg="rgba(255, 255, 255, 0.8)"
-            px="16px"
+            p="4px 20px 0"
             fontFamily="en"
-            fontSize="1.6rem"
+            fontSize="1.3rem"
           >
             {microCMSData[selectedIndex].date.split('T')[0]}
             <br />
@@ -287,23 +287,25 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                   content: '""',
                   display: 'block',
                   width: '1px',
-                  height: '40px',
+                  height: isSP ? '24px' : '40px',
                   background: 'black600',
-                  margin: '0 0 28px',
+                  margin: isSP ? '0 0 17px' : '0 0 28px',
                   transition: '0.2s background',
                   position: 'absolute',
                   transform: 'rotateZ(45deg)',
+                  boxShadow: '0 0 6px 0 white',
                 },
                 '&::after': {
                   content: '""',
                   display: 'block',
                   width: '1px',
-                  height: '40px',
+                  height: isSP ? '24px' : '40px',
                   background: 'black600',
-                  margin: '28px 0 0',
+                  margin: isSP ? '16px 0 0' : '28px 0 0',
                   transition: '0.2s background',
                   position: 'absolute',
                   transform: 'rotateZ(135deg)',
+                  boxShadow: '0 0 6px 0 white',
                 },
               }}
             />
@@ -332,23 +334,25 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                   content: '""',
                   display: 'block',
                   width: '1px',
-                  height: '40px',
+                  height: isSP ? '24px' : '40px',
                   background: 'black600',
-                  margin: '0 0 28px',
+                  margin: isSP ? '0 0 17px' : '0 0 28px',
                   transition: '0.2s background',
                   position: 'absolute',
                   transform: 'rotateZ(135deg)',
+                  boxShadow: '0 0 6px 0 white',
                 },
                 '&::after': {
                   content: '""',
                   display: 'block',
                   width: '1px',
-                  height: '40px',
+                  height: isSP ? '24px' : '40px',
                   background: 'black600',
-                  margin: '28px 0 0',
+                  margin: isSP ? '16px 0 0' : '28px 0 0',
                   transition: '0.2s background',
                   position: 'absolute',
                   transform: 'rotateZ(45deg)',
+                  boxShadow: '0 0 6px 0 white',
                 },
               }}
             />

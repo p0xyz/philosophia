@@ -50,15 +50,15 @@ const breakpoints = {
 };
 const textStyles = {
   imageModalArrowButton: {
-    width: '64px',
-    bg:"rgba(255, 255, 255, 0.8)",
+    // bg:"rgba(255, 255, 255, 0.8)",
     position: 'relative',
     '@media screen and (min-width: 481px)': {
+      width: '64px',
       height: '160px',
     },
     '@media screen and (max-width: 480px)': {
-      height: '80px',
-      // transform: 'scale(80%)',
+      width: '48px',
+      height: '72px',
     },
     '&:hover': {
       '&::before': {
