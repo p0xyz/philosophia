@@ -1,14 +1,18 @@
-import { AppLinkType, AppPathYearType } from '@/types/link';
+import { AppLinkType, AppPathType, AppPathYearType } from '@/types/link';
 
-import SHARE_ICON_X_BLACK from '@/assets/images/icon_share_x_black.svg';
-import SHARE_ICON_X_WHITE from '@/assets/images/icon_share_x_white.svg';
-import SHARE_ICON_LINE_BLACK from '@/assets/images/icon_share_line_black.svg';
-import SHARE_ICON_LINE_WHITE from '@/assets/images/icon_share_line_white.svg';
-import OTHER_ICON_CONTACT from '@/assets/images/icon_other_contact.svg';
+import ShareIconX from '@/assets/icons/icon_share_x.svg';
+import ShareIconLine from '@/assets/icons/icon_share_line.svg';
+import OtherIconContact from '@/assets/icons/icon_other_contact.svg';
 
-import { PATH_ABOUT, PATH_CONTACT } from '@/constant/path';
+import { PATH_CONTACT } from '@/constant/path';
 
-export const APP_PAGE_YEARS: AppPathYearType[] = [2022, 2021, 2020, 2019, 2018];
+export const APP_PAGE_YEARS: AppPathYearType[] = [
+  '2022',
+  '2021',
+  '2020',
+  '2019',
+  '2018',
+];
 
 export const APP_URL: string = 'https://philosophia000.vercel.app/';
 export const APP_MAIN_IMAGE: string =
@@ -18,18 +22,15 @@ export const APP_NAME: string = '月波';
 export const APP_NAME_FURIGANA: string = 'Tsukinami';
 
 export const APP_TITLE: string = 'Philosophia';
-export const APP_TITLE_SUB: string = '月波’s Photography Portfolio';
+export const APP_TITLE_SUB: string = `${APP_NAME}’s Photography Portfolio`;
 export const APP_TITLE_FULL = `${APP_TITLE} - ${APP_TITLE_SUB}`;
 
-export const APP_OTHER_LINKS: {
-  text: string;
-  url: string;
-  svg: any;
-}[] = [
+export const APP_OTHER_LINKS: AppLinkType[] = [
   {
-    text: 'contact',
+    text: 'Contact',
     url: PATH_CONTACT,
-    svg: OTHER_ICON_CONTACT,
+    svg: OtherIconContact,
+    isProjectLink: true,
   },
 ];
 
@@ -37,33 +38,51 @@ export const APP_SHARE_LINKS: AppLinkType[] = [
   {
     text: 'LINE',
     url: `https://social-plugins.line.me/lineit/share?url=${APP_URL}`,
-    svg: {
-      white: SHARE_ICON_LINE_WHITE,
-      black: SHARE_ICON_LINE_BLACK,
-    },
+    svg: ShareIconLine,
   },
   {
     text: 'X',
     url: `https://twitter.com/intent/tweet?url=${APP_URL}&text=Philosophia%20-%20%E6%9C%88%E6%B3%A2%E2%80%99s%20Photography%20Portfolio`,
-    svg: {
-      white: SHARE_ICON_X_WHITE,
-      black: SHARE_ICON_X_BLACK,
-    },
+    svg: ShareIconX,
   },
 ];
 
 export const APP_OGP: {
-  [key in typeof PATH_ABOUT | typeof PATH_CONTACT]: {
+  [key in AppPathType]: {
     title: string;
     description: string;
   };
 } = {
+  2022: {
+    title: '2022',
+    description: '月波の写真ポートフォリオです。',
+  },
+  2021: {
+    title: '2021',
+    description: '月波の写真ポートフォリオです。',
+  },
+  2020: {
+    title: '2020',
+    description: '月波の写真ポートフォリオです。',
+  },
+  2019: {
+    title: '2019',
+    description: '月波の写真ポートフォリオです。',
+  },
+  2018: {
+    title: '2018',
+    description: '月波の写真ポートフォリオです。',
+  },
   about: {
     title: 'About',
     description: '月波の写真ポートフォリオです。',
   },
   contact: {
     title: 'お問い合わせ',
+    description: '月波へのお問い合わせフォームです。',
+  },
+  'contact/39': {
+    title: 'お問い合わせ完了',
     description: '月波へのお問い合わせフォームです。',
   },
 };
