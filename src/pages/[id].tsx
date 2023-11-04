@@ -17,25 +17,14 @@ type Props = {
 
 const Photo: NextPage<Props> = ({ microCMSData }) => {
   const [isSP] = useMediaQuery('(max-width: 480px)');
-  const [isModal, setIsModal] = useState<boolean>(false);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [modalIndex, setModalIndex] = useState(0);
+  const [isSelectedModal, setIsSelectedModal] = useState<boolean>(false);
+  const [selectedModalIndex, setSelectedModalIndex] = useState(0);
 
-  const modalFunc = (i: number) => {
+  const onOpenModal = (i: number) => {
     setSelectedIndex(i);
-    setModalIndex(0);
-    setIsModal(!isModal);
-  };
-
-  const next = () => {
-    modalIndex + 1 === microCMSData[selectedIndex].images.length
-      ? setModalIndex(0)
-      : setModalIndex(modalIndex + 1);
-  };
-  const prev = () => {
-    modalIndex === 0
-      ? setModalIndex(microCMSData[selectedIndex].images.length - 1)
-      : setModalIndex(modalIndex - 1);
+    setSelectedModalIndex(0);
+    setIsSelectedModal(!isSelectedModal);
   };
 
   const Back = () => {
@@ -43,7 +32,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
       <Center
         as="button"
         type="button"
-        onClick={() => setIsModal(!isModal)}
+        onClick={() => setIsSelectedModal(!isSelectedModal)}
         w="56px"
         h="56px"
         pos="absolute"
@@ -114,7 +103,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             <Center
               as="li"
               key={item.contentId + item.alt}
-              onClick={() => modalFunc(i)}
+              onClick={() => onOpenModal(i)}
               overflow="hidden"
               aspectRatio={1}
               sx={{
@@ -183,7 +172,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         transition="opacity 0.2s"
         zIndex={Z_INDEX_IMAGE_MODAL}
         sx={{
-          ...(isModal
+          ...(isSelectedModal
             ? {
                 opacity: 1,
                 pointerEvents: 'auto',
@@ -215,7 +204,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               h="100%"
               pos="absolute"
               transition="opacity 0.2s"
-              opacity={i === modalIndex ? 1 : 0}
+              opacity={i === selectedModalIndex ? 1 : 0}
             >
               <Box
                 as="img"
@@ -224,7 +213,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                 h="100%"
                 objectFit="contain"
                 transition="opacity 0.2s"
-                opacity={i === modalIndex ? 1 : 0}
+                opacity={i === selectedModalIndex ? 1 : 0}
               />
             </Center>
           ))}
@@ -287,13 +276,13 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                 background="black300"
                 transition="0.2s background"
                 borderRadius="9999px"
-                onClick={() => setModalIndex(i)}
+                onClick={() => setSelectedModalIndex(i)}
                 key={'array' + i}
                 _hover={{
                   background: 'black600',
                 }}
                 sx={{
-                  ...(i === modalIndex && {
+                  ...(i === selectedModalIndex && {
                     background: 'black600',
                   }),
                 }}
@@ -335,10 +324,16 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           <Center
             as="button"
             type="button"
-            onClick={() => prev()}
+            onClick={() => {
+              selectedModalIndex === 0
+                ? setSelectedModalIndex(
+                    microCMSData[selectedIndex].images.length - 1
+                  )
+                : setSelectedModalIndex(selectedModalIndex - 1);
+            }}
             textStyle="imageModalArrowButton"
             sx={{
-              ...(modalIndex === 0
+              ...(selectedModalIndex === 0
                 ? {
                     opacity: 0,
                     pointerEvents: 'none',
@@ -374,10 +369,16 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           <Center
             as="button"
             type="button"
-            onClick={() => next()}
+            onClick={() => {
+              selectedModalIndex + 1 ===
+              microCMSData[selectedIndex].images.length
+                ? setSelectedModalIndex(0)
+                : setSelectedModalIndex(selectedModalIndex + 1);
+            }}
             textStyle="imageModalArrowButton"
             sx={{
-              ...(modalIndex === microCMSData[selectedIndex].images.length - 1
+              ...(selectedModalIndex ===
+              microCMSData[selectedIndex].images.length - 1
                 ? {
                     opacity: 0,
                     pointerEvents: 'none',
