@@ -13,11 +13,11 @@ const Copyright: FC<Props> = ({ isFoot }) => (
     display="block"
     w="max-content"
     color={isFoot ? 'black800' : 'black300'}
-    fontSize="1.2rem"
+    fontSize="1.3rem"
     fontFamily="en"
     textAlign="center"
   >
-    &copy; 2020-2023 {APP_NAME_FURIGANA}.
+    &copy; 2020-2023 {APP_NAME_FURIGANA}
   </Text>
 );
 export default Copyright;

@@ -13,7 +13,11 @@ const About: NextPage = () => {
       <Text fontFamily="en" fontSize="1.6rem">
         All photo by
       </Text>
-      <Text as="span" fontSize="2.2rem" fontWeight="bold">
+      <Text
+        as="span"
+        fontSize={{ base: '2rem', sm: '2.2rem' }}
+        fontWeight="bold"
+      >
         {`${APP_NAME} / ${APP_NAME_FURIGANA}`}
       </Text>
     </Box>
