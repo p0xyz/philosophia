@@ -151,8 +151,13 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         <Center
           as="ul"
           w="100vw"
-          h={{ base: 'calc(100vw / 2 * 3)', sm: '100dvh' }}
+          h="100dvh"
           pos="relative"
+          sx={{
+            ...(isSP && {
+              maxH: '420px',
+            }),
+          }}
         >
           {microCMSData[selectedIndex].images.map((item, i) => (
             <Center
@@ -179,14 +184,16 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         </Center>
         <Flex
           justifyContent={{ base: 'space-between', sm: 'flex-start' }}
-          alignItems={{ base: 'flex-end', sm: 'flex-end' }}
+          alignItems="flex-end"
           w="100vw"
-          h={{ base: 'calc(100vw / 2 * 3)', sm: '100dvh' }}
+          h="100dvh"
           m="auto"
           pos="absolute"
-          inset={{
-            base: 'auto auto auto 0',
-            sm: '0 0 0 0',
+          inset="0 0 0 0"
+          sx={{
+            ...(isSP && {
+              maxH: '420px',
+            }),
           }}
         >
           <Center
@@ -220,7 +227,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                 background="white"
                 transition="0.2s background, 0.2s width, 0.2s height"
                 rounded="full"
-                boxShadow="0 0 12px 0 rgba(0, 0, 0, 0.5)"
+                boxShadow="0 0 10px 0 rgba(0, 0, 0, 0.5)"
                 pos="relative"
                 onClick={() => setSelectedModalIndex(i)}
                 _hover={{
