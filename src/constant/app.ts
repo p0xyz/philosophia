@@ -7,6 +7,7 @@ import OtherIconContact from '@/assets/icons/icon_other_contact.svg';
 import { PATH_CONTACT } from '@/constant/path';
 
 export const APP_PAGE_YEARS: AppPathYearType[] = [
+  '2023',
   '2022',
   '2021',
   '2020',
@@ -53,6 +54,10 @@ export const APP_OGP: {
     description: string;
   };
 } = {
+  2023: {
+    title: '2023',
+    description: '月波の写真ポートフォリオです。',
+  },
   2022: {
     title: '2022',
     description: '月波の写真ポートフォリオです。',
