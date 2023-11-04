@@ -17,58 +17,14 @@ type Props = {
 
 const Photo: NextPage<Props> = ({ microCMSData }) => {
   const [isSP] = useMediaQuery('(max-width: 480px)');
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [isSelectedModal, setIsSelectedModal] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number>(2);
+  const [isSelectedModal, setIsSelectedModal] = useState<boolean>(true);
   const [selectedModalIndex, setSelectedModalIndex] = useState(0);
 
   const onOpenModal = (i: number) => {
     setSelectedIndex(i);
     setSelectedModalIndex(0);
     setIsSelectedModal(!isSelectedModal);
-  };
-
-  const Back = () => {
-    return (
-      <Center
-        as="button"
-        type="button"
-        onClick={() => setIsSelectedModal(!isSelectedModal)}
-        w="56px"
-        h="56px"
-        pos="absolute"
-        inset={{ base: '3% 3% auto auto', sm: '10% 10% auto auto' }}
-        _hover={{
-          '&::before': {
-            background: 'black300',
-          },
-          '&::after': {
-            background: 'black300',
-          },
-        }}
-        sx={{
-          '&::before': {
-            content: '""',
-            display: 'block',
-            width: '1px',
-            height: '64px',
-            background: 'black600',
-            transition: '0.2s background-color',
-            boxShadow: '0 0 10px $white',
-            transform: 'rotateZ(45deg)',
-          },
-          '&::after': {
-            content: '""',
-            display: 'block',
-            width: '1px',
-            height: '64px',
-            background: 'black600',
-            transition: '0.2s background-color',
-            boxShadow: '0 0 10px $white',
-            transform: 'rotateZ(135deg)',
-          },
-        }}
-      />
-    );
   };
 
   return (
@@ -183,16 +139,19 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               }),
         }}
       >
-        <Back />
+        {isSP && (
+          <Box
+            onClick={() => setIsSelectedModal(!isSelectedModal)}
+            w="100vw"
+            h="100vh"
+            pos="absolute"
+            inset="0 0 0 0"
+          />
+        )}
         <Center
           as="ul"
-          w={{ base: '100vw', sm: '90vw', md: '70vw', lg: '60vw' }}
-          h={{
-            base: '120vw',
-            sm: 'calc(90vw / 3 * 2)',
-            md: 'calc(70vw / 3 * 2)',
-            lg: 'calc(60vw / 3 * 2)',
-          }}
+          w="100vw"
+          h={{ base: 'calc(100vw / 2 * 3)', sm: '100vh' }}
           pos="relative"
         >
           {microCMSData[selectedIndex].images.map((item, i) => (
@@ -219,199 +178,226 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           ))}
         </Center>
         <Flex
-          display={{ base: 'grid', sm: 'flex' }}
-          w={{
-            base: 'calc(120vw / 3 * 2)',
-            sm: '80vw',
-            md: '70vw',
-            lg: '60vw',
-          }}
-          fontFamily="en"
-          fontSize="1.6rem"
-          sx={{
-            ...(isSP
-              ? {
-                  gridTemplateColumns: '50% 50%',
-                  gridTemplateRows: 'auto auto',
-                  gap: '24px 0',
-                  fontSize: '1.3rem',
-                }
-              : {
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  minHeight: '48px',
-                }),
+          justifyContent={{ base: 'space-between', sm: 'flex-start' }}
+          alignItems={{ base: 'flex-end', sm: 'flex-end' }}
+          w="100vw"
+          h={{ base: 'calc(100vw / 2 * 3)', sm: '100vh' }}
+          m="auto"
+          pos="absolute"
+          inset={{
+            base: 'auto auto auto 0',
+            sm: '0 0 0 0',
           }}
         >
-          <Flex
-            alignItems="center"
-            sx={{
-              ...(isSP
-                ? {
-                    gridColumn: 1,
-                    gridRow: 2,
-                  }
-                : {
-                    w: '20%',
-                  }),
-            }}
+          <Center
+            textAlign="left"
+            h="64px"
+            bg="rgba(255, 255, 255, 0.8)"
+            px="16px"
+            fontFamily="en"
+            fontSize="1.6rem"
           >
             {microCMSData[selectedIndex].date.split('T')[0]}
-          </Flex>
+            <br />
+            {microCMSData[selectedIndex].place}
+            {microCMSData[selectedIndex].prefecture && !isSP && (
+              <>, {microCMSData[selectedIndex].prefecture}</>
+            )}
+          </Center>
           <Center
-            gap="12px"
-            sx={{
-              ...(isSP && {
-                gridColumn: '1/3',
-                gridRow: 1,
-              }),
-            }}
+            gap="6px"
+            h="8px"
+            pos="absolute"
+            inset={{ base: 'auto 0 -24px 0', sm: 'auto 0 24px 0' }}
           >
             {microCMSData[selectedIndex].images.map((item, i) => (
-              <Box
+              <Center
                 as="button"
                 type="button"
-                w="12px"
-                h="12px"
-                background="black300"
-                transition="0.2s background"
-                borderRadius="9999px"
-                onClick={() => setSelectedModalIndex(i)}
                 key={'array' + i}
+                w="6px"
+                h="6px"
+                background="white"
+                transition="0.2s background, 0.2s width, 0.2s height"
+                rounded="full"
+                boxShadow="0 0 12px 0 rgba(0, 0, 0, 0.5)"
+                pos="relative"
+                onClick={() => setSelectedModalIndex(i)}
                 _hover={{
                   background: 'black600',
                 }}
                 sx={{
+                  '&::before': {
+                    content: "''",
+                    display: 'block',
+                    w: '8px',
+                    h: '8px',
+                    rounded: 'full',
+                    background: 'transparent',
+                    transition: '0.2s background',
+                    pos: 'absolute',
+                  },
                   ...(i === selectedModalIndex && {
-                    background: 'black600',
+                    '&::before': {
+                      content: "''",
+                      display: 'block',
+                      w: '8px',
+                      h: '8px',
+                      rounded: 'full',
+                      background: 'black600',
+                      transition: '0.2s background',
+                      pos: 'absolute',
+                      // inset: '0 0 0 0',
+                      // m: 'auto',
+                    },
                   }),
                 }}
               />
             ))}
           </Center>
           <Flex
-            justifyContent="flex-end"
             alignItems="center"
-            textAlign="right"
-            fontFamily="en"
-            fontSize="1.6rem"
-            sx={{
-              ...(isSP
-                ? {
-                    gridColumn: 2,
-                    gridRow: 2,
-                  }
-                : {
-                    w: '20%',
-                  }),
-            }}
+            justifyContent="space-between"
+            w="100vw"
+            // w={{ base: '100vw', sm: '95vw' }}
+            // h="160px"
+            pos="absolute"
+            m="auto"
+            inset={{ base: '0 0 auto 0', sm: '0 0 0 0' }}
           >
-            {microCMSData[selectedIndex].place}
-            {microCMSData[selectedIndex].prefecture && (
-              <>, {microCMSData[selectedIndex].prefecture}</>
-            )}
+            <Center
+              as="button"
+              type="button"
+              onClick={() => {
+                selectedModalIndex === 0
+                  ? setSelectedModalIndex(
+                      microCMSData[selectedIndex].images.length - 1
+                    )
+                  : setSelectedModalIndex(selectedModalIndex - 1);
+              }}
+              textStyle="imageModalArrowButton"
+              sx={{
+                ...(selectedModalIndex === 0
+                  ? {
+                      opacity: 0,
+                      pointerEvents: 'none',
+                    }
+                  : {
+                      opacity: 1,
+                      pointerEvents: 'auto',
+                    }),
+                '&::before': {
+                  content: '""',
+                  display: 'block',
+                  width: '1px',
+                  height: '40px',
+                  background: 'black600',
+                  margin: '0 0 28px',
+                  transition: '0.2s background',
+                  position: 'absolute',
+                  transform: 'rotateZ(45deg)',
+                },
+                '&::after': {
+                  content: '""',
+                  display: 'block',
+                  width: '1px',
+                  height: '40px',
+                  background: 'black600',
+                  margin: '28px 0 0',
+                  transition: '0.2s background',
+                  position: 'absolute',
+                  transform: 'rotateZ(135deg)',
+                },
+              }}
+            />
+            <Center
+              as="button"
+              type="button"
+              onClick={() => {
+                selectedModalIndex + 1 ===
+                microCMSData[selectedIndex].images.length
+                  ? setSelectedModalIndex(0)
+                  : setSelectedModalIndex(selectedModalIndex + 1);
+              }}
+              textStyle="imageModalArrowButton"
+              sx={{
+                ...(selectedModalIndex ===
+                microCMSData[selectedIndex].images.length - 1
+                  ? {
+                      opacity: 0,
+                      pointerEvents: 'none',
+                    }
+                  : {
+                      opacity: 1,
+                      pointerEvents: 'auto',
+                    }),
+                '&::before': {
+                  content: '""',
+                  display: 'block',
+                  width: '1px',
+                  height: '40px',
+                  background: 'black600',
+                  margin: '0 0 28px',
+                  transition: '0.2s background',
+                  position: 'absolute',
+                  transform: 'rotateZ(135deg)',
+                },
+                '&::after': {
+                  content: '""',
+                  display: 'block',
+                  width: '1px',
+                  height: '40px',
+                  background: 'black600',
+                  margin: '28px 0 0',
+                  transition: '0.2s background',
+                  position: 'absolute',
+                  transform: 'rotateZ(45deg)',
+                },
+              }}
+            />
           </Flex>
         </Flex>
-        <Flex
-          alignItems="center"
-          justifyContent="space-between"
-          w={{ base: '100vw', sm: '95vw' }}
-          h="160px"
-          pos="absolute"
-          m="auto"
-          inset={{ base: '0 0 0 0', sm: '0 0 0 0' }}
-        >
+        {!isSP && (
           <Center
             as="button"
             type="button"
-            onClick={() => {
-              selectedModalIndex === 0
-                ? setSelectedModalIndex(
-                    microCMSData[selectedIndex].images.length - 1
-                  )
-                : setSelectedModalIndex(selectedModalIndex - 1);
+            onClick={() => setIsSelectedModal(!isSelectedModal)}
+            w="56px"
+            h="56px"
+            pos="absolute"
+            inset={{ base: '3% 3% auto auto', sm: '10% 10% auto auto' }}
+            _hover={{
+              '&::before': {
+                background: 'black300',
+              },
+              '&::after': {
+                background: 'black300',
+              },
             }}
-            textStyle="imageModalArrowButton"
             sx={{
-              ...(selectedModalIndex === 0
-                ? {
-                    opacity: 0,
-                    pointerEvents: 'none',
-                  }
-                : {
-                    opacity: 1,
-                    pointerEvents: 'auto',
-                  }),
               '&::before': {
                 content: '""',
                 display: 'block',
                 width: '1px',
-                height: '40px',
+                height: '64px',
                 background: 'black600',
-                margin: '0 0 28px',
-                transition: '0.2s background',
-                position: 'absolute',
+                transition: '0.2s background-color',
+                boxShadow: '0 0 10px $white',
                 transform: 'rotateZ(45deg)',
               },
               '&::after': {
                 content: '""',
                 display: 'block',
                 width: '1px',
-                height: '40px',
+                height: '64px',
                 background: 'black600',
-                margin: '28px 0 0',
-                transition: '0.2s background',
-                position: 'absolute',
+                transition: '0.2s background-color',
+                boxShadow: '0 0 10px $white',
                 transform: 'rotateZ(135deg)',
               },
             }}
           />
-          <Center
-            as="button"
-            type="button"
-            onClick={() => {
-              selectedModalIndex + 1 ===
-              microCMSData[selectedIndex].images.length
-                ? setSelectedModalIndex(0)
-                : setSelectedModalIndex(selectedModalIndex + 1);
-            }}
-            textStyle="imageModalArrowButton"
-            sx={{
-              ...(selectedModalIndex ===
-              microCMSData[selectedIndex].images.length - 1
-                ? {
-                    opacity: 0,
-                    pointerEvents: 'none',
-                  }
-                : {
-                    opacity: 1,
-                    pointerEvents: 'auto',
-                  }),
-              '&::before': {
-                content: '""',
-                display: 'block',
-                width: '1px',
-                height: '40px',
-                background: 'black600',
-                margin: '0 0 28px',
-                transition: '0.2s background',
-                position: 'absolute',
-                transform: 'rotateZ(135deg)',
-              },
-              '&::after': {
-                content: '""',
-                display: 'block',
-                width: '1px',
-                height: '40px',
-                background: 'black600',
-                margin: '28px 0 0',
-                transition: '0.2s background',
-                position: 'absolute',
-                transform: 'rotateZ(45deg)',
-              },
-            }}
-          />
-        </Flex>
+        )}
       </Center>
     </>
   );
