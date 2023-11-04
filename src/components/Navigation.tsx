@@ -210,7 +210,7 @@ const Navigation: FC<Props> = ({ path }) => {
             ? {
                 alignItems: 'center',
                 gap: '8px',
-                fontSize: '1.8rem',
+                fontSize: '1.6rem',
                 margin: '0 0 0 auto',
               }
             : {

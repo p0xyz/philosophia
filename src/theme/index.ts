@@ -14,7 +14,7 @@ const styles = {
     },
     body: {
       color: 'black800',
-      fontSize: '1.4rem',
+      fontSize: '1.5rem',
       fontFamily: 'body',
       a: {
         textDecoration: 'none',
@@ -38,9 +38,9 @@ const styles = {
   },
 };
 const fonts = {
-  body: "'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif",
-  logo: "'Poiret One', cursive",
-  nav: "'Rajdhani', sans-serif",
+  body: "'Zen Maru Gothic', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif",
+  logo: "'Poiret One', sans-serif",
+  nav: "'Montserrat', sans-serif",
 };
 const breakpoints = {
   sm: '480px',

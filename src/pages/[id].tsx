@@ -228,7 +228,6 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             </Center>
           ))}
         </Center>
-        {/* microCMSData */}
         <Flex
           display={{ base: 'grid', sm: 'flex' }}
           w={{
@@ -248,7 +247,6 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               : {
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  fontSize: '1.4rem',
                   minHeight: '48px',
                 }),
           }}
