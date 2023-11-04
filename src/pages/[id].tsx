@@ -155,7 +155,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           pos="relative"
           sx={{
             ...(isSP && {
-              maxH: '420px',
+              maxH: '70dvh',
             }),
           }}
         >
@@ -192,7 +192,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           inset="0 0 0 0"
           sx={{
             ...(isSP && {
-              maxH: '420px',
+              maxH: '70dvh',
             }),
           }}
         >
