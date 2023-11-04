@@ -17,8 +17,8 @@ type Props = {
 
 const Photo: NextPage<Props> = ({ microCMSData }) => {
   const [isSP] = useMediaQuery('(max-width: 480px)');
-  const [selectedIndex, setSelectedIndex] = useState<number>(2);
-  const [isSelectedModal, setIsSelectedModal] = useState<boolean>(true);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [isSelectedModal, setIsSelectedModal] = useState<boolean>(false);
   const [selectedModalIndex, setSelectedModalIndex] = useState(0);
 
   const onOpenModal = (i: number) => {
@@ -247,8 +247,6 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                       background: 'black600',
                       transition: '0.2s background',
                       pos: 'absolute',
-                      // inset: '0 0 0 0',
-                      // m: 'auto',
                     },
                   }),
                 }}
@@ -256,11 +254,10 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             ))}
           </Center>
           <Flex
+            display={isSelectedModal ? 'flex' : 'none'}
             alignItems="center"
             justifyContent="space-between"
             w="100vw"
-            // w={{ base: '100vw', sm: '95vw' }}
-            // h="160px"
             pos="absolute"
             m="auto"
             inset={{ base: '0 0 auto 0', sm: '0 0 0 0' }}
