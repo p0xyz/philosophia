@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { Flex } from '@chakra-ui/react';
 
 import Navigation from '@/components/Navigation';
@@ -7,6 +7,7 @@ import HeadOgp from '@/components/HeadOgp';
 import PageTransition from '@/components/PageTransition';
 import Copyright from '@/components/Copyright';
 import ShareLink from '@/components/ShareLink';
+
 import { AppPathType } from '@/types/link';
 
 type Props = {
@@ -37,7 +38,7 @@ const Layout: FC<Props> = ({ children }) => {
     <>
       <HeadOgp path={path} />
       <Navigation path={path} />
-      <PageTransition>
+      <PageTransition key={path}>
         <>{children}</>
       </PageTransition>
       <Footer />
