@@ -20,20 +20,24 @@ const HeadOgp: FC<Props> = ({ path }) => {
       {!!path ? (
         <>
           <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
-          <meta property="og:title" content={APP_TITLE_FULL} />
+          <meta
+            property="og:title"
+            content={`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}
+          />
           <meta property="og:description" content={APP_OGP[path].description} />
+          <meta property="og:url" content={`${APP_URL}/${path}`} />
         </>
       ) : (
         <>
           <title>{`404｜${APP_TITLE_FULL}`}</title>
-          <meta property="og:title" content={APP_TITLE_FULL} />
+          <meta property="og:title" content={`404｜${APP_TITLE_FULL}`} />
           <meta
             property="og:description"
             content="月波の写真ポートフォリオです。"
           />
+          <meta property="og:url" content={`${APP_URL}/404`} />
         </>
       )}
-      <meta property="og:url" content={`${APP_URL}/${path}`} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={APP_TITLE_FULL} />
       <meta property="og:image" content={APP_MAIN_IMAGE} />
