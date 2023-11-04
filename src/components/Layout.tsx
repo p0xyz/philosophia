@@ -26,7 +26,7 @@ const Layout: FC<Props> = ({ children }) => {
       as="footer"
       flexDir="column"
       alignItems="center"
-      p="64px 0 88px"
+      p="56px 0 80px"
       gap="16px"
     >
       <ShareLink isFoot />
