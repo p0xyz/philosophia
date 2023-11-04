@@ -203,6 +203,11 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             p="4px 20px 0"
             fontFamily="en"
             fontSize="1.3rem"
+            sx={{
+              ...(isSP && {
+                ml:"calc((100vw - 70dvh / 3 * 2) / 2)"
+              }),
+            }}
           >
             {microCMSData[selectedIndex].date.split('T')[0]}
             <br />
