@@ -5,6 +5,7 @@ import { Box, Center, Flex, Image, useMediaQuery } from '@chakra-ui/react';
 import Layout from '@/components/Layout';
 
 import { APP_PAGE_YEARS } from '@/constant/app';
+import { Z_INDEX_IMAGE_MODAL } from '@/constant/style';
 
 import { client } from '@/libs/client';
 
@@ -40,10 +41,11 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
   const Back = () => {
     return (
       <Center
+        as="button"
+        type="button"
         onClick={() => setIsModal(!isModal)}
         w="56px"
         h="56px"
-        zIndex={60}
         pos="absolute"
         inset={{ base: '3% 3% auto auto', sm: '10% 10% auto auto' }}
         _hover={{
@@ -140,7 +142,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                         opacity: 0.7,
                         transition: '0.2s opacity',
                         mixBlendMode: 'hue',
-                        zIndex: 2,
+                        zIndex: 1,
                       },
                       '&:hover': {
                         '&::before': {
@@ -158,7 +160,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               <Image
                 src={`${item.images[0].url}?${
                   item.images[0].width > item.images[0].height ? 'w' : 'h'
-                }=400`}
+                }=${isSP ? 400 : 800}`}
                 alt={item.alt}
                 w="100%"
                 h="100%"
@@ -178,8 +180,8 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         pos="fixed"
         inset="0 0 0 0"
         bgColor="rgba(255, 255, 255, 0.9)"
-        zIndex={50}
         transition="opacity 0.2s"
+        zIndex={Z_INDEX_IMAGE_MODAL}
         sx={{
           ...(isModal
             ? {
@@ -198,7 +200,6 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           w={{ base: '100vw', sm: '90vw', md: '70vw', lg: '60vw' }}
           h={{
             base: '120vw',
-            // base: '60vh',
             sm: 'calc(90vw / 3 * 2)',
             md: 'calc(70vw / 3 * 2)',
             lg: 'calc(60vw / 3 * 2)',
@@ -236,6 +237,8 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             md: '70vw',
             lg: '60vw',
           }}
+          fontFamily="nav"
+          fontSize="1.6rem"
           sx={{
             ...(isSP
               ? {
@@ -251,20 +254,21 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                 }),
           }}
         >
-          {/* Date */}
           <Flex
             alignItems="center"
-            w={{ sm: '20%' }}
             sx={{
-              ...(isSP && {
-                gridColumn: 1,
-                gridRow: 2,
-              }),
+              ...(isSP
+                ? {
+                    gridColumn: 1,
+                    gridRow: 2,
+                  }
+                : {
+                    w: '20%',
+                  }),
             }}
           >
             {microCMSData[selectedIndex].date.split('T')[0]}
           </Flex>
-          {/* Circle */}
           <Center
             gap="12px"
             sx={{
@@ -276,6 +280,8 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           >
             {microCMSData[selectedIndex].images.map((item, i) => (
               <Box
+                as="button"
+                type="button"
                 w="12px"
                 h="12px"
                 background="black300"
@@ -284,7 +290,6 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                 onClick={() => setModalIndex(i)}
                 key={'array' + i}
                 _hover={{
-                  cursor: 'pointer',
                   background: 'black600',
                 }}
                 sx={{
@@ -295,17 +300,21 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               />
             ))}
           </Center>
-          {/* Place */}
           <Flex
             justifyContent="flex-end"
             alignItems="center"
-            w={{ sm: '20%' }}
             textAlign="right"
+            fontFamily="nav"
+            fontSize="1.6rem"
             sx={{
-              ...(isSP && {
-                gridColumn: 2,
-                gridRow: 2,
-              }),
+              ...(isSP
+                ? {
+                    gridColumn: 2,
+                    gridRow: 2,
+                  }
+                : {
+                    w: '20%',
+                  }),
             }}
           >
             {microCMSData[selectedIndex].place}
@@ -314,18 +323,18 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             )}
           </Flex>
         </Flex>
-        {/* Operation */}
         <Flex
           alignItems="center"
           justifyContent="space-between"
           w={{ base: '100vw', sm: '95vw' }}
           h="160px"
           pos="absolute"
-          zIndex="50"
           m="auto"
           inset={{ base: 'auto 0 0 0', sm: '0 0 0 0' }}
         >
           <Center
+            as="button"
+            type="button"
             onClick={() => prev()}
             textStyle="modalArrow"
             transition="opacity 0.2s"
@@ -364,6 +373,8 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             }}
           />
           <Center
+            as="button"
+            type="button"
             onClick={() => next()}
             textStyle="modalArrow"
             sx={{
