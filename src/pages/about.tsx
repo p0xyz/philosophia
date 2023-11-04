@@ -10,7 +10,7 @@ import { APP_NAME, APP_NAME_FURIGANA, APP_OTHER_LINKS } from '@/constant/app';
 const About: NextPage = () => {
   const Name = () => (
     <Box>
-      <Text fontFamily="nav" fontSize="1.6rem">
+      <Text fontFamily="en" fontSize="1.6rem">
         All photo by
       </Text>
       <Text as="span" fontSize="2.2rem" fontWeight="bold">
@@ -44,7 +44,7 @@ const About: NextPage = () => {
             },
             span: {
               fontSize: '1.6rem',
-              fontFamily: 'nav',
+              fontFamily: 'en',
             },
           }}
         >

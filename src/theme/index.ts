@@ -41,7 +41,7 @@ const styles = {
 const fonts = {
   body: "'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif",
   logo: "'Poiret One', sans-serif",
-  nav: "'League Spartan', sans-serif",
+  en: "'League Spartan', sans-serif",
 };
 const breakpoints = {
   sm: '480px',

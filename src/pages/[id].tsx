@@ -237,7 +237,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             md: '70vw',
             lg: '60vw',
           }}
-          fontFamily="nav"
+          fontFamily="en"
           fontSize="1.6rem"
           sx={{
             ...(isSP
@@ -304,7 +304,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             justifyContent="flex-end"
             alignItems="center"
             textAlign="right"
-            fontFamily="nav"
+            fontFamily="en"
             fontSize="1.6rem"
             sx={{
               ...(isSP
