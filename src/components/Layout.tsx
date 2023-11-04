@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import { Flex } from '@chakra-ui/react';
 
 import Navigation from '@/components/Navigation';
@@ -15,10 +15,10 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   const router = useRouter();
-  const isPhotography = router.pathname === '/[id]';
-  const path = (
-    isPhotography ? Number(router.asPath.slice(1)) : router.asPath.slice(1)
-  ) as AppPathType;
+  const is404 = router.pathname === '/404';
+  const path: AppPathType | undefined = is404
+    ? undefined
+    : (router.asPath.slice(1) as AppPathType);
 
   const Footer: () => JSX.Element = () => (
     <Flex

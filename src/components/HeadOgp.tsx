@@ -7,45 +7,29 @@ import {
   APP_TITLE_FULL,
   APP_MAIN_IMAGE,
 } from '@/constant/app';
-import { PATH_ABOUT, PATH_CONTACT, PATH_CONTACT_39 } from '@/constant/path';
 
 import { AppPathType } from '@/types/link';
 
 type Props = {
-  path: AppPathType | string;
+  path: AppPathType | undefined;
 };
 
 const HeadOgp: FC<Props> = ({ path }) => {
   return (
     <Head>
-      {(path === 2022 ||
-        path === 2021 ||
-        path === 2020 ||
-        path === 2019 ||
-        path === 2018) && (
-        <>
-          <title>{`${path}｜${APP_TITLE_FULL}`}</title>
-          <meta property="og:title" content={`${path}｜${APP_TITLE_FULL}`} />
-          <meta
-            property="og:description"
-            content="月波の写真ポートフォリオです。"
-          />
-        </>
-      )}
-      {(path === PATH_ABOUT || path === PATH_CONTACT) && (
+      {!!path ? (
         <>
           <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
           <meta property="og:title" content={APP_TITLE_FULL} />
           <meta property="og:description" content={APP_OGP[path].description} />
         </>
-      )}
-      {path === PATH_CONTACT_39 && (
+      ) : (
         <>
-          <title>{`お問い合わせ完了｜${APP_TITLE_FULL}`}</title>
+          <title>{`404｜${APP_TITLE_FULL}`}</title>
           <meta property="og:title" content={APP_TITLE_FULL} />
           <meta
             property="og:description"
-            content="月波へのお問い合わせフォームです。"
+            content="月波の写真ポートフォリオです。"
           />
         </>
       )}

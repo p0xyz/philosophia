@@ -5,21 +5,22 @@ import {
   Box,
   Center,
   Flex,
+  Spacer,
   Text,
-  transition,
   useMediaQuery,
 } from '@chakra-ui/react';
 
-import { APP_NAME, APP_PAGE_YEARS } from '@/constant/app';
+import { APP_PAGE_YEARS } from '@/constant/app';
 import { PATH_ABOUT } from '@/constant/path';
 
 import ShareLink from '@/components/ShareLink';
 import Copyright from '@/components/Copyright';
+import AdminIcon from '@/components/AdminIcon';
 
 import { AppPathType } from '@/types/link';
 
 type Props = {
-  path: AppPathType;
+  path: AppPathType | undefined;
 };
 
 const Navigation: FC<Props> = ({ path }) => {
@@ -180,18 +181,7 @@ const Navigation: FC<Props> = ({ path }) => {
             }),
           }}
         >
-          {isLargerThan721 ? (
-            <Box
-              as="img"
-              src="/images/icon.jpg"
-              alt={APP_NAME}
-              w="100%"
-              h="100%"
-              objectFit="cover"
-            />
-          ) : (
-            <>About</>
-          )}
+          {isLargerThan721 ? <AdminIcon /> : <>About</>}
         </Text>
       </NextLink>
     </Box>
@@ -199,7 +189,6 @@ const Navigation: FC<Props> = ({ path }) => {
 
   return (
     <Flex
-      justifyContent="space-between"
       alignItems="center"
       w="100vw"
       h="160px"
@@ -210,6 +199,7 @@ const Navigation: FC<Props> = ({ path }) => {
       zIndex="25"
     >
       <Header />
+      <Spacer />
       <Flex
         as="ul"
         alignItems="flex-start"

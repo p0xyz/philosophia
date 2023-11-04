@@ -2,10 +2,10 @@ import { extendTheme } from '@chakra-ui/react';
 
 const colors = {
   white: '#fff',
-  black900: 'rgb(30, 30, 30)',
-  black800: 'rgb(70, 70, 70)',
-  black600: '#777',
-  black300: 'rgb(212, 212, 212)',
+  black900: '#1E1E1E',
+  black800: '#464646',
+  black600: '#777777',
+  black300: '#D4D4D4',
 };
 const styles = {
   global: {

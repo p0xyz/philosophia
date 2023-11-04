@@ -1,9 +1,11 @@
-import { Box, Center, Flex, HStack, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, HStack, Link, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
+import NextLink from 'next/link';
 
 import Layout from '@/components/Layout';
+import AdminIcon from '@/components/AdminIcon';
 
-import { APP_OTHER_LINKS, APP_NAME } from '@/constant/app';
+import { APP_NAME, APP_NAME_FURIGANA, APP_OTHER_LINKS } from '@/constant/app';
 
 const About: NextPage = () => {
   const Name = () => (
@@ -11,20 +13,9 @@ const About: NextPage = () => {
       <Text fontFamily="nav" fontSize="1.6rem">
         All photo by
       </Text>
-      <HStack gap="8px">
-        <Text as="span" fontSize="2.2rem" fontWeight="bold">
-          {APP_NAME}
-        </Text>
-        <Text
-          as="span"
-          color="black600"
-          fontFamily="nav"
-          fontSize="1.6rem"
-          lineHeight="1.6rem"
-        >
-          - Amateur photographer
-        </Text>
-      </HStack>
+      <Text as="span" fontSize="2.2rem" fontWeight="bold">
+        {`${APP_NAME} / ${APP_NAME_FURIGANA}`}
+      </Text>
     </Box>
   );
   const Description = () => (
@@ -36,40 +27,47 @@ const About: NextPage = () => {
   );
   const OtherLink = () => (
     <Flex as="ul" flexDir="column" gap="8px">
-      {APP_OTHER_LINKS.map((item, i) => (
-        <Box as="li" key={item.url + i}>
-          <Flex
-            as="a"
-            href={item.url}
-            target="_blank"
-            w="max-content"
-            opacity={1}
-            transition="0.3s opacity"
-          >
-            <Image
-              src={item.svg}
-              alt={item.text}
-              w="16px"
-              m="0 4px 0 0"
-              opacity={1}
-            />
-            <Text as="span" fontFamily="nav">
-              {item.text}
-            </Text>
-          </Flex>
+      {APP_OTHER_LINKS.map((item) => (
+        <Box
+          as="li"
+          key={item.url}
+          sx={{
+            a: {
+              display: 'flex',
+              gap: '6px',
+              w: 'fit-content',
+              opacity: 1,
+              transition: '0.2s opacity',
+              '&:hover': {
+                opacity: 0.5,
+              },
+            },
+            span: {
+              fontSize: '1.6rem',
+              fontFamily: 'nav',
+            },
+          }}
+        >
+          {item.isProjectLink ? (
+            <NextLink href={item.url} passHref>
+              <Box as="a" href={item.url} target="_blank">
+                <item.svg width={16} />
+                <Text as="span">{item.text}</Text>
+              </Box>
+            </NextLink>
+          ) : (
+            <Link href={item.url} target="_blank">
+              <item.svg width={16} />
+              <Text as="span">{item.text}</Text>
+            </Link>
+          )}
         </Box>
       ))}
     </Flex>
   );
   const Icon = () => (
     <Center w="304px" aspectRatio={1}>
-      <Image
-        src="/images/icon.jpg"
-        alt={APP_NAME}
-        w="100%"
-        h="100%"
-        objectFit="cover"
-      />
+      <AdminIcon />
     </Center>
   );
   const Component = () => (
