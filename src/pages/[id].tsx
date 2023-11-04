@@ -319,7 +319,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           h="160px"
           pos="absolute"
           m="auto"
-          inset={{ base: 'auto 0 0 0', sm: '0 0 0 0' }}
+          inset={{ base: '0 0 0 0', sm: '0 0 0 0' }}
         >
           <Center
             as="button"
