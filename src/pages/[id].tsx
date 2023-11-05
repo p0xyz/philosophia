@@ -198,14 +198,14 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         >
           <Center
             textAlign="left"
-            h="56px"
+            h={{ base: '48px', sm: '72px' }}
             bg="rgba(255, 255, 255, 0.8)"
             p="4px 20px 0"
             fontFamily="en"
-            fontSize="1.3rem"
+            fontSize={{ base: '1.3rem', sm: '1.6rem' }}
             sx={{
               ...(isSP && {
-                ml:"calc((100vw - 70dvh / 3 * 2) / 2)"
+                ml: 'calc((100vw - 70dvh / 3 * 2) / 2)',
               }),
             }}
           >
