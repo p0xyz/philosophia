@@ -26,6 +26,8 @@ export const APP_TITLE: string = 'Philosophia';
 export const APP_TITLE_SUB: string = `${APP_NAME}’s Photography Portfolio`;
 export const APP_TITLE_FULL = `${APP_TITLE} - ${APP_TITLE_SUB}`;
 
+export const APP_REGULATION_EMAIL = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
+
 export const APP_OTHER_LINKS: AppLinkType[] = [
   {
     text: 'Contact',

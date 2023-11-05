@@ -7,18 +7,22 @@ import {
   Spinner,
   Text,
   Textarea,
+  useMediaQuery,
 } from '@chakra-ui/react';
 
 import Layout from '@/components/Layout';
 import TextPageLayout from '@/components/TextPageLayout';
-import { MicroCMSFormType } from '@/types/microCMS';
-import { PATH_CONTACT_39, PATH_INDEX } from '@/constant/path';
-import { postApi } from '@/libs/api';
 
-const EMAIL_REG = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
+import { MicroCMSFormType } from '@/types/microCMS';
+
+import { PATH_CONTACT_39 } from '@/constant/path';
+import { APP_REGULATION_EMAIL } from '@/constant/app';
+
+import { postApi } from '@/libs/api';
 
 const Contact: FC = () => {
   const router = useRouter();
+  const [isSP] = useMediaQuery('(max-width: 480px)');
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -26,7 +30,7 @@ const Contact: FC = () => {
   const [content, setContent] = useState<string>('');
 
   const isNameError = !name.length || name.length >= 50;
-  const isEmailError = !email.length || !email.match(EMAIL_REG);
+  const isEmailError = !email.length || !email.match(APP_REGULATION_EMAIL);
   const isProfessionError = !profession.length;
   const isContentError = content.length < 5;
 
@@ -139,7 +143,7 @@ const Contact: FC = () => {
                   focusBorderColor="black400"
                   variant="flushed"
                   h="120px"
-                  fontSize="1.4rem"
+                  fontSize={isSP ? '1.6rem' : '1.4rem'}
                   _placeholder={{ color: 'black400' }}
                 />
               ) : (
@@ -150,7 +154,7 @@ const Contact: FC = () => {
                   focusBorderColor="black400"
                   variant="flushed"
                   py="16px"
-                  fontSize="1.4rem"
+                  fontSize={isSP ? '1.6rem' : '1.4rem'}
                   _placeholder={{ color: 'black400' }}
                 />
               )}
