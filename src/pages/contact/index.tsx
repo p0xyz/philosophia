@@ -69,8 +69,7 @@ const Contact: FC = () => {
     type: 'text' | 'email';
     placeholder: string;
     onChange: (value: string) => void;
-    onErrorWithValue: (value: string) => void;
-    onErrorWithFlag: () => void;
+    onError: (value: string) => void;
     isError: boolean;
     errorMessage: string;
     isTextarea: boolean;
@@ -80,9 +79,8 @@ const Contact: FC = () => {
       type: 'text',
       placeholder: 'モチた モチお',
       onChange: (value) => setName(value),
-      onErrorWithValue: (value) =>
+      onError: (value) =>
         setIsNameError(!value.length || value.length >= 50),
-      onErrorWithFlag: () => setIsNameError(false),
       isError: isNameError,
       errorMessage: !name.length
         ? 'お名前の入力は必須です。'
@@ -94,9 +92,8 @@ const Contact: FC = () => {
       type: 'email',
       placeholder: 'mochi@example.com',
       onChange: (value) => setEmail(value),
-      onErrorWithValue: (value) =>
+      onError: (value) =>
         setIsEmailError(!value.length || !value.match(APP_REGULATION_EMAIL)),
-      onErrorWithFlag: () => setIsEmailError(false),
       isError: isEmailError,
       errorMessage: !email.length
         ? 'メールアドレスの入力は必須です。'
@@ -108,8 +105,7 @@ const Contact: FC = () => {
       type: 'text',
       placeholder: 'モチつき名人',
       onChange: (value) => setProfession(value),
-      onErrorWithValue: (value) => setIsProfessionError(!value.length),
-      onErrorWithFlag: () => setIsProfessionError(false),
+      onError: (value) => setIsProfessionError(!value.length),
       isError: isProfessionError,
       errorMessage: '所属・ご職業の入力は必須です。',
       isTextarea: false,
@@ -119,8 +115,7 @@ const Contact: FC = () => {
       type: 'text',
       placeholder: 'モチには醤油はいらないです。',
       onChange: (value) => setContent(value),
-      onErrorWithValue: (value) => setIsContentError(value.length < 5),
-      onErrorWithFlag: () => setIsContentError(false),
+      onError: (value) => setIsContentError(value.length < 5),
       isError: isContentError,
       errorMessage: !content.length
         ? 'お問い合わせ内容の入力は必須です。'
@@ -152,11 +147,11 @@ const Contact: FC = () => {
                   placeholder={`例：${content.placeholder}`}
                   onChange={(e) => {
                     content.onChange(e.target.value);
-                    content.onErrorWithFlag();
+                    content.isError && content.onError(e.target.value);
                   }}
                   focusBorderColor="black400"
                   variant="flushed"
-                  onBlur={(e) => content.onErrorWithValue(e.target.value)}
+                  onBlur={(e) => content.onError(e.target.value)}
                   h="120px"
                   fontSize={isSP ? '1.6rem' : '1.4rem'}
                   _placeholder={{ color: 'black400' }}
@@ -167,11 +162,11 @@ const Contact: FC = () => {
                   placeholder={`例：${content.placeholder}`}
                   onChange={(e) => {
                     content.onChange(e.target.value);
-                    content.onErrorWithFlag();
+                    content.isError && content.onError(e.target.value);
                   }}
                   focusBorderColor="black400"
                   variant="flushed"
-                  onBlur={(e) => content.onErrorWithValue(e.target.value)}
+                  onBlur={(e) => content.onError(e.target.value)}
                   py="16px"
                   fontSize={isSP ? '1.6rem' : '1.4rem'}
                   _placeholder={{ color: 'black400' }}
