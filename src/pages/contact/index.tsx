@@ -29,10 +29,10 @@ const Contact: FC = () => {
   const [profession, setProfession] = useState<string>('');
   const [content, setContent] = useState<string>('');
 
-  const isNameError = !name.length || name.length >= 50;
-  const isEmailError = !email.length || !email.match(APP_REGULATION_EMAIL);
-  const isProfessionError = !profession.length;
-  const isContentError = content.length < 5;
+  const [isNameError, setIsNameError] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [isProfessionError, setIsProfessionError] = useState(false);
+  const [isContentError, setIsContentError] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
@@ -66,11 +66,13 @@ const Contact: FC = () => {
 
   const formContents: {
     heading: string;
-    description?: string;
     type: 'text' | 'email';
     placeholder: string;
-    onChange: (e: string) => void;
+    onChange: (value: string) => void;
+    onErrorWithValue: (value: string) => void;
+    onErrorWithFlag: () => void;
     isError: boolean;
+    errorMessage: string;
     isTextarea: boolean;
   }[] = [
     {
@@ -78,37 +80,51 @@ const Contact: FC = () => {
       type: 'text',
       placeholder: 'モチた モチお',
       onChange: (value) => setName(value),
+      onErrorWithValue: (value) =>
+        setIsNameError(!value.length || value.length >= 50),
+      onErrorWithFlag: () => setIsNameError(false),
       isError: isNameError,
-
+      errorMessage: !name.length
+        ? 'お名前の入力は必須です。'
+        : 'お名前は50文字以内で入力してください。',
       isTextarea: false,
     },
     {
       heading: '返信用メールアドレス',
-      description: 'メールアドレスの形式で入力してください。',
       type: 'email',
       placeholder: 'mochi@example.com',
       onChange: (value) => setEmail(value),
+      onErrorWithValue: (value) =>
+        setIsEmailError(!value.length || !value.match(APP_REGULATION_EMAIL)),
+      onErrorWithFlag: () => setIsEmailError(false),
       isError: isEmailError,
+      errorMessage: !email.length
+        ? 'メールアドレスの入力は必須です。'
+        : 'メールアドレスの形式で入力してください。',
       isTextarea: false,
     },
     {
-      heading: '所属・ご職業など',
-      description:
-        'どういった方からのお問い合わせなのかが分かるようにご記入ください。',
+      heading: '所属・ご職業',
       type: 'text',
       placeholder: 'モチつき名人',
       onChange: (value) => setProfession(value),
+      onErrorWithValue: (value) => setIsProfessionError(!value.length),
+      onErrorWithFlag: () => setIsProfessionError(false),
       isError: isProfessionError,
+      errorMessage: '所属・ご職業の入力は必須です。',
       isTextarea: false,
     },
     {
       heading: 'お問い合わせ内容',
-      description: 'お問い合わせの内容を具体的にご記入ください。（5文字以上）',
       type: 'text',
       placeholder: 'モチには醤油はいらないです。',
       onChange: (value) => setContent(value),
+      onErrorWithValue: (value) => setIsContentError(value.length < 5),
+      onErrorWithFlag: () => setIsContentError(false),
       isError: isContentError,
-
+      errorMessage: !content.length
+        ? 'お問い合わせ内容の入力は必須です。'
+        : 'お問い合わせ内容は5文字以上入力してください。',
       isTextarea: true,
     },
   ];
@@ -125,23 +141,22 @@ const Contact: FC = () => {
                 sx={{
                   '&::after': {
                     content: "'*'",
-                    color: 'red.300',
+                    color: 'red.500',
                   },
                 }}
               >
                 {content.heading}
               </Heading>
-              {content.description && (
-                <Text color="black600" fontSize="1.2rem">
-                  {content.description}
-                </Text>
-              )}
               {content.isTextarea ? (
                 <Textarea
                   placeholder={`例：${content.placeholder}`}
-                  onChange={(e) => content.onChange(e.target.value)}
+                  onChange={(e) => {
+                    content.onChange(e.target.value);
+                    content.onErrorWithFlag();
+                  }}
                   focusBorderColor="black400"
                   variant="flushed"
+                  onBlur={(e) => content.onErrorWithValue(e.target.value)}
                   h="120px"
                   fontSize={isSP ? '1.6rem' : '1.4rem'}
                   _placeholder={{ color: 'black400' }}
@@ -150,13 +165,22 @@ const Contact: FC = () => {
                 <Input
                   type={content.type}
                   placeholder={`例：${content.placeholder}`}
-                  onChange={(e) => content.onChange(e.target.value)}
+                  onChange={(e) => {
+                    content.onChange(e.target.value);
+                    content.onErrorWithFlag();
+                  }}
                   focusBorderColor="black400"
                   variant="flushed"
+                  onBlur={(e) => content.onErrorWithValue(e.target.value)}
                   py="16px"
                   fontSize={isSP ? '1.6rem' : '1.4rem'}
                   _placeholder={{ color: 'black400' }}
                 />
+              )}
+              {content.isError && (
+                <Text color="red.500" fontSize="1.2rem">
+                  {content.errorMessage}
+                </Text>
               )}
             </Flex>
           ))}
