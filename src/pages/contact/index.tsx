@@ -34,13 +34,18 @@ const Contact: FC = () => {
   const [isProfessionError, setIsProfessionError] = useState(false);
   const [isContentError, setIsContentError] = useState(false);
 
+  const isButtonDisabled =
+    !name.length ||
+    name.length >= 50 ||
+    !email.length ||
+    !email.match(APP_REGULATION_EMAIL) ||
+    !profession.length ||
+    content.length < 5;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
 
   const formPost = async () => {
-    if (isNameError || isEmailError || isProfessionError || isContentError) {
-      return;
-    }
+    if (isButtonDisabled) return;
 
     setIsSubmitting(true);
     setIsFailed(false);
@@ -79,8 +84,7 @@ const Contact: FC = () => {
       type: 'text',
       placeholder: 'モチた モチお',
       onChange: (value) => setName(value),
-      onError: (value) =>
-        setIsNameError(!value.length || value.length >= 50),
+      onError: (value) => setIsNameError(!value.length || value.length >= 50),
       isError: isNameError,
       errorMessage: !name.length
         ? 'お名前の入力は必須です。'
@@ -195,11 +199,7 @@ const Contact: FC = () => {
               opacity={1}
               transition="opacity 0.2s"
               sx={{
-                ...((isNameError ||
-                  isEmailError ||
-                  isProfessionError ||
-                  isContentError ||
-                  isSubmitting) && {
+                ...(isButtonDisabled && {
                   opacity: 0.4,
                   cursor: 'not-allowed',
                 }),
