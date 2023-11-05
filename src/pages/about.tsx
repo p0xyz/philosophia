@@ -54,7 +54,7 @@ const About: NextPage = () => {
         >
           {item.isProjectLink ? (
             <NextLink href={item.url} passHref>
-              <Box as="a" href={item.url} target="_blank">
+              <Box as="a" href={item.url}>
                 <item.svg width={16} />
                 <Text as="span">{item.text}</Text>
               </Box>
