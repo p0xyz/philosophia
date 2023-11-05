@@ -51,7 +51,6 @@ const breakpoints = {
 };
 const textStyles = {
   imageModalArrowButton: {
-    // bg:"rgba(255, 255, 255, 0.8)",
     position: 'relative',
     '@media screen and (min-width: 481px)': {
       width: '64px',

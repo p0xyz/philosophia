@@ -156,39 +156,41 @@ const Contact: FC = () => {
               )}
             </Flex>
           ))}
-          <Flex
-            as="button"
-            type="button"
-            onClick={() => formPost()}
-            justifyContent="space-between"
-            alignItems="center"
-            w="120px"
-            color="white"
-            bg="black800"
-            p="8px"
-            fontFamily="en"
-            fontSize="1.7rem"
-            opacity={1}
-            transition="opacity 0.2s"
-            sx={{
-              ...((isNameError ||
-                isEmailError ||
-                isProfessionError ||
-                isContentError ||
-                isSubmitting) && {
-                opacity: 0.4,
-                cursor: 'not-allowed',
-              }),
-            }}
-          >
-            <Text pt="3px">{isSubmitting ? 'Sending...' : 'Send'}</Text>
-            {isSubmitting && <Spinner />}
+          <Flex flexDir="column" gap="16px">
+            <Flex
+              as="button"
+              type="button"
+              onClick={() => formPost()}
+              justifyContent="space-between"
+              alignItems="center"
+              w="120px"
+              color="white"
+              bg="black800"
+              p="8px"
+              fontFamily="en"
+              fontSize="1.7rem"
+              opacity={1}
+              transition="opacity 0.2s"
+              sx={{
+                ...((isNameError ||
+                  isEmailError ||
+                  isProfessionError ||
+                  isContentError ||
+                  isSubmitting) && {
+                  opacity: 0.4,
+                  cursor: 'not-allowed',
+                }),
+              }}
+            >
+              <Text pt="3px">{isSubmitting ? 'Sending...' : 'Send'}</Text>
+              {isSubmitting && <Spinner />}
+            </Flex>
+            {isFailed && (
+              <Text fontSize="1.2rem">
+                申し訳ありません、正常に送信できませんでした。時間をあけてもう一度お試しください。
+              </Text>
+            )}
           </Flex>
-          {isFailed && (
-            <Text>
-              申し訳ありません、送信できませんでした。時間をあけてもう一度お試しください。
-            </Text>
-          )}
         </Flex>
       </TextPageLayout>
     </Layout>
