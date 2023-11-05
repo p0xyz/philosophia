@@ -196,6 +196,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             }),
           }}
         >
+          {/* 情報 */}
           <Center
             textAlign="left"
             h={{ base: '48px', sm: '72px' }}
@@ -216,60 +217,13 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               <>, {microCMSData[selectedIndex].prefecture}</>
             )}
           </Center>
-          <Center
-            gap="6px"
-            h="8px"
-            pos="absolute"
-            inset={{ base: 'auto 0 -24px 0', sm: 'auto 0 24px 0' }}
-          >
-            {microCMSData[selectedIndex].images.map((item, i) => (
-              <Center
-                as="button"
-                type="button"
-                key={'array' + i}
-                w="6px"
-                h="6px"
-                background="white"
-                transition="0.2s background, 0.2s width, 0.2s height"
-                rounded="full"
-                boxShadow="0 0 10px 0 rgba(0, 0, 0, 0.5)"
-                pos="relative"
-                onClick={() => setSelectedModalIndex(i)}
-                _hover={{
-                  background: 'black600',
-                }}
-                sx={{
-                  '&::before': {
-                    content: "''",
-                    display: 'block',
-                    w: '8px',
-                    h: '8px',
-                    rounded: 'full',
-                    background: 'transparent',
-                    transition: '0.2s background',
-                    pos: 'absolute',
-                  },
-                  ...(i === selectedModalIndex && {
-                    '&::before': {
-                      content: "''",
-                      display: 'block',
-                      w: '8px',
-                      h: '8px',
-                      rounded: 'full',
-                      background: 'black600',
-                      transition: '0.2s background',
-                      pos: 'absolute',
-                    },
-                  }),
-                }}
-              />
-            ))}
-          </Center>
+          {/* 矢印 */}
           <Flex
             display={isSelectedModal ? 'flex' : 'none'}
             alignItems="center"
             justifyContent="space-between"
             w="100vw"
+            h="fit-content"
             pos="absolute"
             m="auto"
             inset={{ base: '0 0 auto 0', sm: '0 0 0 0' }}
@@ -369,6 +323,58 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               }}
             />
           </Flex>
+          {/* ナビゲーション */}
+          <Center
+            gap="6px"
+            w="fit-content"
+            h="8px"
+            m="auto"
+            pos="absolute"
+            inset={{ base: 'auto 0 -24px 0', sm: 'auto 0 24px 0' }}
+          >
+            {microCMSData[selectedIndex].images.map((item, i) => (
+              <Center
+                as="button"
+                type="button"
+                key={'array' + i}
+                w="6px"
+                h="6px"
+                background="white"
+                transition="0.2s background, 0.2s width, 0.2s height"
+                rounded="full"
+                boxShadow="0 0 10px 0 rgba(0, 0, 0, 0.5)"
+                pos="relative"
+                onClick={() => setSelectedModalIndex(i)}
+                _hover={{
+                  background: 'black600',
+                }}
+                sx={{
+                  '&::before': {
+                    content: "''",
+                    display: 'block',
+                    w: '8px',
+                    h: '8px',
+                    rounded: 'full',
+                    background: 'transparent',
+                    transition: '0.2s background',
+                    pos: 'absolute',
+                  },
+                  ...(i === selectedModalIndex && {
+                    '&::before': {
+                      content: "''",
+                      display: 'block',
+                      w: '8px',
+                      h: '8px',
+                      rounded: 'full',
+                      background: 'black600',
+                      transition: '0.2s background',
+                      pos: 'absolute',
+                    },
+                  }),
+                }}
+              />
+            ))}
+          </Center>
         </Flex>
         {!isSP && (
           <Center
