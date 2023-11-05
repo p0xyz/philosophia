@@ -172,7 +172,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             >
               <Box
                 as="img"
-                src={`${item.url}?${item.width > item.height ? 'w' : 'h'}=1200`}
+                src={`${item.url}?${item.width > item.height ? 'w' : 'h'}=1280`}
                 w="100%"
                 h="100%"
                 objectFit="contain"
