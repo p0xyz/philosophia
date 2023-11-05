@@ -5,6 +5,7 @@ const colors = {
   black900: '#1E1E1E',
   black800: '#464646',
   black600: '#777777',
+  black400: '#ACACAC',
   black300: '#D4D4D4',
 };
 const styles = {

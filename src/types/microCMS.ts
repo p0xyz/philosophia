@@ -20,3 +20,12 @@ export type MicroCMSArticleType = MicroCMSType & {
   prefecture: string | undefined;
   alt: string;
 };
+
+export type MicroCMSFormType = {
+  via: ['philosophia000.vercel.app'];
+  name: string;
+  email: string;
+  profession: string;
+  content: string;
+  isReplyed: boolean;
+};

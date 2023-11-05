@@ -6,27 +6,32 @@ import { PATH_INDEX } from '@/constant/path';
 
 type Props = {
   title: string;
-  description: string;
+  description?: string;
+  children?: JSX.Element;
 };
 
-const TextPageLayout: FC<Props> = ({ title, description }) => (
+const TextPageLayout: FC<Props> = ({ title, description, children }) => (
   <VStack
     alignItems="stretch"
-    gap="16px"
-    w="80vw"
+    gap={description && !children ? '16px' : '32px'}
+    w="90vw"
     maxW="800px"
     m="0 auto"
-    pt="40px"
   >
     <Heading as="h2" fontFamily="logo" fontSize="2rem">
       {title}
     </Heading>
-    <Text>{description}</Text>
-    <NextLink passHref href={PATH_INDEX}>
-      <Text as="a" textDecor="underline" _hover={{ textDecor: 'none' }}>
-        トップへ戻る
-      </Text>
-    </NextLink>
+    {description && (
+      <>
+        <Text>{description}</Text>
+        <NextLink passHref href={PATH_INDEX}>
+          <Text as="a" textDecor="underline" _hover={{ textDecor: 'none' }}>
+            トップへ戻る
+          </Text>
+        </NextLink>
+      </>
+    )}
+    {children && children}
   </VStack>
 );
 
