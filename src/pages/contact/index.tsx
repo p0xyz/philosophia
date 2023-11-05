@@ -94,7 +94,7 @@ const Contact: FC = () => {
     {
       heading: '所属・ご職業など',
       description:
-        'どういった方からのご連絡なのかが分かるようにご記入ください。',
+        'どういった方からのお問い合わせなのかが分かるようにご記入ください。',
       type: 'text',
       placeholder: 'モチつき名人',
       onChange: (value) => setProfession(value),
@@ -102,8 +102,8 @@ const Contact: FC = () => {
       isTextarea: false,
     },
     {
-      heading: 'ご連絡内容',
-      description: 'ご連絡の内容を具体的にご記入ください。（5文字以上）',
+      heading: 'お問い合わせ内容',
+      description: 'お問い合わせの内容を具体的にご記入ください。（5文字以上）',
       type: 'text',
       placeholder: 'モチには醤油はいらないです。',
       onChange: (value) => setContent(value),
@@ -115,7 +115,7 @@ const Contact: FC = () => {
 
   return (
     <Layout>
-      <TextPageLayout title="月波へのご連絡">
+      <TextPageLayout title="月波へのお問い合わせ">
         <Flex as="form" flexDir="column" gap="32px">
           {formContents.map((content) => (
             <Flex flexDir="column" key={content.heading} gap="4px">
