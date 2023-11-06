@@ -174,7 +174,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                 as="img"
                 src={`${item.url}?${item.width > item.height ? 'w' : 'h'}=${
                   isSP ? '960' : 1600
-                }}`}
+                }`}
                 w="100%"
                 h="100%"
                 objectFit="contain"
