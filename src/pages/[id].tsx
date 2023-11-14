@@ -139,15 +139,6 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
               }),
         }}
       >
-        {isSP && (
-          <Box
-            onClick={() => setIsSelectedModal(!isSelectedModal)}
-            w="100vw"
-            h="100vh"
-            pos="absolute"
-            inset="0 0 0 0"
-          />
-        )}
         <Center
           as="ul"
           w="100vw"
@@ -228,7 +219,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             h="fit-content"
             pos="absolute"
             m="auto"
-            inset={{ base: '0 0 auto 0', sm: '0 0 0 0' }}
+            inset={{ base: '0 0 0 0', sm: '0 0 0 0' }}
           >
             <Center
               as="button"
@@ -378,47 +369,45 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             ))}
           </Center>
         </Flex>
-        {!isSP && (
-          <Center
-            as="button"
-            type="button"
-            onClick={() => setIsSelectedModal(!isSelectedModal)}
-            w="56px"
-            h="56px"
-            pos="absolute"
-            inset={{ base: '3% 3% auto auto', sm: '10% 10% auto auto' }}
-            _hover={{
-              '&::before': {
-                background: 'black300',
-              },
-              '&::after': {
-                background: 'black300',
-              },
-            }}
-            sx={{
-              '&::before': {
-                content: '""',
-                display: 'block',
-                width: '1px',
-                height: '64px',
-                background: 'black600',
-                transition: '0.2s background-color',
-                boxShadow: '0 0 10px $white',
-                transform: 'rotateZ(45deg)',
-              },
-              '&::after': {
-                content: '""',
-                display: 'block',
-                width: '1px',
-                height: '64px',
-                background: 'black600',
-                transition: '0.2s background-color',
-                boxShadow: '0 0 10px $white',
-                transform: 'rotateZ(135deg)',
-              },
-            }}
-          />
-        )}
+        <Center
+          as="button"
+          type="button"
+          onClick={() => setIsSelectedModal(!isSelectedModal)}
+          w="56px"
+          h="56px"
+          pos="absolute"
+          inset={{ base: '5% 3% auto auto', sm: '10% 10% auto auto' }}
+          _hover={{
+            '&::before': {
+              background: 'black300',
+            },
+            '&::after': {
+              background: 'black300',
+            },
+          }}
+          sx={{
+            '&::before': {
+              content: '""',
+              display: 'block',
+              width: '1px',
+              height: isSP ? '48px' : '64px',
+              background: 'black600',
+              transition: '0.2s background-color',
+              boxShadow: '0 0 10px $white',
+              transform: 'rotateZ(45deg)',
+            },
+            '&::after': {
+              content: '""',
+              display: 'block',
+              width: '1px',
+              height: isSP ? '48px' : '64px',
+              background: 'black600',
+              transition: '0.2s background-color',
+              boxShadow: '0 0 10px $white',
+              transform: 'rotateZ(135deg)',
+            },
+          }}
+        />
       </Center>
     </>
   );

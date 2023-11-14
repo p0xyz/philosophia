@@ -56,8 +56,9 @@ const textStyles = {
       height: '160px',
     },
     '@media screen and (max-width: 480px)': {
-      width: '48px',
-      height: '72px',
+      width: '44px',
+      height: '64px',
+      bg: 'rgba(255, 255, 255, 0.5)',
     },
     '&:hover': {
       '&::before': {
