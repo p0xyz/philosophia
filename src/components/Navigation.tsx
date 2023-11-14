@@ -21,7 +21,7 @@ type Props = {
 
 const Navigation: FC<Props> = ({ path }) => {
   const router = useRouter();
-  const { isSP } = useWidth();
+  const { isMdSP } = useWidth();
 
   const [isOpenNavigationDrawer, setIsOpenNavigationDrawer] =
     useState<boolean>(false);
@@ -77,7 +77,7 @@ const Navigation: FC<Props> = ({ path }) => {
     <Flex
       as="ul"
       sx={{
-        ...(isSP
+        ...(isMdSP
           ? {
               flexDirection: 'column',
             }
@@ -94,7 +94,7 @@ const Navigation: FC<Props> = ({ path }) => {
           key={item}
           alignItems="stretch"
           sx={{
-            ...(isSP
+            ...(isMdSP
               ? {
                   justifyContent: 'flex-start',
                   color: 'white',
@@ -116,7 +116,7 @@ const Navigation: FC<Props> = ({ path }) => {
             <Center
               as="a"
               sx={{
-                ...(isSP
+                ...(isMdSP
                   ? {
                       color: 'black300',
                       ...(path === item && {
@@ -158,7 +158,7 @@ const Navigation: FC<Props> = ({ path }) => {
       <Text
         as="a"
         sx={{
-          ...(isSP
+          ...(isMdSP
             ? {
                 display: 'flex',
                 alignItems: 'center',
@@ -198,7 +198,7 @@ const Navigation: FC<Props> = ({ path }) => {
               }),
         }}
       >
-        {isSP ? <>About</> : <AdminIcon />}
+        {isMdSP ? <>About</> : <AdminIcon />}
       </Text>
     </NextLink>
   );
@@ -219,7 +219,7 @@ const Navigation: FC<Props> = ({ path }) => {
       <Flex
         fontFamily={{ base: 'logo', md: 'en' }}
         sx={{
-          ...(isSP
+          ...(isMdSP
             ? {
                 flexDirection: 'column',
                 width: '100vw',
@@ -245,14 +245,14 @@ const Navigation: FC<Props> = ({ path }) => {
       >
         <NavigationLink />
         <AboutLink />
-        {isSP && (
+        {isMdSP && (
           <Center flexDir="column" gap="16px" w="100%" mt="24px">
             <ShareLink />
             <Copyright />
           </Center>
         )}
       </Flex>
-      {isSP && (
+      {isMdSP && (
         <Center
           as="button"
           onClick={() => setIsOpenNavigationDrawer(!isOpenNavigationDrawer)}
