@@ -121,7 +121,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         flexDir="column"
         gap={{ base: '16px', sm: '24px' }}
         w="100vw"
-        h="100dvh"
+        h="100vh"
         pos="fixed"
         inset="0 0 0 0"
         bgColor="rgba(255, 255, 255, 0.9)"
@@ -143,7 +143,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           <Box
             onClick={() => setIsSelectedModal(!isSelectedModal)}
             w="100vw"
-            h="100dvh"
+            h="100vh"
             pos="absolute"
             inset="0 0 0 0"
           />
@@ -151,11 +151,11 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
         <Center
           as="ul"
           w="100vw"
-          h="100dvh"
+          h="100vh"
           pos="relative"
           sx={{
             ...(isSP && {
-              maxH: '70dvh',
+              maxH: '70vh',
             }),
           }}
         >
@@ -188,13 +188,13 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           justifyContent={{ base: 'space-between', sm: 'flex-start' }}
           alignItems="flex-end"
           w="100vw"
-          h="100dvh"
+          h="100vh"
           m="auto"
           pos="absolute"
           inset="0 0 0 0"
           sx={{
             ...(isSP && {
-              maxH: '70dvh',
+              maxH: '70vh',
             }),
           }}
         >
@@ -208,7 +208,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
             fontSize={{ base: '1.3rem', sm: '1.6rem' }}
             sx={{
               ...(isSP && {
-                ml: 'calc((100vw - 70dvh / 3 * 2) / 2)',
+                ml: 'calc((100vw - 70vh / 3 * 2) / 2)',
               }),
             }}
           >
