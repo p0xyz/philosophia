@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Text } from '@chakra-ui/react';
 
-import { APP_NAME_FURIGANA } from '@/constant/app';
+import { APP_TITLE } from '@/constant/app';
 
 type Props = {
   isFoot?: boolean;
@@ -17,7 +17,7 @@ const Copyright: FC<Props> = ({ isFoot }) => (
     fontFamily="en"
     textAlign="center"
   >
-    &copy; 2020-2023 {APP_NAME_FURIGANA}
+    &copy; 2020-2023 {APP_TITLE}
   </Text>
 );
 export default Copyright;

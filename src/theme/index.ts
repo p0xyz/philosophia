@@ -47,7 +47,6 @@ const fonts = {
 const breakpoints = {
   sm: '480px',
   md: '720px',
-  lg: '1000px',
 };
 const textStyles = {
   imageModalArrowButton: {

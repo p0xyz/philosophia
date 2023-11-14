@@ -10,7 +10,7 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 
-import { APP_PAGE_YEARS } from '@/constant/app';
+import { APP_PAGE_YEARS, APP_TITLE } from '@/constant/app';
 import { PATH_ABOUT } from '@/constant/path';
 import { Z_INDEX_NAVIGATION } from '@/constant/style';
 
@@ -72,7 +72,7 @@ const Navigation: FC<Props> = ({ path }) => {
             },
           }}
         >
-          Philosophia
+          {APP_TITLE}
         </Text>
       </NextLink>
     </Heading>

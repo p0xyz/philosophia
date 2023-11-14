@@ -16,7 +16,7 @@ import TextPageLayout from '@/components/TextPageLayout';
 import { MicroCMSFormType } from '@/types/microCMS';
 
 import { PATH_CONTACT_39 } from '@/constant/path';
-import { APP_REGULATION_EMAIL } from '@/constant/app';
+import { APP_REGULATION_EMAIL, APP_TITLE } from '@/constant/app';
 
 import { postApi } from '@/libs/api';
 
@@ -130,7 +130,7 @@ const Contact: FC = () => {
 
   return (
     <Layout>
-      <TextPageLayout title="月波へのお問い合わせ">
+      <TextPageLayout title={`${APP_TITLE}へのお問い合わせ`}>
         <Flex as="form" flexDir="column" gap="32px">
           {formContents.map((content) => (
             <Flex flexDir="column" key={content.heading} gap="4px">

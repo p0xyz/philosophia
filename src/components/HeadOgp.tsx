@@ -6,6 +6,7 @@ import {
   APP_OGP,
   APP_TITLE_FULL,
   APP_MAIN_IMAGE,
+  APP_DESCRIPTION,
 } from '@/constant/app';
 
 import { AppPathType } from '@/types/link';
@@ -31,10 +32,7 @@ const HeadOgp: FC<Props> = ({ path }) => {
         <>
           <title>{`404｜${APP_TITLE_FULL}`}</title>
           <meta property="og:title" content={`404｜${APP_TITLE_FULL}`} />
-          <meta
-            property="og:description"
-            content="月波の写真ポートフォリオです。"
-          />
+          <meta property="og:description" content={APP_DESCRIPTION} />
           <meta property="og:url" content={`${APP_URL}/404`} />
         </>
       )}

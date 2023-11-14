@@ -1,4 +1,4 @@
-import { Box, Center, Flex, HStack, Link, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Link, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import NextLink from 'next/link';
 
@@ -24,9 +24,9 @@ const About: NextPage = () => {
   );
   const Description = () => (
     <Text fontSize="1.3rem" lineHeight="2.5rem">
-      22歳 関西圏で写真を撮ります。
+      大阪 22歳
       <br />
-      使用機材：Canon EOS RP / Canon EOS Kiss X3
+      Canon EOS RP / Canon EOS Kiss X3
     </Text>
   );
   const OtherLink = () => (
@@ -70,7 +70,10 @@ const About: NextPage = () => {
     </Flex>
   );
   const Icon = () => (
-    <Center w="304px" aspectRatio={1}>
+    <Center
+      w={{ base: '240px', sm: '304px' }}
+      h={{ base: '240px', sm: '304px' }}
+    >
       <AdminIcon />
     </Center>
   );
@@ -103,7 +106,7 @@ const About: NextPage = () => {
           },
         }}
       >
-        <Name />
+        {/* <Name /> */}
         <Description />
         <OtherLink />
       </Flex>
