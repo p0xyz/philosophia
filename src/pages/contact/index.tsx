@@ -7,7 +7,6 @@ import {
   Spinner,
   Text,
   Textarea,
-  useMediaQuery,
 } from '@chakra-ui/react';
 
 import Layout from '@/components/Layout';
@@ -20,9 +19,11 @@ import { APP_REGULATION_EMAIL, APP_TITLE } from '@/constant/app';
 
 import { postApi } from '@/libs/api';
 
+import { useWidth } from '@/contexts/useWidth';
+
 const Contact: FC = () => {
   const router = useRouter();
-  const [isSP] = useMediaQuery('(max-width: 480px)');
+  const { isSP } = useWidth();
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');

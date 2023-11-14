@@ -1,14 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  Center,
-  Flex,
-  Heading,
-  Spacer,
-  Text,
-  useMediaQuery,
-} from '@chakra-ui/react';
+import { Center, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
 
 import { APP_PAGE_YEARS, APP_TITLE } from '@/constant/app';
 import { PATH_ABOUT } from '@/constant/path';
@@ -20,15 +13,18 @@ import AdminIcon from '@/components/AdminIcon';
 
 import { AppPathType } from '@/types/link';
 
+import { useWidth } from '@/contexts/useWidth';
+
 type Props = {
   path: AppPathType | undefined;
 };
 
 const Navigation: FC<Props> = ({ path }) => {
   const router = useRouter();
+  const { isSP } = useWidth();
+
   const [isOpenNavigationDrawer, setIsOpenNavigationDrawer] =
     useState<boolean>(false);
-  const [isLargerThan881] = useMediaQuery('(min-width: 881px)');
 
   useEffect(() => {
     router.events.on('routeChangeStart', () =>
@@ -81,14 +77,14 @@ const Navigation: FC<Props> = ({ path }) => {
     <Flex
       as="ul"
       sx={{
-        ...(isLargerThan881
+        ...(isSP
           ? {
+              flexDirection: 'column',
+            }
+          : {
               gap: '8px',
               alignItems: 'center',
               fontSize: '1.7rem',
-            }
-          : {
-              flexDirection: 'column',
             }),
       }}
     >
@@ -98,13 +94,8 @@ const Navigation: FC<Props> = ({ path }) => {
           key={item}
           alignItems="stretch"
           sx={{
-            ...(isLargerThan881
+            ...(isSP
               ? {
-                  width: '80px',
-                  height: '32px',
-                  position: 'relative',
-                }
-              : {
                   justifyContent: 'flex-start',
                   color: 'white',
                   h: '56px',
@@ -113,6 +104,11 @@ const Navigation: FC<Props> = ({ path }) => {
                   '&::hover': {
                     opacity: 0.6,
                   },
+                }
+              : {
+                  width: '80px',
+                  height: '32px',
+                  position: 'relative',
                 }),
           }}
         >
@@ -120,21 +116,8 @@ const Navigation: FC<Props> = ({ path }) => {
             <Center
               as="a"
               sx={{
-                ...(isLargerThan881
+                ...(isSP
                   ? {
-                      w: '100%',
-                      background: 'transparent',
-                      transition: 'color 0.2s, background 0.2s',
-                      ...(path === item && {
-                        color: 'white',
-                        background: 'black800',
-                      }),
-                      '&:hover': {
-                        color: 'white',
-                        background: 'black800',
-                      },
-                    }
-                  : {
                       color: 'black300',
                       ...(path === item && {
                         '&::after': {
@@ -147,6 +130,19 @@ const Navigation: FC<Props> = ({ path }) => {
                           borderRadius: '9999px',
                         },
                       }),
+                    }
+                  : {
+                      w: '100%',
+                      background: 'transparent',
+                      transition: 'color 0.2s, background 0.2s',
+                      ...(path === item && {
+                        color: 'white',
+                        background: 'black800',
+                      }),
+                      '&:hover': {
+                        color: 'white',
+                        background: 'black800',
+                      },
                     }),
               }}
             >
@@ -162,8 +158,25 @@ const Navigation: FC<Props> = ({ path }) => {
       <Text
         as="a"
         sx={{
-          ...(isLargerThan881
+          ...(isSP
             ? {
+                display: 'flex',
+                alignItems: 'center',
+                h: '56px',
+                color: 'black300',
+                ...(path === PATH_ABOUT && {
+                  '&::after': {
+                    content: '""',
+                    display: 'block',
+                    background: 'black300',
+                    width: '12px',
+                    height: '12px',
+                    ml: '16px',
+                    borderRadius: '9999px',
+                  },
+                }),
+              }
+            : {
                 width: '64px',
                 height: '64px',
                 borderRadius: '50%',
@@ -182,27 +195,10 @@ const Navigation: FC<Props> = ({ path }) => {
                   opacity: 0.6,
                   borderColor: 'black800',
                 },
-              }
-            : {
-                display: 'flex',
-                alignItems: 'center',
-                h: '56px',
-                color: 'black300',
-                ...(path === PATH_ABOUT && {
-                  '&::after': {
-                    content: '""',
-                    display: 'block',
-                    background: 'black300',
-                    width: '12px',
-                    height: '12px',
-                    ml: '16px',
-                    borderRadius: '9999px',
-                  },
-                }),
               }),
         }}
       >
-        {isLargerThan881 ? <AdminIcon /> : <>About</>}
+        {isSP ? <>About</> : <AdminIcon />}
       </Text>
     </NextLink>
   );
@@ -223,13 +219,8 @@ const Navigation: FC<Props> = ({ path }) => {
       <Flex
         fontFamily={{ base: 'logo', md: 'en' }}
         sx={{
-          ...(isLargerThan881
+          ...(isSP
             ? {
-                gap: '24px',
-                alignItems: 'center',
-                fontSize: '1.7rem',
-              }
-            : {
                 flexDirection: 'column',
                 width: '100vw',
                 height: '100vh',
@@ -244,19 +235,24 @@ const Navigation: FC<Props> = ({ path }) => {
                   opacity: 1,
                   transform: 'translateX(0)',
                 }),
+              }
+            : {
+                gap: '24px',
+                alignItems: 'center',
+                fontSize: '1.7rem',
               }),
         }}
       >
         <NavigationLink />
         <AboutLink />
-        {!isLargerThan881 && (
+        {isSP && (
           <Center flexDir="column" gap="16px" w="100%" mt="24px">
             <ShareLink />
             <Copyright />
           </Center>
         )}
       </Flex>
-      {!isLargerThan881 && (
+      {isSP && (
         <Center
           as="button"
           onClick={() => setIsOpenNavigationDrawer(!isOpenNavigationDrawer)}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NextPage } from 'next';
-import { Box, Center, Flex, Image, useMediaQuery } from '@chakra-ui/react';
+import { Box, Center, Flex, Image } from '@chakra-ui/react';
 
 import Layout from '@/components/Layout';
 
@@ -11,12 +11,15 @@ import { client } from '@/libs/client';
 
 import { MicroCMSArticleType } from '@/types/microCMS';
 
+import { useWidth } from '@/contexts/useWidth';
+
 type Props = {
   microCMSData: MicroCMSArticleType[];
 };
 
 const Photo: NextPage<Props> = ({ microCMSData }) => {
-  const [isSP] = useMediaQuery('(max-width: 480px)');
+  const { isSP } = useWidth();
+
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [isSelectedModal, setIsSelectedModal] = useState<boolean>(false);
   const [selectedModalIndex, setSelectedModalIndex] = useState(0);
