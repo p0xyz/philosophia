@@ -46,7 +46,7 @@ export const APP_SHARE_LINKS: AppLinkType[] = [
   },
   {
     text: 'X',
-    url: `https://twitter.com/intent/tweet?url=${APP_URL}&text=Philosophia%20-%20%E6%9C%88%E6%B3%A2%E2%80%99s%20Photography%20Portfolio`,
+    url: `https://twitter.com/intent/tweet?url=${APP_URL}&text=Philosophia%20-%20Photography%20Portfolio`,
     svg: ShareIconX,
   },
 ];
