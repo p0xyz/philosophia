@@ -28,7 +28,7 @@ const Navigation: FC<Props> = ({ path }) => {
   const router = useRouter();
   const [isOpenNavigationDrawer, setIsOpenNavigationDrawer] =
     useState<boolean>(false);
-  const [isLargerThan721] = useMediaQuery('(min-width: 721px)');
+  const [isLargerThan881] = useMediaQuery('(min-width: 881px)');
 
   useEffect(() => {
     router.events.on('routeChangeStart', () =>
@@ -81,7 +81,7 @@ const Navigation: FC<Props> = ({ path }) => {
     <Flex
       as="ul"
       sx={{
-        ...(isLargerThan721
+        ...(isLargerThan881
           ? {
               gap: '8px',
               alignItems: 'center',
@@ -98,7 +98,7 @@ const Navigation: FC<Props> = ({ path }) => {
           key={item}
           alignItems="stretch"
           sx={{
-            ...(isLargerThan721
+            ...(isLargerThan881
               ? {
                   width: '80px',
                   height: '32px',
@@ -120,7 +120,7 @@ const Navigation: FC<Props> = ({ path }) => {
             <Center
               as="a"
               sx={{
-                ...(isLargerThan721
+                ...(isLargerThan881
                   ? {
                       w: '100%',
                       background: 'transparent',
@@ -162,7 +162,7 @@ const Navigation: FC<Props> = ({ path }) => {
       <Text
         as="a"
         sx={{
-          ...(isLargerThan721
+          ...(isLargerThan881
             ? {
                 width: '64px',
                 height: '64px',
@@ -202,7 +202,7 @@ const Navigation: FC<Props> = ({ path }) => {
               }),
         }}
       >
-        {isLargerThan721 ? <AdminIcon /> : <>About</>}
+        {isLargerThan881 ? <AdminIcon /> : <>About</>}
       </Text>
     </NextLink>
   );
@@ -223,7 +223,7 @@ const Navigation: FC<Props> = ({ path }) => {
       <Flex
         fontFamily={{ base: 'logo', md: 'en' }}
         sx={{
-          ...(isLargerThan721
+          ...(isLargerThan881
             ? {
                 gap: '24px',
                 alignItems: 'center',
@@ -249,14 +249,14 @@ const Navigation: FC<Props> = ({ path }) => {
       >
         <NavigationLink />
         <AboutLink />
-        {!isLargerThan721 && (
+        {!isLargerThan881 && (
           <Center flexDir="column" gap="16px" w="100%" mt="24px">
             <ShareLink />
             <Copyright />
           </Center>
         )}
       </Flex>
-      {!isLargerThan721 && (
+      {!isLargerThan881 && (
         <Center
           as="button"
           onClick={() => setIsOpenNavigationDrawer(!isOpenNavigationDrawer)}
