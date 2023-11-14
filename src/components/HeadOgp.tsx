@@ -26,14 +26,14 @@ const HeadOgp: FC<Props> = ({ path }) => {
             content={`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}
           />
           <meta property="og:description" content={APP_OGP[path].description} />
-          <meta property="og:url" content={`${APP_URL}/${path}`} />
+          <meta property="og:url" content={`${APP_URL}${path}`} />
         </>
       ) : (
         <>
           <title>{`404｜${APP_TITLE_FULL}`}</title>
           <meta property="og:title" content={`404｜${APP_TITLE_FULL}`} />
           <meta property="og:description" content={APP_DESCRIPTION} />
-          <meta property="og:url" content={`${APP_URL}/404`} />
+          <meta property="og:url" content={`${APP_URL}404`} />
         </>
       )}
       <meta property="og:type" content="website" />
