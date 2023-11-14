@@ -23,8 +23,8 @@ export const APP_NAME: string = '月波';
 export const APP_NAME_FURIGANA: string = 'Tsukinami';
 
 export const APP_TITLE: string = 'Philosophia';
-export const APP_TITLE_SUB: string = `${APP_NAME}’s Photography Portfolio`;
-export const APP_TITLE_FULL = `${APP_TITLE} - ${APP_TITLE_SUB}`;
+// export const APP_TITLE_SUB: string = `${APP_NAME}’s Photography Portfolio`;
+export const APP_TITLE_FULL = `${APP_TITLE} - Photography Portfolio`;
 export const APP_DESCRIPTION = `${APP_TITLE}は、写真ポートフォリオです。`;
 
 export const APP_REGULATION_EMAIL = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
