@@ -16,7 +16,6 @@ export default class Document extends NextDocument {
             href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Montserrat&family=League+Spartan:wght@300;600&display=swap"
             rel="stylesheet"
           />
-          <meta name="theme-color" content="#fff" />
         </Head>
         <body>
           <Main />

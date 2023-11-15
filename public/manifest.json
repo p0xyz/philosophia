@@ -3,7 +3,7 @@
   "short_name": "Philosophia",
   "description": "Philosophiaは、写真ポートフォリオです。",
   "start_url": "/2023",
-  "display": "standalone",
+  "display": "browser",
   "orientation": "any",
   "background_color": "#fff",
   "theme_color": "#fff",
