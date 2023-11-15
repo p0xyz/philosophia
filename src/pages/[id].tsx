@@ -61,7 +61,7 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           {microCMSData.map((item: MicroCMSArticleType, i) => (
             <Center
               as="li"
-              key={item.contentId + item.alt}
+              key={item.id}
               onClick={() => onOpenModal(i)}
               overflow="hidden"
               aspectRatio={1}

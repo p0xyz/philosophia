@@ -13,7 +13,6 @@ export type MicroCMSImageType = {
 };
 
 export type MicroCMSArticleType = MicroCMSType & {
-  contentId: string;
   date: string;
   images: MicroCMSImageType[];
   place: string;
