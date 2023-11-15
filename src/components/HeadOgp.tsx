@@ -13,12 +13,20 @@ import { AppPathType } from '@/types/link';
 
 type Props = {
   path: AppPathType | undefined;
+  isIndex?: boolean;
 };
 
-const HeadOgp: FC<Props> = ({ path }) => {
+const HeadOgp: FC<Props> = ({ path, isIndex }) => {
   return (
     <Head>
-      {!!path ? (
+      {isIndex ? (
+        <>
+          <title>{APP_TITLE_FULL}</title>
+          <meta property="og:title" content={APP_TITLE_FULL} />
+          <meta property="og:description" content={APP_DESCRIPTION} />
+          <meta property="og:url" content={APP_URL} />
+        </>
+      ) : !!path ? (
         <>
           <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
           <meta

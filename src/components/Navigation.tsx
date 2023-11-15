@@ -54,7 +54,7 @@ const Navigation: FC<Props> = ({ path }) => {
       fontFamily="logo"
       zIndex={Z_INDEX_NAVIGATION}
     >
-      <NextLink passHref href={`/${APP_PAGE_YEARS[0]}`}>
+      <NextLink passHref href="/">
         <Text
           as="a"
           sx={{
@@ -112,7 +112,7 @@ const Navigation: FC<Props> = ({ path }) => {
                 }),
           }}
         >
-          <NextLink passHref href={`/${item}`}>
+          <NextLink passHref href={`/${i === 0 ? '' : item}`}>
             <Center
               as="a"
               sx={{

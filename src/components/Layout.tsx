@@ -36,7 +36,7 @@ const Layout: FC<Props> = ({ children }) => {
 
   return (
     <>
-      <HeadOgp path={path} />
+      <HeadOgp path={path} isIndex={router.asPath === "/"} />
       <Navigation path={path} />
       <PageTransition key={path}>
         <>{children}</>

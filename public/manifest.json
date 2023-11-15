@@ -2,7 +2,7 @@
   "name": "Philosophia - Photography portfolio",
   "short_name": "Philosophia",
   "description": "Philosophiaは、写真ポートフォリオです。",
-  "start_url": "/2023",
+  "start_url": "/",
   "display": "browser",
   "orientation": "any",
   "background_color": "#fff",
