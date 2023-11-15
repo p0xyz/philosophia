@@ -40,18 +40,6 @@ const HeadOgp: FC<Props> = ({ path }) => {
       <meta property="og:site_name" content={APP_TITLE_FULL} />
       <meta property="og:image" content={APP_MAIN_IMAGE} />
       <meta name="twitter:card" content="summary" />
-      <link rel="manifest" href="/manifest.json"/>
-      <link
-        rel="apple-touch-icon"
-        type="image/png"
-        href="/apple-touch-icon-180x180.png"
-      />
-      <link rel="icon" type="image/png" href="/icon-192x192.png" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Montserrat&family=League+Spartan:wght@300;600&display=swap"
-        rel="stylesheet"
-      />
-      <meta name="theme-color" content="#fff" />
     </Head>
   );
 };
