@@ -41,16 +41,16 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
           gap={{ base: '2px', sm: '16px' }}
           m="0 auto"
           sx={{
-            '@media screen and (min-width: 1081px)': {
-              width: 'calc(320px * 3 + 16px * 2)',
+            '@media screen and (min-width: 1440px)': {
+              width: `${320 * 4 + 16 * 3}px`,
             },
-            '@media screen and (max-width: 1120px)': {
-              width: 'calc(320px * 2 + 16px * 1)',
+            '@media screen and (max-width: 1080px)': {
+              width: `${320 * 3 + 16 * 2}px`,
             },
-            '@media screen and (max-width: 980px)': {
-              width: 'calc(320px * 2 + 16px * 1)',
+            '@media screen and (max-width: 1040px)': {
+              width: `${320 * 2 + 16 * 1}px`,
             },
-            '@media screen and (max-width: 800px)': {
+            '@media screen and (max-width: 720px)': {
               width: '320px',
             },
             '@media screen and (max-width: 480px)': {
