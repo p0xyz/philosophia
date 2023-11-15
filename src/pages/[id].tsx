@@ -105,17 +105,19 @@ const Photo: NextPage<Props> = ({ microCMSData }) => {
                 },
               }}
             >
-              <Image
-                src={`${item.images[0].url}?${
-                  item.images[0].width > item.images[0].height ? 'w' : 'h'
-                }=${isSP ? 400 : 800}`}
-                alt={item.alt}
-                w="100%"
-                h="100%"
-                transform="scale(1)"
-                objectFit="cover"
-                transition="0.6s transform"
-              />
+              <Box as="button" type="button" w="100%" h="100%">
+                <Image
+                  src={`${item.images[0].url}?${
+                    item.images[0].width > item.images[0].height ? 'w' : 'h'
+                  }=${isSP ? 400 : 800}`}
+                  alt={item.alt}
+                  w="100%"
+                  h="100%"
+                  transform="scale(1)"
+                  objectFit="cover"
+                  transition="0.6s transform"
+                />
+              </Box>
             </Center>
           ))}
         </Flex>

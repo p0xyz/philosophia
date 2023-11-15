@@ -8,7 +8,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     router.push({
-      pathname: APP_PAGE_YEARS[0] + '',
+      pathname: String(APP_PAGE_YEARS[0]),
     });
   }, []);
 
