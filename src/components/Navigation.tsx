@@ -23,6 +23,8 @@ const Navigation: FC<Props> = ({ path }) => {
   const router = useRouter();
   const { isMdSP } = useWidth();
 
+  const navigationPath = !path?.length ? APP_PAGE_YEARS[0] : path;
+
   const [isOpenNavigationDrawer, setIsOpenNavigationDrawer] =
     useState<boolean>(false);
 
@@ -119,7 +121,7 @@ const Navigation: FC<Props> = ({ path }) => {
                 ...(isMdSP
                   ? {
                       color: 'black300',
-                      ...(path === item && {
+                      ...(navigationPath === item && {
                         '&::after': {
                           content: '""',
                           display: 'block',
@@ -135,7 +137,7 @@ const Navigation: FC<Props> = ({ path }) => {
                       w: '100%',
                       background: 'transparent',
                       transition: 'color 0.2s, background 0.2s',
-                      ...(path === item && {
+                      ...(navigationPath === item && {
                         color: 'white',
                         background: 'black800',
                       }),
