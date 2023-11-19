@@ -120,12 +120,12 @@ const Navigation: FC<Props> = ({ path }) => {
               sx={{
                 ...(isMdSP
                   ? {
-                      color: 'black300',
+                      color: 'base.300',
                       ...(navigationPath === item && {
                         '&::after': {
                           content: '""',
                           display: 'block',
-                          background: 'black300',
+                          background: 'base.300',
                           width: '12px',
                           height: '12px',
                           ml: '16px',
@@ -139,11 +139,11 @@ const Navigation: FC<Props> = ({ path }) => {
                       transition: 'color 0.2s, background 0.2s',
                       ...(navigationPath === item && {
                         color: 'white',
-                        background: 'black800',
+                        background: 'base.800',
                       }),
                       '&:hover': {
                         color: 'white',
-                        background: 'black800',
+                        background: 'base.800',
                       },
                     }),
               }}
@@ -165,12 +165,12 @@ const Navigation: FC<Props> = ({ path }) => {
                 display: 'flex',
                 alignItems: 'center',
                 h: '56px',
-                color: 'black300',
+                color: 'base.300',
                 ...(path === PATH_ABOUT && {
                   '&::after': {
                     content: '""',
                     display: 'block',
-                    background: 'black300',
+                    background: 'base.300',
                     width: '12px',
                     height: '12px',
                     ml: '16px',
@@ -189,13 +189,13 @@ const Navigation: FC<Props> = ({ path }) => {
                 overflow: 'hidden',
                 transition: '0.2s opacity, 0.2s border-color',
                 ...(path === PATH_ABOUT && {
-                  borderColor: 'black800',
+                  borderColor: 'base.800',
                   borderStyle: 'solid',
                   borderWidth: '4px',
                 }),
                 '&:hover': {
                   opacity: 0.6,
-                  borderColor: 'black800',
+                  borderColor: 'base.800',
                 },
               }),
         }}
@@ -226,7 +226,7 @@ const Navigation: FC<Props> = ({ path }) => {
                 flexDirection: 'column',
                 width: '100vw',
                 height: '100vh',
-                background: 'black900',
+                background: 'base.900',
                 fontSize: '2.2rem',
                 position: 'fixed',
                 inset: '0 0 0 0',
@@ -268,7 +268,7 @@ const Navigation: FC<Props> = ({ path }) => {
               display: 'block',
               width: '32px',
               height: '2px',
-              background: 'black800',
+              background: 'base.800',
               mb: '8px',
               transition: 'background 0.2s',
               ...(isOpenNavigationDrawer && {
@@ -280,7 +280,7 @@ const Navigation: FC<Props> = ({ path }) => {
               display: 'block',
               width: '32px',
               height: '2px',
-              background: 'black800',
+              background: 'base.800',
               transition: 'background 0.2s',
               ...(isOpenNavigationDrawer && {
                 background: 'white',

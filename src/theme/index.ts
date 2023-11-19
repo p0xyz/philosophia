@@ -2,11 +2,13 @@ import { extendTheme } from '@chakra-ui/react';
 
 const colors = {
   white: '#fff',
-  black900: '#1E1E1E',
-  black800: '#464646',
-  black600: '#777777',
-  black400: '#ACACAC',
-  black300: '#D4D4D4',
+  base: {
+    900: '#1E1E1E',
+    800: '#464646',
+    600: '#777777',
+    400: '#ACACAC',
+    300: '#D4D4D4',
+  },
 };
 const styles = {
   global: {
@@ -14,11 +16,11 @@ const styles = {
       fontSize: '62.5%',
     },
     body: {
-      color: 'black800',
+      color: 'base.800',
       fontSize: '1.4rem',
       fontFamily: 'body',
       a: {
-        color: 'black800',
+        color: 'base.800',
         textDecoration: 'none',
       },
       li: {
@@ -62,10 +64,10 @@ const textStyles = {
     },
     '&:hover': {
       '&::before': {
-        backgroundColor: 'black300',
+        backgroundColor: 'base.300',
       },
       '&::after': {
-        backgroundColor: 'black300',
+        backgroundColor: 'base.300',
       },
     },
   },

@@ -154,12 +154,12 @@ const Contact: FC = () => {
                     content.onChange(e.target.value);
                     content.isError && content.onError(e.target.value);
                   }}
-                  focusBorderColor="black400"
+                  focusBorderColor="base.400"
                   variant="flushed"
                   onBlur={(e) => content.onError(e.target.value)}
                   h="120px"
                   fontSize={isSP ? '1.6rem' : '1.4rem'}
-                  _placeholder={{ color: 'black400' }}
+                  _placeholder={{ color: 'base.400' }}
                 />
               ) : (
                 <Input
@@ -169,12 +169,12 @@ const Contact: FC = () => {
                     content.onChange(e.target.value);
                     content.isError && content.onError(e.target.value);
                   }}
-                  focusBorderColor="black400"
+                  focusBorderColor="base.400"
                   variant="flushed"
                   onBlur={(e) => content.onError(e.target.value)}
                   py="16px"
                   fontSize={isSP ? '1.6rem' : '1.4rem'}
-                  _placeholder={{ color: 'black400' }}
+                  _placeholder={{ color: 'base.400' }}
                 />
               )}
               {content.isError && (
@@ -193,7 +193,7 @@ const Contact: FC = () => {
               alignItems="center"
               w="120px"
               color="white"
-              bg="black800"
+              bg="base.800"
               p="8px"
               fontFamily="en"
               fontSize="1.7rem"

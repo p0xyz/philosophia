@@ -64,7 +64,7 @@ const ImageList: FC<Props> = ({ data, onOpenModal }) => {
                     display: 'block',
                     width: '100%',
                     height: '100%',
-                    background: 'black800',
+                    background: '#000000',
                     position: 'absolute',
                     inset: '0 auto auto 0',
                     opacity: 0.7,

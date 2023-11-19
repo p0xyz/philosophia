@@ -143,7 +143,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
                 display: 'block',
                 width: '1px',
                 height: isSP ? '24px' : '40px',
-                background: 'black600',
+                background: 'base.600',
                 margin: isSP ? '0 0 17px' : '0 0 28px',
                 transition: '0.2s background',
                 position: 'absolute',
@@ -155,7 +155,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
                 display: 'block',
                 width: '1px',
                 height: isSP ? '24px' : '40px',
-                background: 'black600',
+                background: 'base.600',
                 margin: isSP ? '16px 0 0' : '28px 0 0',
                 transition: '0.2s background',
                 position: 'absolute',
@@ -188,7 +188,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
                 display: 'block',
                 width: '1px',
                 height: isSP ? '24px' : '40px',
-                background: 'black600',
+                background: 'base.600',
                 margin: isSP ? '0 0 17px' : '0 0 28px',
                 transition: '0.2s background',
                 position: 'absolute',
@@ -200,7 +200,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
                 display: 'block',
                 width: '1px',
                 height: isSP ? '24px' : '40px',
-                background: 'black600',
+                background: 'base.600',
                 margin: isSP ? '16px 0 0' : '28px 0 0',
                 transition: '0.2s background',
                 position: 'absolute',
@@ -233,7 +233,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
               pos="relative"
               onClick={() => setSelectedModalIndex(i)}
               _hover={{
-                background: 'black600',
+                background: 'base.600',
               }}
               sx={{
                 '&::before': {
@@ -253,7 +253,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
                     w: '8px',
                     h: '8px',
                     rounded: 'full',
-                    background: 'black600',
+                    background: 'base.600',
                     transition: '0.2s background',
                     pos: 'absolute',
                   },
@@ -276,10 +276,10 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
         inset={{ base: '5% 3% auto auto', sm: '10% 10% auto auto' }}
         _hover={{
           '&::before': {
-            background: 'black300',
+            background: 'base.300',
           },
           '&::after': {
-            background: 'black300',
+            background: 'base.300',
           },
         }}
         sx={{
@@ -288,7 +288,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
             display: 'block',
             width: '1px',
             height: isSP ? '48px' : '64px',
-            background: 'black600',
+            background: 'base.600',
             transition: '0.2s background-color',
             boxShadow: '0 0 10px $white',
             transform: 'rotateZ(45deg)',
@@ -298,7 +298,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
             display: 'block',
             width: '1px',
             height: isSP ? '48px' : '64px',
-            background: 'black600',
+            background: 'base.600',
             transition: '0.2s background-color',
             boxShadow: '0 0 10px $white',
             transform: 'rotateZ(135deg)',

@@ -12,7 +12,7 @@ const Copyright: FC<Props> = ({ isFoot }) => (
     as="small"
     display="block"
     w="max-content"
-    color={isFoot ? 'black800' : 'black300'}
+    color={isFoot ? 'base.800' : 'base.300'}
     fontSize="1.2rem"
     fontFamily="en"
     textAlign="center"
