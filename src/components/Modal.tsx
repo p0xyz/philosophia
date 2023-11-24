@@ -65,7 +65,7 @@ const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
             <Box
               as="img"
               src={`${item.url}?${item.width > item.height ? 'w' : 'h'}=${
-                isSP ? '960' : 1600
+                isSP ? '800' : 1600
               }`}
               w="100%"
               h="100%"
