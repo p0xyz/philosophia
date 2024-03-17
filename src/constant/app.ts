@@ -7,6 +7,7 @@ import OtherIconContact from '@/assets/icons/icon_other_contact.svg';
 import { PATH_CONTACT } from '@/constant/path';
 
 export const APP_PAGE_YEARS: AppPathYearType[] = [
+  '2024',
   '2023',
   '2022',
   '2021',
