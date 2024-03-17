@@ -42,7 +42,7 @@ export default Home;
 
 export const getStaticProps = async () => {
   const microCMSReturnData = await client.get({
-    endpoint: 'data',
+    endpoint: 'photographs',
     queries: {
       offset: 0,
       limit: 100,
