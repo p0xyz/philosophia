@@ -28,11 +28,13 @@ const HeadOgp: FC<Props> = ({ path, isIndex }) => {
         </>
       ) : !!path ? (
         <>
-          <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
+          <title>{APP_TITLE_FULL}</title>
+          <meta property="og:title" content={APP_TITLE_FULL} />
+          {/* <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
           <meta
             property="og:title"
             content={`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}
-          />
+          /> */}
           <meta property="og:description" content={APP_OGP[path].description} />
           <meta property="og:url" content={`${APP_URL}${path}`} />
         </>
