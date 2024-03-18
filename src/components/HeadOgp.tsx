@@ -19,7 +19,11 @@ type Props = {
 const HeadOgp: FC<Props> = ({ path, isIndex }) => {
   return (
     <Head>
-      {isIndex ? (
+      <title>{APP_TITLE_FULL}</title>
+      <meta property="og:title" content={APP_TITLE_FULL} />
+      <meta property="og:description" content={APP_DESCRIPTION} />
+      <meta property="og:url" content={APP_URL} />
+      {/* {isIndex ? (
         <>
           <title>{APP_TITLE_FULL}</title>
           <meta property="og:title" content={APP_TITLE_FULL} />
@@ -28,13 +32,11 @@ const HeadOgp: FC<Props> = ({ path, isIndex }) => {
         </>
       ) : !!path ? (
         <>
-          <title>{APP_TITLE_FULL}</title>
-          <meta property="og:title" content={APP_TITLE_FULL} />
-          {/* <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
+          <title>{`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}</title>
           <meta
             property="og:title"
             content={`${APP_OGP[path].title}｜${APP_TITLE_FULL}`}
-          /> */}
+          />
           <meta property="og:description" content={APP_OGP[path].description} />
           <meta property="og:url" content={`${APP_URL}${path}`} />
         </>
@@ -45,7 +47,7 @@ const HeadOgp: FC<Props> = ({ path, isIndex }) => {
           <meta property="og:description" content={APP_DESCRIPTION} />
           <meta property="og:url" content={`${APP_URL}404`} />
         </>
-      )}
+      )} */}
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={APP_TITLE_FULL} />
       <meta property="og:image" content={APP_MAIN_IMAGE} />
