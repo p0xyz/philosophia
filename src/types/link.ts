@@ -19,6 +19,7 @@ export type AppPathYearType =
   | '2018';
 
 export type AppPathType =
+  | '2024'
   | '2023'
   | '2022'
   | '2021'

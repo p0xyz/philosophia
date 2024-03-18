@@ -58,6 +58,10 @@ export const APP_OGP: {
     description: string;
   };
 } = {
+  2024: {
+    title: '2024',
+    description: APP_DESCRIPTION,
+  },
   2023: {
     title: '2023',
     description: APP_DESCRIPTION,
