@@ -274,13 +274,10 @@ const Navigation: FC = () => {
         <NavigationLink />
         <ProfileLink />
         {isMdSP && (
-          <>
-            <ContactLink />
-            <Center flexDir="column" gap="16px" w="100%" mt="24px">
-              <ShareLink />
-              <Copyright />
-            </Center>
-          </>
+          <Center flexDir="column" gap="16px" w="100%" mt="24px">
+            <ShareLink />
+            <Copyright />
+          </Center>
         )}
       </Flex>
       {isMdSP && (
