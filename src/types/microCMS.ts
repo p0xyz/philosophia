@@ -26,5 +26,9 @@ export type FormType = {
   email: string;
   profession: string;
   content: string;
-  isReplyed: boolean;
+  isReplied: boolean;
+};
+
+export type ProfileType = {
+  description: string;
 };

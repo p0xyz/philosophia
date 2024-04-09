@@ -14,7 +14,15 @@ import {
 
 import { useSetPageContext } from '@/contexts/usePageContext';
 
-const Profile: NextPage = () => {
+import { client } from '@/libs/client';
+
+import { ProfileType } from '@/types/microCMS';
+
+type Props = {
+  profile: ProfileType;
+};
+
+const Profile: NextPage<Props> = ({ profile }) => {
   useSetPageContext({
     type: 'profile',
     title: 'Profile',
@@ -37,10 +45,8 @@ const Profile: NextPage = () => {
     </Box>
   );
   const Description = () => (
-    <Text fontSize="1.3rem" lineHeight="2.5rem">
-      関西 22歳 記録用
-      <br />
-      Canon EOS RP / Canon EOS Kiss X3
+    <Text fontSize="1.3rem" lineHeight="2.5rem" whiteSpace="pre-line">
+      {profile.description}
     </Text>
   );
   const OtherLink = () => (
@@ -136,3 +142,19 @@ const Profile: NextPage = () => {
 };
 
 export default Profile;
+
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { id: string };
+}) => {
+  const microCMSReturnData = await client.get({
+    endpoint: 'profile',
+  });
+
+  return {
+    props: {
+      profile: microCMSReturnData,
+    },
+  };
+};
