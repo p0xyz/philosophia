@@ -60,11 +60,11 @@ const Contact: FC = () => {
 
     const params: FormType = {
       via: ['philosophia000.vercel.app'],
-      name: name,
-      email: email,
-      profession: profession,
-      content: content,
-      isReplyed: false,
+      name,
+      email,
+      profession,
+      content,
+      isReplied: false,
     };
 
     try {
