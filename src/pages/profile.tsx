@@ -5,9 +5,23 @@ import NextLink from 'next/link';
 import Layout from '@/components/Layout';
 import AdminIcon from '@/components/AdminIcon';
 
-import { APP_NAME, APP_NAME_FURIGANA, APP_OTHER_LINKS } from '@/constant/app';
+import {
+  APP_DESCRIPTION,
+  APP_NAME,
+  APP_NAME_FURIGANA,
+  APP_OTHER_LINKS,
+} from '@/constant/common';
 
-const About: NextPage = () => {
+import { useSetPageContext } from '@/contexts/usePageContext';
+
+const Profile: NextPage = () => {
+  useSetPageContext({
+    type: 'profile',
+    title: 'Profile',
+    description: APP_DESCRIPTION,
+    path: '/profile',
+  });
+
   const Name = () => (
     <Box>
       <Text fontFamily="en" fontSize="1.6rem">
@@ -121,4 +135,4 @@ const About: NextPage = () => {
   );
 };
 
-export default About;
+export default Profile;

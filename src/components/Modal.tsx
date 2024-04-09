@@ -5,10 +5,10 @@ import { Z_INDEX_IMAGE_MODAL } from '@/constant/style';
 
 import { useWidth } from '@/contexts/useWidth';
 
-import { MicroCMSArticleType } from '@/types/microCMS';
+import { PhotographType } from '@/types/microCMS';
 
 type Props = {
-  data: MicroCMSArticleType;
+  data?: PhotographType;
   isOpen: boolean;
   onClose: () => void;
 };
@@ -16,6 +16,10 @@ type Props = {
 const Modal: FC<Props> = ({ data, isOpen, onClose }) => {
   const { isSP } = useWidth();
   const [selectedModalIndex, setSelectedModalIndex] = useState(0);
+
+  if (!data) {
+    return <></>;
+  }
 
   return (
     <Center

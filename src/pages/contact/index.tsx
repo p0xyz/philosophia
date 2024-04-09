@@ -12,18 +12,25 @@ import {
 import Layout from '@/components/Layout';
 import TextPageLayout from '@/components/TextPageLayout';
 
-import { MicroCMSFormType } from '@/types/microCMS';
+import { FormType } from '@/types/microCMS';
 
-import { PATH_CONTACT_39 } from '@/constant/path';
-import { APP_REGULATION_EMAIL, APP_TITLE } from '@/constant/app';
+import { APP_REGULATION_EMAIL, APP_TITLE } from '@/constant/common';
 
-import { postApi } from '@/libs/api';
+import { sendForm } from '@/libs/api';
 
 import { useWidth } from '@/contexts/useWidth';
+import { useSetPageContext } from '@/contexts/usePageContext';
 
 const Contact: FC = () => {
   const router = useRouter();
   const { isSP } = useWidth();
+
+  useSetPageContext({
+    type: 'contact',
+    title: 'お問い合わせ',
+    description: `${APP_TITLE}のお問い合わせフォームです。`,
+    path: '/contact',
+  });
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -51,7 +58,7 @@ const Contact: FC = () => {
     setIsSubmitting(true);
     setIsFailed(false);
 
-    const params: MicroCMSFormType = {
+    const params: FormType = {
       via: ['philosophia000.vercel.app'],
       name: name,
       email: email,
@@ -61,9 +68,9 @@ const Contact: FC = () => {
     };
 
     try {
-      await postApi(params);
+      await sendForm(params);
 
-      router.push(PATH_CONTACT_39);
+      router.push('/contact/39');
     } catch {
       setIsSubmitting(false);
       setIsFailed(true);

@@ -3,27 +3,20 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { Center, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
 
-import { APP_PAGE_YEARS, APP_TITLE } from '@/constant/app';
-import { PATH_ABOUT } from '@/constant/path';
+import { APP_LATEST_YEAR, APP_PAGE_YEARS, APP_TITLE } from '@/constant/common';
 import { Z_INDEX_NAVIGATION } from '@/constant/style';
 
 import ShareLink from '@/components/ShareLink';
 import Copyright from '@/components/Copyright';
 import AdminIcon from '@/components/AdminIcon';
 
-import { AppPathType } from '@/types/link';
-
 import { useWidth } from '@/contexts/useWidth';
+import { usePageContext } from '@/contexts/usePageContext';
 
-type Props = {
-  path: AppPathType | undefined;
-};
-
-const Navigation: FC<Props> = ({ path }) => {
+const Navigation: FC = () => {
   const router = useRouter();
   const { isMdSP } = useWidth();
-
-  const navigationPath = !path?.length ? APP_PAGE_YEARS[0] : path;
+  const pageContext = usePageContext();
 
   const [isOpenNavigationDrawer, setIsOpenNavigationDrawer] =
     useState<boolean>(false);
@@ -90,10 +83,10 @@ const Navigation: FC<Props> = ({ path }) => {
             }),
       }}
     >
-      {APP_PAGE_YEARS.map((item, i) => (
+      {APP_PAGE_YEARS.map((year) => (
         <Center
           as="li"
-          key={item}
+          key={year}
           alignItems="stretch"
           sx={{
             ...(isMdSP
@@ -114,14 +107,19 @@ const Navigation: FC<Props> = ({ path }) => {
                 }),
           }}
         >
-          <NextLink passHref href={`/${i === 0 ? '' : item}`}>
+          <NextLink
+            passHref
+            href={`/${year === String(APP_LATEST_YEAR) ? '' : year}`}
+          >
             <Center
               as="a"
               sx={{
                 ...(isMdSP
                   ? {
                       color: 'base.300',
-                      ...(navigationPath === item && {
+                      ...(((!pageContext?.title.length &&
+                        year === String(APP_LATEST_YEAR)) ||
+                        pageContext?.title === year) && {
                         '&::after': {
                           content: '""',
                           display: 'block',
@@ -137,7 +135,9 @@ const Navigation: FC<Props> = ({ path }) => {
                       w: '100%',
                       background: 'transparent',
                       transition: 'color 0.2s, background 0.2s',
-                      ...(navigationPath === item && {
+                      ...(((!pageContext?.title.length &&
+                        year === String(APP_LATEST_YEAR)) ||
+                        pageContext?.title === year) && {
                         color: 'white',
                         background: 'base.800',
                       }),
@@ -148,15 +148,15 @@ const Navigation: FC<Props> = ({ path }) => {
                     }),
               }}
             >
-              {item}
+              {year}
             </Center>
           </NextLink>
         </Center>
       ))}
     </Flex>
   );
-  const AboutLink = () => (
-    <NextLink passHref href={`/${PATH_ABOUT}`}>
+  const ProfileLink = () => (
+    <NextLink passHref href="/profile">
       <Text
         as="a"
         sx={{
@@ -166,7 +166,7 @@ const Navigation: FC<Props> = ({ path }) => {
                 alignItems: 'center',
                 h: '56px',
                 color: 'base.300',
-                ...(path === PATH_ABOUT && {
+                ...(pageContext?.path === '/profile' && {
                   '&::after': {
                     content: '""',
                     display: 'block',
@@ -188,7 +188,7 @@ const Navigation: FC<Props> = ({ path }) => {
                 opacity: '1',
                 overflow: 'hidden',
                 transition: '0.2s opacity, 0.2s border-color',
-                ...(path === PATH_ABOUT && {
+                ...(pageContext?.path === '/profile' && {
                   borderColor: 'base.800',
                   borderStyle: 'solid',
                   borderWidth: '4px',
@@ -200,8 +200,34 @@ const Navigation: FC<Props> = ({ path }) => {
               }),
         }}
       >
-        {isMdSP ? <>About</> : <AdminIcon />}
+        {isMdSP ? <>Profile</> : <AdminIcon />}
       </Text>
+    </NextLink>
+  );
+  const ContactLink = () => (
+    <NextLink passHref href="/contact">
+      <Flex
+        as="a"
+        display="flex"
+        alignItems="center"
+        h="56px"
+        color="base.300"
+        sx={{
+          ...(pageContext?.path.startsWith('/contact') && {
+            '&::after': {
+              content: '""',
+              display: 'block',
+              background: 'base.300',
+              width: '12px',
+              height: '12px',
+              ml: '16px',
+              borderRadius: '9999px',
+            },
+          }),
+        }}
+      >
+        Contact
+      </Flex>
     </NextLink>
   );
 
@@ -225,7 +251,7 @@ const Navigation: FC<Props> = ({ path }) => {
             ? {
                 flexDirection: 'column',
                 width: '100vw',
-                height: '100vh',
+                minHeight: '100vh',
                 background: 'base.900',
                 fontSize: '2.2rem',
                 position: 'fixed',
@@ -246,12 +272,15 @@ const Navigation: FC<Props> = ({ path }) => {
         }}
       >
         <NavigationLink />
-        <AboutLink />
+        <ProfileLink />
         {isMdSP && (
-          <Center flexDir="column" gap="16px" w="100%" mt="24px">
-            <ShareLink />
-            <Copyright />
-          </Center>
+          <>
+            <ContactLink />
+            <Center flexDir="column" gap="16px" w="100%" mt="24px">
+              <ShareLink />
+              <Copyright />
+            </Center>
+          </>
         )}
       </Flex>
       {isMdSP && (

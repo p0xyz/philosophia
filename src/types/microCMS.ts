@@ -12,7 +12,7 @@ export type MicroCMSImageType = {
   width: number;
 };
 
-export type MicroCMSArticleType = MicroCMSType & {
+export type PhotographType = MicroCMSType & {
   date: string;
   images: MicroCMSImageType[];
   place: string;
@@ -20,7 +20,7 @@ export type MicroCMSArticleType = MicroCMSType & {
   alt: string;
 };
 
-export type MicroCMSFormType = {
+export type FormType = {
   via: ['philosophia000.vercel.app'];
   name: string;
   email: string;

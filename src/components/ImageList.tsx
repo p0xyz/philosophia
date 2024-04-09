@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { Box, Flex, Center, Image } from '@chakra-ui/react';
 
-import { MicroCMSArticleType } from '@/types/microCMS';
+import { PhotographType } from '@/types/microCMS';
 import { useWidth } from '@/contexts/useWidth';
 
 type Props = {
-  data: MicroCMSArticleType[];
-  onOpenModal: (index:number) => void;
+  data: PhotographType[];
+  onOpenModal: (id: string) => void;
 };
 
 const ImageList: FC<Props> = ({ data, onOpenModal }) => {
@@ -38,11 +38,11 @@ const ImageList: FC<Props> = ({ data, onOpenModal }) => {
         },
       }}
     >
-      {data.map((item: MicroCMSArticleType, i) => (
+      {data.map((item: PhotographType) => (
         <Center
           as="li"
           key={item.id}
-          onClick={() => onOpenModal(i)}
+          onClick={() => onOpenModal(item.id)}
           overflow="hidden"
           aspectRatio={1}
           sx={{

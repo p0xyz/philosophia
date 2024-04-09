@@ -1,23 +1,28 @@
 import { FC } from 'react';
 import { Text } from '@chakra-ui/react';
 
-import { APP_TITLE } from '@/constant/app';
+import { APP_TITLE } from '@/constant/common';
 
 type Props = {
-  isFoot?: boolean;
+  variant?: 'normal' | 'footer';
 };
 
-const Copyright: FC<Props> = ({ isFoot }) => (
+const TEXT_COLOR_MAP: Record<'normal' | 'footer', string> = {
+  normal: 'base.300',
+  footer: 'base.800',
+};
+
+const Copyright: FC<Props> = ({ variant = 'normal' }) => (
   <Text
     as="small"
     display="block"
     w="max-content"
-    color={isFoot ? 'base.800' : 'base.300'}
+    color={TEXT_COLOR_MAP[variant]}
     fontSize="1.2rem"
     fontFamily="en"
     textAlign="center"
   >
-    &copy; 2020-2023 {APP_TITLE}
+    &copy; 2020-2024 {APP_TITLE}
   </Text>
 );
 export default Copyright;

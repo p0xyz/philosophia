@@ -1,47 +1,38 @@
-import { FC } from 'react';
-import { useRouter } from 'next/router';
+import { FC, ReactNode } from 'react';
 import { Flex } from '@chakra-ui/react';
 
 import Navigation from '@/components/Navigation';
-import HeadOgp from '@/components/HeadOgp';
+import OGP from '@/components/OGP';
 import PageTransition from '@/components/PageTransition';
 import Copyright from '@/components/Copyright';
 import ShareLink from '@/components/ShareLink';
 
-import { AppPathType } from '@/types/link';
+import { usePageContext } from '@/contexts/usePageContext';
 
 type Props = {
-  children: JSX.Element;
+  children: ReactNode;
 };
 
 const Layout: FC<Props> = ({ children }) => {
-  const router = useRouter();
-  const is404 = router.pathname === '/404';
-  const path: AppPathType | undefined = is404
-    ? undefined
-    : (router.asPath.slice(1) as AppPathType);
-
-  const Footer: () => JSX.Element = () => (
-    <Flex
-      as="footer"
-      flexDir="column"
-      alignItems="center"
-      p="56px 0 80px"
-      gap="16px"
-    >
-      <ShareLink isFoot />
-      <Copyright isFoot />
-    </Flex>
-  );
+  const pageContext = usePageContext();
 
   return (
     <>
-      <HeadOgp path={path} isIndex={router.asPath === "/"} />
-      <Navigation path={path} />
-      <PageTransition key={path}>
+      <OGP />
+      <Navigation />
+      <PageTransition key={pageContext?.path}>
         <>{children}</>
       </PageTransition>
-      <Footer />
+      <Flex
+        as="footer"
+        flexDir="column"
+        alignItems="center"
+        p="56px 0 80px"
+        gap="16px"
+      >
+        <ShareLink variant="footer" />
+        <Copyright variant="footer" />
+      </Flex>
     </>
   );
 };

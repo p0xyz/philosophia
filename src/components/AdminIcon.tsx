@@ -1,6 +1,7 @@
-import { APP_TITLE } from '@/constant/app';
 import { Image } from '@chakra-ui/react';
 import { FC } from 'react';
+
+import { APP_TITLE } from '@/constant/common';
 
 const AdminIcon: FC = () => (
   <Image

@@ -2,8 +2,6 @@ import { FC } from 'react';
 import { VStack, Heading, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
-import { PATH_INDEX } from '@/constant/path';
-
 type Props = {
   title: string;
   description?: string;
@@ -24,7 +22,7 @@ const TextPageLayout: FC<Props> = ({ title, description, children }) => (
     {description && (
       <>
         <Text>{description}</Text>
-        <NextLink passHref href={PATH_INDEX}>
+        <NextLink passHref href="/">
           <Text as="a" textDecor="underline" _hover={{ textDecor: 'none' }}>
             トップへ戻る
           </Text>

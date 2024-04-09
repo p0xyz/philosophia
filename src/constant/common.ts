@@ -1,20 +1,14 @@
-import { AppLinkType, AppPathType, AppPathYearType } from '@/types/link';
+import { AppLinkType } from '@/types/common';
 
 import ShareIconX from '@/assets/icons/icon_share_x.svg';
 import ShareIconLine from '@/assets/icons/icon_share_line.svg';
 import OtherIconContact from '@/assets/icons/icon_other_contact.svg';
 
-import { PATH_CONTACT } from '@/constant/path';
-
-export const APP_PAGE_YEARS: AppPathYearType[] = [
-  '2024',
-  '2023',
-  '2022',
-  '2021',
-  '2020',
-  '2019',
-  '2018',
-];
+export const APP_OLDEST_YEAR = 2018;
+export const APP_LATEST_YEAR = 2024;
+export const APP_PAGE_YEARS = [...Array(APP_LATEST_YEAR + 1 - APP_OLDEST_YEAR)]
+  .map((_r, i) => String(APP_OLDEST_YEAR + i))
+  .reverse();
 
 export const APP_URL: string = 'https://philosophia000.vercel.app/';
 export const APP_MAIN_IMAGE: string =
@@ -33,7 +27,7 @@ export const APP_REGULATION_EMAIL = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
 export const APP_OTHER_LINKS: AppLinkType[] = [
   {
     text: 'Contact',
-    url: PATH_CONTACT,
+    url: '/contact',
     svg: OtherIconContact,
     isProjectLink: true,
   },
@@ -51,51 +45,3 @@ export const APP_SHARE_LINKS: AppLinkType[] = [
     svg: ShareIconX,
   },
 ];
-
-export const APP_OGP: {
-  [key in AppPathType]: {
-    title: string;
-    description: string;
-  };
-} = {
-  2024: {
-    title: '2024',
-    description: APP_DESCRIPTION,
-  },
-  2023: {
-    title: '2023',
-    description: APP_DESCRIPTION,
-  },
-  2022: {
-    title: '2022',
-    description: APP_DESCRIPTION,
-  },
-  2021: {
-    title: '2021',
-    description: APP_DESCRIPTION,
-  },
-  2020: {
-    title: '2020',
-    description: APP_DESCRIPTION,
-  },
-  2019: {
-    title: '2019',
-    description: APP_DESCRIPTION,
-  },
-  2018: {
-    title: '2018',
-    description: APP_DESCRIPTION,
-  },
-  about: {
-    title: 'About',
-    description: APP_DESCRIPTION,
-  },
-  contact: {
-    title: 'お問い合わせ',
-    description: `${APP_TITLE}のお問い合わせフォームです。`,
-  },
-  'contact/39': {
-    title: 'お問い合わせ完了',
-    description: `${APP_TITLE}のお問い合わせフォームです。`,
-  },
-};
