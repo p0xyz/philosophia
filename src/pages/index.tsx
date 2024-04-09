@@ -27,14 +27,16 @@ const Home: NextPage<Props> = ({ photographs }) => {
   const [selectedId, setSelectedId] = useState<string | undefined>();
 
   return (
-    <Layout>
-      <ImageList data={photographs} onOpenModal={(id) => setSelectedId(id)} />
+    <>
+      <Layout>
+        <ImageList data={photographs} onOpenModal={(id) => setSelectedId(id)} />
+      </Layout>
       <Modal
         data={photographs.find(({ id }) => id === selectedId)!}
         isOpen={!!selectedId}
         onClose={() => setSelectedId(undefined)}
       />
-    </Layout>
+    </>
   );
 };
 
