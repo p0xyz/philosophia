@@ -74,7 +74,10 @@ const Navigation: FC = () => {
       sx={{
         ...(isMdSP
           ? {
-              flexDirection: 'column',
+              flexDir: 'column',
+              flexWrap: 'wrap',
+              w: '100%',
+              h: 'calc(56px * 4)',
             }
           : {
               gap: '8px',
@@ -93,6 +96,7 @@ const Navigation: FC = () => {
               ? {
                   justifyContent: 'flex-start',
                   color: 'white',
+                  w: '50%',
                   h: '56px',
                   opacity: 1,
                   transition: 'opacity 0.2s',
@@ -116,20 +120,11 @@ const Navigation: FC = () => {
               sx={{
                 ...(isMdSP
                   ? {
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-start',
+                      w: '100%',
                       color: 'base.300',
-                      ...(((!pageContext?.title.length &&
-                        year === String(APP_LATEST_YEAR)) ||
-                        pageContext?.title === year) && {
-                        '&::after': {
-                          content: '""',
-                          display: 'block',
-                          background: 'base.300',
-                          width: '12px',
-                          height: '12px',
-                          ml: '16px',
-                          borderRadius: '9999px',
-                        },
-                      }),
                     }
                   : {
                       w: '100%',
@@ -148,7 +143,29 @@ const Navigation: FC = () => {
                     }),
               }}
             >
-              {year}
+              <Text
+                as="span"
+                display="flex"
+                w="fit-content"
+                sx={{
+                  ...(isMdSP &&
+                    ((!pageContext?.title.length &&
+                      year === String(APP_LATEST_YEAR)) ||
+                      pageContext?.title === year) && {
+                      '&::after': {
+                        content: '""',
+                        display: 'block',
+                        background: 'base.300',
+                        width: '12px',
+                        height: '12px',
+                        m: 'auto 0 auto 16px',
+                        borderRadius: '9999px',
+                      },
+                    }),
+                }}
+              >
+                {year}
+              </Text>
             </Center>
           </NextLink>
         </Center>
@@ -164,6 +181,7 @@ const Navigation: FC = () => {
             ? {
                 display: 'flex',
                 alignItems: 'center',
+                w: '100%',
                 h: '56px',
                 color: 'base.300',
                 ...(pageContext?.path === '/profile' && {
@@ -272,6 +290,7 @@ const Navigation: FC = () => {
         }}
       >
         <NavigationLink />
+        {/* {isMdSP && <Spacer />} */}
         <ProfileLink />
         {isMdSP && (
           <Center flexDir="column" gap="16px" w="100%" mt="24px">
