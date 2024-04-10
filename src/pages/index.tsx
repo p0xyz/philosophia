@@ -33,7 +33,7 @@ const Home: NextPage<Props> = ({ photographs }) => {
       <Layout>
         <ImageList
           data={photographs}
-          onOpenModal={(id) => router.push(`/?id=${id}`)}
+          onOpenModal={(id) => router.push(`?id=${id}`)}
         />
       </Layout>
       <Modal
