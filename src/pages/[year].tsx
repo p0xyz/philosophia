@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 import Layout from '@/components/Layout';
 import Modal from '@/components/Modal';
@@ -10,6 +10,7 @@ import { APP_DESCRIPTION, APP_PAGE_YEARS } from '@/constant/common';
 import { client } from '@/libs/client';
 
 import { PhotographType } from '@/types/microCMS';
+
 import { useSetPageContext } from '@/contexts/usePageContext';
 
 type Props = {
@@ -18,24 +19,29 @@ type Props = {
 };
 
 const Photo: NextPage<Props> = ({ path, photographs }) => {
+  const router = useRouter();
+  const { id } = router.query;
+  const basePath = `/${path}`;
+
   useSetPageContext({
     type: 'photographs',
     title: `${path}`,
     description: APP_DESCRIPTION,
-    path: `/${path}`,
+    path: basePath,
   });
-
-  const [selectedId, setSelectedId] = useState<string | undefined>();
 
   return (
     <>
       <Layout>
-        <ImageList data={photographs} onOpenModal={(id) => setSelectedId(id)} />
+        <ImageList
+          data={photographs}
+          onOpenModal={(id) => router.push(`${basePath}?id=${id}`)}
+        />
       </Layout>
       <Modal
-        data={photographs.find(({ id }) => id === selectedId)}
-        isOpen={!!selectedId}
-        onClose={() => setSelectedId(undefined)}
+        data={photographs.find((photograph) => photograph.id === id)}
+        isOpen={!!id}
+        onClose={() => router.push(basePath)}
       />
     </>
   );
@@ -45,7 +51,7 @@ export default Photo;
 
 export const getStaticPaths = async () => {
   const paths = APP_PAGE_YEARS.filter((_year, i) => i !== 0).map((item) => ({
-    params: { id: String(item) },
+    params: { year: String(item) },
   }));
 
   return {
@@ -57,7 +63,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({
   params,
 }: {
-  params: { id: string };
+  params: { year: string };
 }) => {
   const microCMSReturnData = await client.get({
     endpoint: 'photographs',
@@ -67,7 +73,7 @@ export const getStaticProps = async ({
     },
   });
 
-  const path = Number(params.id);
+  const path = Number(params.year);
   const microCMSData: PhotographType[] = microCMSReturnData.contents.filter(
     (item: PhotographType) => {
       const contentDate = new Date(item.date);

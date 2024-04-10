@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 import ImageList from '@/components/ImageList';
 import Layout from '@/components/Layout';
@@ -17,6 +18,9 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ photographs }) => {
+  const router = useRouter();
+  const { id } = router.query;
+
   useSetPageContext({
     type: 'photographs',
     title: '',
@@ -24,17 +28,18 @@ const Home: NextPage<Props> = ({ photographs }) => {
     path: '/',
   });
 
-  const [selectedId, setSelectedId] = useState<string | undefined>();
-
   return (
     <>
       <Layout>
-        <ImageList data={photographs} onOpenModal={(id) => setSelectedId(id)} />
+        <ImageList
+          data={photographs}
+          onOpenModal={(id) => router.push(`/?id=${id}`)}
+        />
       </Layout>
       <Modal
-        data={photographs.find(({ id }) => id === selectedId)!}
-        isOpen={!!selectedId}
-        onClose={() => setSelectedId(undefined)}
+        data={photographs.find((photograph) => photograph.id === id)}
+        isOpen={!!id}
+        onClose={() => router.push("/")}
       />
     </>
   );
