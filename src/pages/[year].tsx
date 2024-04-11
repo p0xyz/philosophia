@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import Layout from '@/components/Layout';
 import ImageList from '@/components/ImageList';
-import OriginalModal from '@/components/Modal';
+import OriginalModal from '@/components/OriginalModal';
 
 import { APP_DESCRIPTION, APP_PAGE_YEARS } from '@/constant/common';
 
