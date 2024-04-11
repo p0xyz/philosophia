@@ -33,13 +33,13 @@ const Home: NextPage<Props> = ({ photographs }) => {
         <ImageList
           data={photographs}
           year={APP_LATEST_YEAR}
-          onOpenModal={(id) => router.push(`?id=${id}`)}
+          onOpenModal={(id) => router.push(`?id=${id}`, undefined, { scroll: false })}
         />
       </Layout>
       <OriginalModal
         data={photographs.find((photograph) => photograph.id === id)}
         isOpen={!!id}
-        onClose={() => router.push('/')}
+        onClose={() => router.push('/', undefined, { scroll: false })}
       />
     </>
   );

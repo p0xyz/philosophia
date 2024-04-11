@@ -36,13 +36,15 @@ const Photo: NextPage<Props> = ({ path, photographs }) => {
         <ImageList
           data={photographs}
           year={path}
-          onOpenModal={(id) => router.push(`${basePath}?id=${id}`)}
+          onOpenModal={(id) =>
+            router.push(`${basePath}?id=${id}`, undefined, { scroll: false })
+          }
         />
       </Layout>
       <OriginalModal
         data={photographs.find((photograph) => photograph.id === id)}
         isOpen={!!id}
-        onClose={() => router.push(basePath)}
+        onClose={() => router.push(basePath, undefined, { scroll: false })}
       />
     </>
   );
