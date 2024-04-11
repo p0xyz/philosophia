@@ -31,18 +31,19 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
     <Modal
       isOpen={isOpen}
       onClose={() => {
-        setSelectedIndex(0);
         onClose();
+        setSelectedIndex(0);
       }}
       size="full"
     >
-      <ModalContent bgColor="rgba(255, 255, 255, 0.9)">
+      <ModalContent bg="rgba(255, 255, 255, 0.9)">
         <ModalBody
           display="flex"
           justifyContent="center"
           alignItems="center"
           flexDir="column"
           gap={{ base: '16px', sm: '24px' }}
+          p={0}
         >
           <Center
             as="ul"
@@ -65,11 +66,12 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                 pos="absolute"
                 transition="opacity 0.2s"
                 opacity={i === selectedIndex ? 1 : 0}
+                pointerEvents={i === selectedIndex ? 'auto' : 'none'}
               >
                 <Box
                   as="img"
                   src={`${item.url}?${item.width > item.height ? 'w' : 'h'}=${
-                    isSP ? '800' : 1600
+                    isSP ? '1000' : 1800
                   }`}
                   w="100%"
                   h="100%"
@@ -103,6 +105,7 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
               p="4px 20px 0"
               fontFamily="en"
               fontSize={{ base: '1.3rem', sm: '1.6rem' }}
+              pointerEvents="auto"
               sx={{
                 ...(isSP && {
                   ml: 'calc((100vw - 70vh / 3 * 2) / 2)',
