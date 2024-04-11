@@ -1,9 +1,9 @@
-import { FC, SVGProps } from 'react';
+import { ComponentWithAs, IconProps } from '@chakra-ui/react';
 
 export type AppLinkType = {
   text: string;
   url: string;
-  svg: FC<SVGProps<SVGElement>>;
+  icon: ComponentWithAs<'svg', IconProps>;
   isProjectLink?: boolean;
 };
 

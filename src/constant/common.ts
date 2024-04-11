@@ -1,10 +1,8 @@
 import { AppLinkType } from '@/types/common';
 
-import ShareIconX from '@/assets/icons/icon_share_x.svg';
-import ShareIconLine from '@/assets/icons/icon_share_line.svg';
-import OtherIconContact from '@/assets/icons/icon_other_contact.svg';
+import { IconContact } from '@/components/Icon/IconContact';
 
-export const APP_OLDEST_YEAR = 2018;
+export const APP_OLDEST_YEAR = 2017;
 export const APP_LATEST_YEAR = 2024;
 export const APP_PAGE_YEARS = [...Array(APP_LATEST_YEAR + 1 - APP_OLDEST_YEAR)]
   .map((_r, i) => String(APP_OLDEST_YEAR + i))
@@ -28,20 +26,7 @@ export const APP_OTHER_LINKS: AppLinkType[] = [
   {
     text: 'Contact',
     url: '/contact',
-    svg: OtherIconContact,
+    icon: IconContact,
     isProjectLink: true,
-  },
-];
-
-export const APP_SHARE_LINKS: AppLinkType[] = [
-  {
-    text: 'LINE',
-    url: `https://social-plugins.line.me/lineit/share?url=${APP_URL}`,
-    svg: ShareIconLine,
-  },
-  {
-    text: 'X',
-    url: `https://twitter.com/intent/tweet?url=${APP_URL}&text=Philosophia%20-%20Photography%20Portfolio`,
-    svg: ShareIconX,
   },
 ];
