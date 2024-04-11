@@ -1,7 +1,14 @@
 import { FC, useEffect, useState } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { Center, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  Spacer,
+  Text,
+} from '@chakra-ui/react';
 
 import { APP_LATEST_YEAR, APP_PAGE_YEARS, APP_TITLE } from '@/constant/common';
 import { Z_INDEX_NAVIGATION } from '@/constant/style';
@@ -68,47 +75,102 @@ const Navigation: FC = () => {
       </NextLink>
     </Heading>
   );
-  const NavigationLink = () => (
-    <Flex
-      as="ul"
-      sx={{
-        ...(isMdSP
-          ? {
-              flexDir: 'column',
-              flexWrap: 'wrap',
-              w: '100%',
-              h: 'calc(56px * 4)',
-            }
-          : {
-              gap: '8px',
-              alignItems: 'center',
-              fontSize: '1.7rem',
-            }),
+  const NavigationLinkForPC = () => (
+    <Box
+      pos="relative"
+      _hover={{
+        '>div': {
+          color: 'white',
+          bg: 'base.800',
+        },
+        '>ul': {
+          opacity: 1,
+          pointerEvents: 'auto',
+        },
       }}
     >
+      <Center
+        w="120px"
+        h="40px"
+        color="base.800"
+        bg="white"
+        transition="color 0.3s, background 0.3s"
+      >
+        Archive
+      </Center>
+      <Flex
+        as="ul"
+        flexDir="column"
+        alignItems="center"
+        fontSize="1.7rem"
+        transition="opacity 0.3s"
+        opacity={0}
+        pos="absolute"
+        inset="40px auto auto auto"
+        pointerEvents="none"
+      >
+        {APP_PAGE_YEARS.map((year) => (
+          <Center
+            as="li"
+            key={year}
+            alignItems="stretch"
+            width="120px"
+            height="40px"
+            position="relative"
+            mt={0}
+          >
+            <NextLink
+              passHref
+              href={`/${year === String(APP_LATEST_YEAR) ? '' : year}`}
+            >
+              <Center
+                as="a"
+                w="100%"
+                background="transparent"
+                transition="color 0.1s, background 0.1s"
+                sx={{
+                  ...((!pageContext?.title.length &&
+                    year === String(APP_LATEST_YEAR)) ||
+                  pageContext?.title === year
+                    ? {
+                        color: 'white',
+                        background: 'base.800',
+                      }
+                    : {
+                        color: 'base.800',
+                        background: 'rgba(255, 255, 255, 0.9)',
+                      }),
+                  '&:hover': {
+                    color: 'white',
+                    background: 'base.800',
+                  },
+                }}
+              >
+                <Text as="span" display="flex" w="fit-content">
+                  {year}
+                </Text>
+              </Center>
+            </NextLink>
+          </Center>
+        ))}
+      </Flex>
+    </Box>
+  );
+  const NavigationLinkForSP = () => (
+    <Flex as="ul" flexDir="column" flexWrap="wrap" w="100%" h="calc(56px * 4)">
       {APP_PAGE_YEARS.map((year) => (
         <Center
           as="li"
           key={year}
           alignItems="stretch"
-          sx={{
-            ...(isMdSP
-              ? {
-                  justifyContent: 'flex-start',
-                  color: 'white',
-                  w: '50%',
-                  h: '56px',
-                  opacity: 1,
-                  transition: 'opacity 0.2s',
-                  '&::hover': {
-                    opacity: 0.6,
-                  },
-                }
-              : {
-                  width: '80px',
-                  height: '32px',
-                  position: 'relative',
-                }),
+          justifyContent="flex-start"
+          color="white"
+          w="50%"
+          h="56px"
+          opacity={1}
+          transition="opacity 0.2s"
+          _hover={{
+            opacity: 0.6,
           }}
         >
           <NextLink
@@ -117,51 +179,30 @@ const Navigation: FC = () => {
           >
             <Center
               as="a"
-              sx={{
-                ...(isMdSP
-                  ? {
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'flex-start',
-                      w: '100%',
-                      color: 'base.300',
-                    }
-                  : {
-                      w: '100%',
-                      background: 'transparent',
-                      transition: 'color 0.2s, background 0.2s',
-                      ...(((!pageContext?.title.length &&
-                        year === String(APP_LATEST_YEAR)) ||
-                        pageContext?.title === year) && {
-                        color: 'white',
-                        background: 'base.800',
-                      }),
-                      '&:hover': {
-                        color: 'white',
-                        background: 'base.800',
-                      },
-                    }),
-              }}
+              display="flex"
+              alignItems="center"
+              justifyContent="flex-start"
+              w="100%"
+              color="base.300"
             >
               <Text
                 as="span"
                 display="flex"
                 w="fit-content"
                 sx={{
-                  ...(isMdSP &&
-                    ((!pageContext?.title.length &&
-                      year === String(APP_LATEST_YEAR)) ||
-                      pageContext?.title === year) && {
-                      '&::after': {
-                        content: '""',
-                        display: 'block',
-                        background: 'base.300',
-                        width: '12px',
-                        height: '12px',
-                        m: 'auto 0 auto 16px',
-                        borderRadius: '9999px',
-                      },
-                    }),
+                  ...(((!pageContext?.title.length &&
+                    year === String(APP_LATEST_YEAR)) ||
+                    pageContext?.title === year) && {
+                    '&::after': {
+                      content: '""',
+                      display: 'block',
+                      background: 'base.300',
+                      width: '12px',
+                      height: '12px',
+                      m: 'auto 0 auto 16px',
+                      borderRadius: '9999px',
+                    },
+                  }),
                 }}
               >
                 {year}
@@ -184,6 +225,7 @@ const Navigation: FC = () => {
                 w: '100%',
                 h: '56px',
                 color: 'base.300',
+                mt: '16px',
                 ...(pageContext?.path === '/profile' && {
                   '&::after': {
                     content: '""',
@@ -205,7 +247,7 @@ const Navigation: FC = () => {
                 borderWidth: '4px',
                 opacity: '1',
                 overflow: 'hidden',
-                transition: '0.2s opacity, 0.2s border-color',
+                transition: '0.3s opacity, 0.3s border-color',
                 ...(pageContext?.path === '/profile' && {
                   borderColor: 'base.800',
                   borderStyle: 'solid',
@@ -269,7 +311,7 @@ const Navigation: FC = () => {
             ? {
                 flexDirection: 'column',
                 width: '100vw',
-                minHeight: '100vh',
+                minHeight: '100dvh',
                 background: 'base.900',
                 fontSize: '2.2rem',
                 position: 'fixed',
@@ -289,11 +331,10 @@ const Navigation: FC = () => {
               }),
         }}
       >
-        <NavigationLink />
-        {/* {isMdSP && <Spacer />} */}
+        {isMdSP ? <NavigationLinkForSP /> : <NavigationLinkForPC />}
         <ProfileLink />
         {isMdSP && (
-          <Center flexDir="column" gap="16px" w="100%" mt="24px">
+          <Center flexDir="column" gap="16px" w="100%" mt="40px">
             <ShareLink />
             <Copyright />
           </Center>
