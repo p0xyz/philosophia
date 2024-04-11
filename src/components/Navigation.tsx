@@ -1,14 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  Box,
-  Center,
-  Flex,
-  Heading,
-  Spacer,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Center, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
 
 import { APP_LATEST_YEAR, APP_PAGE_YEARS, APP_TITLE } from '@/constant/common';
 import { Z_INDEX_NAVIGATION } from '@/constant/style';
@@ -91,12 +84,12 @@ const Navigation: FC = () => {
     >
       <Center
         w="120px"
-        h="40px"
+        h="48px"
         color="base.800"
         bg="transparent"
         transition="color 0.3s, background 0.3s"
       >
-        Archive
+        Works
       </Center>
       <Flex
         as="ul"
@@ -106,7 +99,7 @@ const Navigation: FC = () => {
         transition="opacity 0.3s"
         opacity={0}
         pos="absolute"
-        inset="40px auto auto auto"
+        inset="48px auto auto auto"
         pointerEvents="none"
       >
         {APP_PAGE_YEARS.map((year) => (
@@ -115,7 +108,7 @@ const Navigation: FC = () => {
             key={year}
             alignItems="stretch"
             width="120px"
-            height="40px"
+            height="48px"
             position="relative"
             mt={0}
           >
@@ -264,32 +257,6 @@ const Navigation: FC = () => {
       </Text>
     </NextLink>
   );
-  const ContactLink = () => (
-    <NextLink passHref href="/contact">
-      <Flex
-        as="a"
-        display="flex"
-        alignItems="center"
-        h="56px"
-        color="base.300"
-        sx={{
-          ...(pageContext?.path.startsWith('/contact') && {
-            '&::after': {
-              content: '""',
-              display: 'block',
-              background: 'base.300',
-              width: '12px',
-              height: '12px',
-              ml: '16px',
-              borderRadius: '9999px',
-            },
-          }),
-        }}
-      >
-        Contact
-      </Flex>
-    </NextLink>
-  );
 
   return (
     <Flex
@@ -305,7 +272,7 @@ const Navigation: FC = () => {
       <Header />
       <Spacer />
       <Flex
-        fontFamily={{ base: 'logo', md: 'en' }}
+        fontFamily="en"
         sx={{
           ...(isMdSP
             ? {

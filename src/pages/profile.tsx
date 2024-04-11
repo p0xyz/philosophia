@@ -44,11 +44,6 @@ const Profile: NextPage<Props> = ({ profile }) => {
       </Text>
     </Box>
   );
-  const Description = () => (
-    <Text fontSize="1.3rem" lineHeight="2.5rem" whiteSpace="pre-line">
-      {profile.description}
-    </Text>
-  );
   const OtherLink = () => (
     <Flex as="ul" flexDir="column" gap="8px">
       {APP_OTHER_LINKS.map((item) => (
@@ -97,14 +92,6 @@ const Profile: NextPage<Props> = ({ profile }) => {
       ))}
     </Flex>
   );
-  const Icon = () => (
-    <Center
-      w={{ base: '240px', sm: '304px' }}
-      h={{ base: '240px', sm: '304px' }}
-    >
-      <AdminIcon />
-    </Center>
-  );
   const Component = () => (
     <Flex
       sx={{
@@ -124,7 +111,7 @@ const Profile: NextPage<Props> = ({ profile }) => {
     >
       <Flex
         flexDir="column"
-        gap="16px"
+        gap="24px"
         sx={{
           '@media screen and (max-width: 800px)': {
             margin: '40px 0 0',
@@ -135,10 +122,17 @@ const Profile: NextPage<Props> = ({ profile }) => {
         }}
       >
         {/* <Name /> */}
-        <Description />
+        <Text fontSize="1.3rem" lineHeight="2.5rem" whiteSpace="pre-line">
+          {profile.description}
+        </Text>
         <OtherLink />
       </Flex>
-      <Icon />
+      <Center
+        w={{ base: '240px', sm: '304px' }}
+        h={{ base: '240px', sm: '304px' }}
+      >
+        <AdminIcon />
+      </Center>
     </Flex>
   );
 
