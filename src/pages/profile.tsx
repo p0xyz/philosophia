@@ -44,112 +44,107 @@ const Profile: NextPage<Props> = ({ profile }) => {
       </Text>
     </Box>
   );
-  const OtherLink = () => (
-    <Flex as="ul" flexDir="column" gap="8px">
-      {APP_OTHER_LINKS.map((item) => (
-        <Box
-          as="li"
-          key={item.url}
-          sx={{
-            a: {
-              display: 'flex',
-              gap: '6px',
-              w: 'fit-content',
-              opacity: 1,
-              transition: '0.2s opacity',
-              '&:hover': {
-                opacity: 0.5,
-              },
-            },
-            span: {
-              fontSize: '1.6rem',
-              fontFamily: 'en',
-            },
-          }}
-        >
-          {item.isProjectLink ? (
-            <NextLink href={item.url} passHref>
-              <Box
-                as="a"
-                href={item.url}
-                display="flex"
-                alignItems="center"
-                h="16px"
-              >
-                <item.icon width="16px" h="16px" />
-                <Text as="span" display="flex" alignItems="center" h="16px">
-                  {item.text}
-                </Text>
-              </Box>
-            </NextLink>
-          ) : (
-            <Link href={item.url} target="_blank">
-              <item.icon width="16px" h="16px" />
-              <Text as="span">{item.text}</Text>
-            </Link>
-          )}
-        </Box>
-      ))}
-    </Flex>
-  );
-  const Component = () => (
-    <Flex
-      sx={{
-        '@media screen and (min-width: 801px)': {
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '80vw',
-          maxWidth: '800px',
-          minHeight: '55vh',
-          margin: '0 auto',
-        },
-        '@media screen and (max-width: 800px)': {
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-        },
-      }}
-    >
-      <Flex
-        flexDir="column"
-        gap="24px"
-        sx={{
-          '@media screen and (max-width: 800px)': {
-            margin: '40px 0 0',
-            order: 2,
-            width: '100vw',
-            padding: '0 10%',
-          },
-        }}
-      >
-        {/* <Name /> */}
-        <Text fontSize="1.3rem" lineHeight="2.5rem" whiteSpace="pre-line">
-          {profile.description}
-        </Text>
-        <OtherLink />
-      </Flex>
-      <Center
-        w={{ base: '240px', sm: '304px' }}
-        h={{ base: '240px', sm: '304px' }}
-      >
-        <AdminIcon />
-      </Center>
-    </Flex>
-  );
 
   return (
     <Layout>
-      <Component />
+      <Flex
+        sx={{
+          '@media screen and (min-width: 801px)': {
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '80vw',
+            maxWidth: '800px',
+            minHeight: '55vh',
+            margin: '0 auto',
+          },
+          '@media screen and (max-width: 800px)': {
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          },
+        }}
+      >
+        <Flex
+          flexDir="column"
+          gap="24px"
+          sx={{
+            '@media screen and (max-width: 800px)': {
+              margin: '40px 0 0',
+              order: 2,
+              width: '100vw',
+              padding: '0 10%',
+            },
+          }}
+        >
+          {/* <Name /> */}
+          <Text fontSize="1.3rem" lineHeight="2.5rem" whiteSpace="pre-line">
+            {profile.description}
+          </Text>
+          <Flex as="ul" flexDir="column" gap="8px">
+            {APP_OTHER_LINKS.map((item) => (
+              <Box
+                as="li"
+                key={item.url}
+                sx={{
+                  a: {
+                    display: 'flex',
+                    gap: '6px',
+                    w: 'fit-content',
+                    opacity: 1,
+                    transition: '0.2s opacity',
+                    '&:hover': {
+                      opacity: 0.5,
+                    },
+                  },
+                  span: {
+                    fontSize: '1.6rem',
+                    fontFamily: 'en',
+                  },
+                }}
+              >
+                {item.isProjectLink ? (
+                  <NextLink href={item.url} passHref>
+                    <Box
+                      as="a"
+                      href={item.url}
+                      display="flex"
+                      alignItems="center"
+                      h="16px"
+                    >
+                      <item.icon width="16px" h="16px" />
+                      <Text
+                        as="span"
+                        display="flex"
+                        alignItems="center"
+                        h="16px"
+                      >
+                        {item.text}
+                      </Text>
+                    </Box>
+                  </NextLink>
+                ) : (
+                  <Link href={item.url} target="_blank">
+                    <item.icon width="16px" h="16px" />
+                    <Text as="span">{item.text}</Text>
+                  </Link>
+                )}
+              </Box>
+            ))}
+          </Flex>
+        </Flex>
+        <Center
+          w={{ base: '240px', sm: '304px' }}
+          h={{ base: '240px', sm: '304px' }}
+        >
+          <AdminIcon />
+        </Center>
+      </Flex>
     </Layout>
   );
 };
 
 export default Profile;
 
-export const getStaticProps = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
+export const getStaticProps = async () => {
   const microCMSReturnData = await client.get({
     endpoint: 'profile',
   });
