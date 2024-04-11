@@ -9,7 +9,7 @@ type Props = {
   onOpenModal: (id: string) => void;
 };
 
-const ImageList: FC<Props> = ({ data, onOpenModal }) => {
+const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
   const { isSP } = useWidth();
 
   return (
@@ -104,4 +104,4 @@ const ImageList: FC<Props> = ({ data, onOpenModal }) => {
   );
 };
 
-export default ImageList;
+export default ImageListContents;
