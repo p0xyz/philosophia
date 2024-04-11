@@ -19,7 +19,7 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".", // 追加する
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
