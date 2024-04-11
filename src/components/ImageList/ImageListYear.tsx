@@ -9,7 +9,7 @@ type Props = {
 const ImageListYear: FC<Props> = ({ year }) => (
   <Heading
     as="h2"
-    color="base.600"
+    color="base.800"
     p="0 5vw"
     fontFamily="en"
     fontWeight="normal"

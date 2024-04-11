@@ -32,7 +32,9 @@ type Props = {
 
 const ShareLink: FC<Props> = ({ variant = 'normal' }) => (
   <VStack gap="0" alignItems="center" color={ICON_COLOR_MAP[variant]}>
-    <Text as="span" fontFamily="en" fontSize="1.5rem">Share</Text>
+    <Text as="span" fontFamily="en" fontSize="1.5rem">
+      Share
+    </Text>
     <Flex as="ul" gap={{ base: '6px', sm: '8px' }}>
       {APP_SHARE_LINKS.map((item) => (
         <Box as="li" key={item.text}>
@@ -42,6 +44,11 @@ const ShareLink: FC<Props> = ({ variant = 'normal' }) => (
             display="block"
             w={{ base: '36px', sm: '40px' }}
             h={{ base: '36px', sm: '40px' }}
+            opacity={1}
+            transition="opacity 0.2s"
+            _hover={{
+              opacity: 0.7,
+            }}
           >
             <item.icon w="100%" h="100%" fill={ICON_COLOR_MAP[variant]} />
           </Link>
