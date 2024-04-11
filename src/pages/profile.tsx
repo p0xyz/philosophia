@@ -74,14 +74,22 @@ const Profile: NextPage<Props> = ({ profile }) => {
         >
           {item.isProjectLink ? (
             <NextLink href={item.url} passHref>
-              <Box as="a" href={item.url}>
-                <item.svg width={16} />
-                <Text as="span">{item.text}</Text>
+              <Box
+                as="a"
+                href={item.url}
+                display="flex"
+                alignItems="center"
+                h="16px"
+              >
+                <item.icon width="16px" h="16px" />
+                <Text as="span" display="flex" alignItems="center" h="16px">
+                  {item.text}
+                </Text>
               </Box>
             </NextLink>
           ) : (
             <Link href={item.url} target="_blank">
-              <item.svg width={16} />
+              <item.icon width="16px" h="16px" />
               <Text as="span">{item.text}</Text>
             </Link>
           )}
