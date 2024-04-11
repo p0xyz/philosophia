@@ -28,7 +28,14 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="full">
+    <Modal
+      isOpen={isOpen}
+      onClose={() => {
+        setSelectedIndex(0);
+        onClose();
+      }}
+      size="full"
+    >
       <ModalContent bgColor="rgba(255, 255, 255, 0.9)">
         <ModalBody
           display="flex"
