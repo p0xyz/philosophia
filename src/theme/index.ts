@@ -1,7 +1,7 @@
 import { extendTheme } from '@chakra-ui/react';
 
 const colors = {
-  white: '#fff',
+  white: '#ffffff',
   base: {
     900: '#1E1E1E',
     800: '#464646',
