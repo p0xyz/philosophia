@@ -8,7 +8,7 @@ import { APP_DESCRIPTION } from '@/constant/common';
 const NotFound: NextPage = () => {
   useSetPageContext({
     type: 'none',
-    title: '404',
+    title: '404 Page not found',
     description: APP_DESCRIPTION,
     path: '/404',
   });
