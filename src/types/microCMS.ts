@@ -13,10 +13,14 @@ export type MicroCMSImageType = {
 };
 
 export type PhotographType = MicroCMSType & {
+  /** @example 2000-00-00T00:00:00.928Z */
   date: string;
   images: MicroCMSImageType[];
+  /** @example Heian-jingu */
   place: string;
+  /** @example Kyoto */
   prefecture: string | undefined;
+  /** @example 平安神宮 */
   alt: string;
 };
 
