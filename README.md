@@ -16,7 +16,7 @@
 ## Update Log
 
 1. HTML + CSS + JavaScript（旧デザイン）
-2. HTML + CSS + JavaScript（新デザイン）
+2. HTML + CSS + JavaScript（現デザイン）
 3. Vue.js
 4. Nuxt.js
 5. Next.js （Latest）
