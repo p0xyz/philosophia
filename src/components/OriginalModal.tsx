@@ -112,10 +112,9 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                 }),
               }}
             >
-              {data.date.split('T')[0]}
+              {data.date.split('T')[0].replaceAll('-', '/')}
               <br />
-              {data.place}
-              {data.prefecture && !isSP && <>, {data.prefecture}</>}
+              {`${data.place}${data.prefecture && !isSP && `, ${data.prefecture}`}`}
             </Center>
             {/* 矢印 */}
             <Flex
