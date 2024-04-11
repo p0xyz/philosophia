@@ -1,11 +1,9 @@
 import { FC, ReactNode } from 'react';
-import { Flex } from '@chakra-ui/react';
 
 import Navigation from '@/components/Navigation';
 import OGP from '@/components/OGP';
 import PageTransition from '@/components/PageTransition';
-import Copyright from '@/components/Copyright';
-import ShareLink from '@/components/ShareLink';
+import Footer from '@/components/Footer';
 
 import { usePageContext } from '@/contexts/usePageContext';
 
@@ -23,16 +21,7 @@ const Layout: FC<Props> = ({ children }) => {
       <PageTransition key={pageContext?.path}>
         <>{children}</>
       </PageTransition>
-      <Flex
-        as="footer"
-        flexDir="column"
-        alignItems="center"
-        p="56px 0 80px"
-        gap="16px"
-      >
-        <ShareLink variant="footer" />
-        <Copyright variant="footer" />
-      </Flex>
+      <Footer/>
     </>
   );
 };
