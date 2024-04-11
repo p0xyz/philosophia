@@ -5,7 +5,7 @@ import theme from 'src/theme';
 import { WidthProvider } from '@/contexts/useWidth';
 import { OGPProvider } from '@/contexts/usePageContext';
 
-const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+const Philosophia: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <WidthProvider>
@@ -17,4 +17,4 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   );
 };
 
-export default MyApp;
+export default Philosophia;
