@@ -93,7 +93,7 @@ const Navigation: FC = () => {
         w="120px"
         h="40px"
         color="base.800"
-        bg="white"
+        bg="transparent"
         transition="color 0.3s, background 0.3s"
       >
         Archive
