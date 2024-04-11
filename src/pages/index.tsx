@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 import ImageList from '@/components/ImageList';
 import Layout from '@/components/Layout';
-import Modal from '@/components/Modal';
+import OriginalModal from '@/components/Modal';
 
 import { APP_DESCRIPTION, APP_LATEST_YEAR } from '@/constant/common';
 
@@ -33,13 +32,14 @@ const Home: NextPage<Props> = ({ photographs }) => {
       <Layout>
         <ImageList
           data={photographs}
+          year={APP_LATEST_YEAR}
           onOpenModal={(id) => router.push(`?id=${id}`)}
         />
       </Layout>
-      <Modal
+      <OriginalModal
         data={photographs.find((photograph) => photograph.id === id)}
         isOpen={!!id}
-        onClose={() => router.push("/")}
+        onClose={() => router.push('/')}
       />
     </>
   );

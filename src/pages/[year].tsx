@@ -2,8 +2,8 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 import Layout from '@/components/Layout';
-import Modal from '@/components/Modal';
 import ImageList from '@/components/ImageList';
+import OriginalModal from '@/components/Modal';
 
 import { APP_DESCRIPTION, APP_PAGE_YEARS } from '@/constant/common';
 
@@ -35,10 +35,11 @@ const Photo: NextPage<Props> = ({ path, photographs }) => {
       <Layout>
         <ImageList
           data={photographs}
+          year={path}
           onOpenModal={(id) => router.push(`${basePath}?id=${id}`)}
         />
       </Layout>
-      <Modal
+      <OriginalModal
         data={photographs.find((photograph) => photograph.id === id)}
         isOpen={!!id}
         onClose={() => router.push(basePath)}
