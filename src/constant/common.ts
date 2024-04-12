@@ -10,7 +10,7 @@ export const APP_PAGE_YEARS = [...Array(APP_LATEST_YEAR + 1 - APP_OLDEST_YEAR)]
 
 export const APP_URL: string = 'https://philosophia000.vercel.app/';
 export const APP_MAIN_IMAGE: string =
-  'https://images.microcms-assets.io/assets/44cafac7c3a24046bac46a486b20bc92/e90e057137b244cfb88601919d10ac59/img_032_10.jpg';
+  'https://images.microcms-assets.io/assets/44cafac7c3a24046bac46a486b20bc92/bc3aeaeb87ac43618e951411a44262b5/20220921_01_08.jpg';
 
 export const APP_NAME: string = '月波';
 export const APP_NAME_FURIGANA: string = 'Tsukinami';
