@@ -15,8 +15,8 @@
 
 ## Update Log
 
-v1: HTML + CSS + JavaScript 版（旧デザイン）
-v2: HTML + CSS + JavaScript 版（現デザイン）
-v3: Vue.js 版
-v4: Nuxt.js 版
+v1: HTML + CSS + JavaScript 版（旧デザイン）<br>
+v2: HTML + CSS + JavaScript 版（現デザイン）<br>
+v3: Vue.js 版<br>
+v4: Nuxt.js 版<br>
 v5: Next.js 版（Latest）
