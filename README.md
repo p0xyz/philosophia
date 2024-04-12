@@ -1,6 +1,6 @@
 # Philosophia
 
-<a href="https://philosophia000.vercel.app/" target="_blank"><img src="web-image.png" alt="Philosophia"><br>Philosophia - Photography portfolio</a>
+<a href="https://philosophia000.vercel.app/" target="_blank"><img src="images/image-pc.png" alt="Philosophia"><br>Philosophia - Photography portfolio</a>
 
 ## 概要
 
