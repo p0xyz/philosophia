@@ -8,7 +8,7 @@ import { APP_URL } from '@/constant/common';
 
 import { AppLinkType } from '@/types/common';
 
-const APP_SHARE_LINKS: AppLinkType[] = [
+const SHARE_LINKS: AppLinkType[] = [
   {
     text: 'LINE',
     url: `https://social-plugins.line.me/lineit/share?url=${APP_URL}`,
@@ -36,7 +36,7 @@ const ShareLink: FC<Props> = ({ variant = 'normal' }) => (
       Share
     </Text>
     <Flex as="ul" gap={{ base: '6px', sm: '8px' }}>
-      {APP_SHARE_LINKS.map((item) => (
+      {SHARE_LINKS.map((item) => (
         <Box as="li" key={item.text}>
           <Link
             href={item.url}
