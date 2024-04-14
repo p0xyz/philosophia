@@ -53,7 +53,9 @@ const Photo: NextPage<Props> = ({ path, photographs }) => {
 export default Photo;
 
 export const getStaticPaths = async () => {
-  const paths = APP_PAGE_YEARS.filter((_year, i) => i !== 0).map((item) => ({
+  const paths: { params: { year: string } }[] = APP_PAGE_YEARS.filter(
+    (_year, i) => i !== 0
+  ).map((item) => ({
     params: { year: String(item) },
   }));
 
