@@ -45,6 +45,55 @@ const Profile: NextPage<Props> = ({ profile }) => {
     </Box>
   );
 
+  const Links = () => (
+    <Flex as="ul" flexDir="column" gap="8px">
+      {APP_OTHER_LINKS.map((item) => (
+        <Box
+          as="li"
+          key={item.url}
+          sx={{
+            a: {
+              display: 'flex',
+              gap: '6px',
+              w: 'fit-content',
+              opacity: 1,
+              transition: '0.2s opacity',
+              '&:hover': {
+                opacity: 0.5,
+              },
+            },
+            span: {
+              fontSize: '1.6rem',
+              fontFamily: 'en',
+            },
+          }}
+        >
+          {item.isProjectLink ? (
+            <NextLink href={item.url} passHref>
+              <Box
+                as="a"
+                href={item.url}
+                display="flex"
+                alignItems="center"
+                h="16px"
+              >
+                <item.icon width="16px" h="16px" />
+                <Text as="span" display="flex" alignItems="center" h="16px">
+                  {item.text}
+                </Text>
+              </Box>
+            </NextLink>
+          ) : (
+            <Link href={item.url} target="_blank">
+              <item.icon width="16px" h="16px" />
+              <Text as="span">{item.text}</Text>
+            </Link>
+          )}
+        </Box>
+      ))}
+    </Flex>
+  );
+
   return (
     <Layout>
       <Flex
@@ -79,57 +128,7 @@ const Profile: NextPage<Props> = ({ profile }) => {
           <Text fontSize="1.3rem" lineHeight="2.5rem" whiteSpace="pre-line">
             {profile.description}
           </Text>
-          <Flex as="ul" flexDir="column" gap="8px">
-            {APP_OTHER_LINKS.map((item) => (
-              <Box
-                as="li"
-                key={item.url}
-                sx={{
-                  a: {
-                    display: 'flex',
-                    gap: '6px',
-                    w: 'fit-content',
-                    opacity: 1,
-                    transition: '0.2s opacity',
-                    '&:hover': {
-                      opacity: 0.5,
-                    },
-                  },
-                  span: {
-                    fontSize: '1.6rem',
-                    fontFamily: 'en',
-                  },
-                }}
-              >
-                {item.isProjectLink ? (
-                  <NextLink href={item.url} passHref>
-                    <Box
-                      as="a"
-                      href={item.url}
-                      display="flex"
-                      alignItems="center"
-                      h="16px"
-                    >
-                      <item.icon width="16px" h="16px" />
-                      <Text
-                        as="span"
-                        display="flex"
-                        alignItems="center"
-                        h="16px"
-                      >
-                        {item.text}
-                      </Text>
-                    </Box>
-                  </NextLink>
-                ) : (
-                  <Link href={item.url} target="_blank">
-                    <item.icon width="16px" h="16px" />
-                    <Text as="span">{item.text}</Text>
-                  </Link>
-                )}
-              </Box>
-            ))}
-          </Flex>
+          {/* <Links/> */}
         </Flex>
         <Center
           w={{ base: '240px', sm: '304px' }}

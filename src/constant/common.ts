@@ -25,7 +25,7 @@ export const APP_REGULATION_EMAIL = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
 export const APP_OTHER_LINKS: AppLinkType[] = [
   {
     text: 'Contact',
-    url: '/contact',
+    url: 'mailto',
     icon: IconContact,
     isProjectLink: true,
   },
