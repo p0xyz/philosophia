@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 type Props = {
-  children: JSX.Element;
+  children: ReactNode;
 };
 
 const PageTransition: FC<Props> = ({ children }) => {

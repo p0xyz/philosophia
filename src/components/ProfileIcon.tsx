@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { APP_TITLE } from '@/constant/common';
 
-const AdminIcon: FC = () => (
+const ProfileIcon: FC = () => (
   <Image
     src="/images/icon.jpg"
     alt={APP_TITLE}
@@ -13,4 +13,4 @@ const AdminIcon: FC = () => (
   />
 );
 
-export default AdminIcon;
+export default ProfileIcon;
