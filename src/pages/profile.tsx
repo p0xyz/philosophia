@@ -1,21 +1,16 @@
 import { Box, Center, Flex, Link, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import NextLink from 'next/link';
-
 import Layout from '@/components/Layout';
 import AdminIcon from '@/components/AdminIcon';
-
 import {
   APP_DESCRIPTION,
   APP_NAME,
   APP_NAME_FURIGANA,
   APP_OTHER_LINKS,
 } from '@/constant/common';
-
 import { useSetPageContext } from '@/contexts/usePageContext';
-
 import { client } from '@/libs/client';
-
 import { ProfileType } from '@/types/microCMS';
 
 type Props = {
@@ -124,11 +119,11 @@ const Profile: NextPage<Props> = ({ profile }) => {
             },
           }}
         >
-          {/* <Name /> */}
+          <Name />
           <Text fontSize="1.3rem" lineHeight="2.5rem" whiteSpace="pre-line">
             {profile.description}
           </Text>
-          {/* <Links/> */}
+          <Links />
         </Flex>
         <Center
           w={{ base: '240px', sm: '304px' }}
