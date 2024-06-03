@@ -19,6 +19,7 @@ const styles = {
       color: 'base.800',
       fontSize: '1.4rem',
       fontFamily: 'body',
+      // fontWeight: 500,
       a: {
         color: 'base.800',
         textDecoration: 'none',
@@ -42,6 +43,8 @@ const styles = {
   },
 };
 const fonts = {
+  // body: "'Shippori Mincho', sans-serif",
+  // body: "'Libre Baskerville', 'Shippori Mincho', sans-serif",
   body: "'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif",
   logo: "'Poiret One', sans-serif",
   en: "'League Spartan', sans-serif",
