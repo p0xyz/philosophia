@@ -5,6 +5,7 @@ import Layout from '@/components/Layout';
 import ProfileIcon from '@/components/ProfileIcon';
 import {
   APP_DESCRIPTION,
+  APP_FOOTER_TEXT,
   APP_NAME,
   APP_NAME_FURIGANA,
   APP_OTHER_LINKS,
@@ -121,7 +122,7 @@ const Profile: NextPage<Props> = ({ profile }) => {
         >
           <Name />
           <Text fontSize="1.3rem" lineHeight="2.5rem" whiteSpace="pre-line">
-            {profile.description}
+            {APP_FOOTER_TEXT}
           </Text>
           {/* <Links /> */}
         </Flex>
