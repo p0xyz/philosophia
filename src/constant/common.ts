@@ -21,15 +21,15 @@ export const APP_TITLE_FULL = `${APP_TITLE} - Photography portfolio`;
 export const APP_DESCRIPTION = `${APP_TITLE}は、写真ポートフォリオです。`;
 
 export const APP_FOOTER_TEXT =
-  '関西圏をカメラと共に歩き回っている者です。\nなにかありましたら Ig: @poetrainy までご連絡ください。';
+  '関西圏をカメラと共に歩き回っている者です。\nなにかありましたら Ig: @p0_xyz までご連絡ください。';
 
 export const APP_REGULATION_EMAIL = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
 
 export const IMAGE_WATERMARK_FOR_MOBILE =
-  '&txt=@poetrainy&txt-align=top,right&txt-size=32&txt-color=ffffff&txt-pad=20&txt-font=serif';
+  '&txt=@p0_xyz&txt-align=top,right&txt-size=32&txt-color=ffffff&txt-pad=20&txt-font=serif';
 
 export const IMAGE_WATERMARK_FOR_PC =
-  '&txt=@poetrainy&txt-align=top,right&txt-size=54&txt-color=ffffff&txt-pad=20&txt-font=serif';
+  '&txt=@p0_xyz&txt-align=top,right&txt-size=54&txt-color=ffffff&txt-pad=20&txt-font=serif';
 
 export const APP_OTHER_LINKS: AppLinkType[] = [
   {
