@@ -21,7 +21,7 @@ export const APP_TITLE_FULL = `${APP_TITLE} - Photography portfolio`;
 export const APP_DESCRIPTION = `${APP_TITLE}は、写真ポートフォリオです。`;
 
 export const APP_FOOTER_TEXT =
-  '関西圏をカメラと共に歩き回っている者です。\nなにかありましたら Ig: @poetrainy までお問い合わせください。';
+  '関西圏をカメラと共に歩き回っている者です。\nなにかありましたら Ig: @poetrainy までご連絡ください。';
 
 export const APP_REGULATION_EMAIL = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
 

@@ -13,6 +13,8 @@ const Footer: FC = () => {
       as="footer"
       flexDir="column"
       alignItems="center"
+      w="90vw"
+      m="0 auto"
       p="80px 0 120px"
       gap="32px"
     >
