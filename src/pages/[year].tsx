@@ -1,17 +1,13 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-
 import Layout from '@/components/Layout';
 import ImageList from '@/components/ImageList';
 import OriginalModal from '@/components/OriginalModal';
-
 import { APP_DESCRIPTION, APP_PAGE_YEARS } from '@/constant/common';
-
 import { client } from '@/libs/client';
-
 import { PhotographType } from '@/types/microCMS';
-
 import { useSetPageContext } from '@/contexts/usePageContext';
+import { filteredPhotographsByYear } from '@/libs/filterArticle';
 
 type Props = {
   path: number;
@@ -70,26 +66,22 @@ export const getStaticProps = async ({
 }: {
   params: { year: string };
 }) => {
-  const microCMSReturnData = await client.get({
-    endpoint: 'photographs',
-    queries: {
-      offset: 0,
-      limit: 100,
-    },
-  });
+  const microCMSReturnData = (
+    await client.get({
+      endpoint: 'photographs',
+      queries: {
+        offset: 0,
+        limit: 100,
+      },
+    })
+  ).contents as PhotographType[];
 
   const path = Number(params.year);
-  const microCMSData: PhotographType[] = microCMSReturnData.contents.filter(
-    (item: PhotographType) => {
-      const contentDate = new Date(item.date);
-      return contentDate.getFullYear() === path;
-    }
-  );
 
   return {
     props: {
       path,
-      photographs: microCMSData,
+      photographs: filteredPhotographsByYear(microCMSReturnData, path),
     },
   };
 };

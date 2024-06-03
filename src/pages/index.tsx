@@ -1,14 +1,11 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-
 import ImageList from '@/components/ImageList';
 import Layout from '@/components/Layout';
 import OriginalModal from '@/components/OriginalModal';
-
 import { APP_DESCRIPTION, APP_LATEST_YEAR } from '@/constant/common';
-
 import { client } from '@/libs/client';
-
+import { filteredPhotographsByYear } from '@/libs/filterArticle';
 import { PhotographType } from '@/types/microCMS';
 import { useSetPageContext } from '@/contexts/usePageContext';
 
@@ -33,7 +30,9 @@ const Home: NextPage<Props> = ({ photographs }) => {
         <ImageList
           data={photographs}
           year={APP_LATEST_YEAR}
-          onOpenModal={(id) => router.push(`?id=${id}`, undefined, { scroll: false })}
+          onOpenModal={(id) =>
+            router.push(`?id=${id}`, undefined, { scroll: false })
+          }
         />
       </Layout>
       <OriginalModal
@@ -48,24 +47,22 @@ const Home: NextPage<Props> = ({ photographs }) => {
 export default Home;
 
 export const getStaticProps = async () => {
-  const microCMSReturnData = await client.get({
-    endpoint: 'photographs',
-    queries: {
-      offset: 0,
-      limit: 100,
-    },
-  });
-
-  const microCMSData: PhotographType[] = microCMSReturnData.contents.filter(
-    (item: PhotographType) => {
-      const contentDate = new Date(item.date);
-      return contentDate.getFullYear() === APP_LATEST_YEAR;
-    }
-  );
+  const microCMSReturnData = (
+    await client.get({
+      endpoint: 'photographs',
+      queries: {
+        offset: 0,
+        limit: 100,
+      },
+    })
+  ).contents as PhotographType[];
 
   return {
     props: {
-      photographs: microCMSData,
+      photographs: filteredPhotographsByYear(
+        microCMSReturnData,
+        APP_LATEST_YEAR
+      ),
     },
   };
 };
