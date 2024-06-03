@@ -18,7 +18,7 @@ const Layout: FC<Props> = ({ children }) => {
       <OGP />
       <Navigation />
       <PageTransition key={pageContext?.path}>{children}</PageTransition>
-      <ScrollAnimation />
+      {pageContext?.type === 'photographs' && <ScrollAnimation />}
       <Footer />
     </>
   );
