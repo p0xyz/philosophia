@@ -12,7 +12,10 @@ import { PhotographType } from '@/types/microCMS';
 import { formatDate } from '@/libs/format';
 import { useUserAgent } from '@/contexts/useUserAgent';
 import { useWidth } from '@/contexts/useWidth';
-import { IMAGE_WATERMARK } from '@/constant/common';
+import {
+  IMAGE_WATERMARK_FOR_MOBILE,
+  IMAGE_WATERMARK_FOR_PC,
+} from '@/constant/common';
 
 type Props = {
   data?: PhotographType;
@@ -75,8 +78,10 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                 <Box
                   as="img"
                   src={`${item.url}?${item.width > item.height ? 'w' : 'h'}=${
-                    isMobile ? '1000' : 1800
-                  }${IMAGE_WATERMARK}`}
+                    isMobile
+                      ? `1000${IMAGE_WATERMARK_FOR_MOBILE}`
+                      : `1800${IMAGE_WATERMARK_FOR_PC}`
+                  }`}
                   w="100%"
                   h="100%"
                   objectFit="contain"

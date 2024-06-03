@@ -25,7 +25,10 @@ export const APP_FOOTER_TEXT =
 
 export const APP_REGULATION_EMAIL = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
 
-export const IMAGE_WATERMARK =
+export const IMAGE_WATERMARK_FOR_MOBILE =
+  '&txt=@poetrainy&txt-align=top,right&txt-size=32&txt-color=ffffff&txt-pad=20&txt-font=serif';
+
+export const IMAGE_WATERMARK_FOR_PC =
   '&txt=@poetrainy&txt-align=top,right&txt-size=54&txt-color=ffffff&txt-pad=20&txt-font=serif';
 
 export const APP_OTHER_LINKS: AppLinkType[] = [
