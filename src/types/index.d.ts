@@ -3,13 +3,15 @@ declare module '*.svg' {
   export default content;
 }
 
+export type UserAgentDataType = {
+  brands: {
+    brand: string;
+    version: string;
+  }[];
+  mobile: boolean;
+  platform: string;
+};
+
 export type NavigatorWithUserAgentDataType = Navigator & {
-  userAgentData: {
-    brands: {
-      brand: string;
-      version: string;
-    }[];
-    mobile: boolean;
-    platform: string;
-  };
+  userAgentData: UserAgentDataType;
 };
