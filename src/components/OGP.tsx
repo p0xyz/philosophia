@@ -31,7 +31,10 @@ const OGP: FC = () => {
       />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={APP_TITLE_FULL} />
-      <meta property="og:image" content={APP_MAIN_IMAGE} />
+      <meta
+        property="og:image"
+        content={pageContext?.image ?? APP_MAIN_IMAGE}
+      />
       <meta name="twitter:card" content="summary" />
     </Head>
   );

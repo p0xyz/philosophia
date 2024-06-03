@@ -5,9 +5,9 @@ import ImageList from '@/components/ImageList';
 import OriginalModal from '@/components/OriginalModal';
 import { APP_DESCRIPTION, APP_PAGE_YEARS } from '@/constant/common';
 import { client } from '@/libs/client';
+import { formatModalPageTitle } from '@/libs/format';
 import { PhotographType } from '@/types/microCMS';
 import { useSetPageContext } from '@/contexts/usePageContext';
-import { filteredPhotographsByYear } from '@/libs/filterArticle';
 
 type Props = {
   path: number;
@@ -19,11 +19,14 @@ const Photo: NextPage<Props> = ({ path, photographs }) => {
   const { id } = router.query;
   const basePath = `/${path}`;
 
+  const modalData = photographs.find((photograph) => photograph.id === id);
+
   useSetPageContext({
     type: 'photographs',
-    title: `${path}`,
+    title: modalData ? `${formatModalPageTitle(modalData)}` : `${path}`,
     description: APP_DESCRIPTION,
-    path: basePath,
+    path: router.asPath.slice(1),
+    image: modalData?.images[0].url,
   });
 
   return (
@@ -38,7 +41,7 @@ const Photo: NextPage<Props> = ({ path, photographs }) => {
         />
       </Layout>
       <OriginalModal
-        data={photographs.find((photograph) => photograph.id === id)}
+        data={modalData}
         isOpen={!!id}
         onClose={() => router.push(basePath, undefined, { scroll: false })}
       />
@@ -66,22 +69,23 @@ export const getStaticProps = async ({
 }: {
   params: { year: string };
 }) => {
-  const microCMSReturnData = (
+  const path = Number(params.year);
+
+  const response = (
     await client.get({
       endpoint: 'photographs',
       queries: {
         offset: 0,
         limit: 100,
+        filters: `date[begins_with]${path}`,
       },
     })
   ).contents as PhotographType[];
 
-  const path = Number(params.year);
-
   return {
     props: {
       path,
-      photographs: filteredPhotographsByYear(microCMSReturnData, path),
+      photographs: response,
     },
   };
 };
