@@ -1,10 +1,9 @@
 import { FC, ReactNode } from 'react';
-
 import Navigation from '@/components/Navigation';
 import OGP from '@/components/OGP';
 import PageTransition from '@/components/PageTransition';
+import ScrollAnimation from '@/components/ScrollAnimation';
 import Footer from '@/components/Footer';
-
 import { usePageContext } from '@/contexts/usePageContext';
 
 type Props = {
@@ -18,10 +17,9 @@ const Layout: FC<Props> = ({ children }) => {
     <>
       <OGP />
       <Navigation />
-      <PageTransition key={pageContext?.path}>
-        <>{children}</>
-      </PageTransition>
-      <Footer/>
+      <PageTransition key={pageContext?.path}>{children}</PageTransition>
+      <ScrollAnimation />
+      <Footer />
     </>
   );
 };
