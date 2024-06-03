@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useEffect } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export type DeviceType = 'mobile' | 'pc';
 
@@ -9,13 +15,13 @@ type UserAgentType = {
 const context = createContext<UserAgentType | undefined>(undefined);
 
 export const UserAgentProvider = ({ children }: { children: ReactNode }) => {
-  let userAgent: Navigator['userAgent'] = '';
+  const [userAgent, setUserAgent] = useState('');
 
   useEffect(() => {
-    userAgent = window.navigator.userAgent;
+    setUserAgent(window.navigator.userAgent);
   }, []);
 
-  const isMobile = !!userAgent.match(/iPhone|Android.+Mobile/);
+  const isMobile = userAgent.match(/iPhone|Android.+Mobile/);
 
   return (
     <context.Provider

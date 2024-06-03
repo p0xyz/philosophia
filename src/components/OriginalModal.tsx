@@ -11,6 +11,7 @@ import {
 import { PhotographType } from '@/types/microCMS';
 import { formatDate } from '@/libs/format';
 import { useUserAgent } from '@/contexts/useUserAgent';
+import { useWidth } from '@/contexts/useWidth';
 
 type Props = {
   data?: PhotographType;
@@ -20,7 +21,8 @@ type Props = {
 
 const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
   const { userAgent } = useUserAgent();
-  const isMobile = userAgent === 'mobile';
+  const { isSP } = useWidth();
+  const isMobile = userAgent === 'mobile' || isSP;
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 

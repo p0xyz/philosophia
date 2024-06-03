@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Box, Flex, Center, Image } from '@chakra-ui/react';
 import { PhotographType } from '@/types/microCMS';
 import { useUserAgent } from '@/contexts/useUserAgent';
+import { useWidth } from '@/contexts/useWidth';
 
 type Props = {
   data: PhotographType[];
@@ -10,7 +11,8 @@ type Props = {
 
 const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
   const { userAgent } = useUserAgent();
-  const isMobile = userAgent === 'mobile';
+  const { isSP } = useWidth();
+  const isMobile = userAgent === 'mobile' || isSP;
 
   return (
     <Flex
@@ -46,42 +48,39 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
           overflow="hidden"
           aspectRatio={1}
           sx={{
-            ...(isMobile
-              ? {
-                  width: 'calc((100vw - 2px * 2) / 3)',
-                  aspectRatio: 1,
-                  opacity: 1,
-                  transition: '0.6s opacity',
-                  '&:hover': {
-                    opacity: 0.7,
-                  },
-                }
-              : {
-                  width: '320px',
-                  position: 'relative',
-                  '&::before': {
-                    content: '""',
-                    display: 'block',
-                    width: '100%',
-                    height: '100%',
-                    background: '#000000',
-                    position: 'absolute',
-                    inset: '0 auto auto 0',
-                    opacity: 0.7,
-                    transition: '0.2s opacity',
-                    mixBlendMode: 'hue',
-                    zIndex: 1,
-                  },
-                  '&:hover': {
-                    '&::before': {
-                      opacity: 0,
-                    },
-                  },
-                }),
-          }}
-          _hover={{
-            img: {
-              transform: 'scale(1.1)',
+            '@media screen and (min-width: 481px)': {
+              width: '320px',
+              position: 'relative',
+              '&::before': {
+                content: '""',
+                display: 'block',
+                width: '100%',
+                height: '100%',
+                background: '#000000',
+                position: 'absolute',
+                inset: '0 auto auto 0',
+                opacity: 0.7,
+                transition: '0.2s opacity',
+                mixBlendMode: 'hue',
+                zIndex: 1,
+              },
+              '&:hover': {
+                '&::before': {
+                  opacity: 0,
+                },
+                img: {
+                  transform: 'scale(1.1)',
+                },
+              },
+            },
+            '@media screen and (max-width: 480px)': {
+              width: '78vw',
+              aspectRatio: 1,
+              opacity: 1,
+              transition: '0.6s opacity',
+              '&:hover': {
+                opacity: 0.7,
+              },
             },
           }}
         >
@@ -89,7 +88,7 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
             <Image
               src={`${item.images[0].url}?${
                 item.images[0].width > item.images[0].height ? 'w' : 'h'
-              }=${isMobile ? 400 : 1200}`}
+              }=${isMobile ? 800 : 1200}`}
               alt={item.alt}
               w="100%"
               h="100%"
