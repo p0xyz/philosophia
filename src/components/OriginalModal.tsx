@@ -8,10 +8,9 @@ import {
   ModalContent,
   ModalCloseButton,
 } from '@chakra-ui/react';
-
-import { useWidth } from '@/contexts/useWidth';
-
 import { PhotographType } from '@/types/microCMS';
+import { formatDate } from '@/libs/format';
+import { useUserAgent } from '@/contexts/useUserAgent';
 
 type Props = {
   data?: PhotographType;
@@ -20,7 +19,9 @@ type Props = {
 };
 
 const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
-  const { isSP } = useWidth();
+  const { userAgent } = useUserAgent();
+  const isMobile = userAgent === 'mobile';
+
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   if (!data) {
@@ -51,7 +52,7 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
             h="100dvh"
             pos="relative"
             sx={{
-              ...(isSP && {
+              ...(isMobile && {
                 maxH: '70vh',
               }),
             }}
@@ -71,7 +72,7 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                 <Box
                   as="img"
                   src={`${item.url}?${item.width > item.height ? 'w' : 'h'}=${
-                    isSP ? '1000' : 1800
+                    isMobile ? '1000' : 1800
                   }`}
                   w="100%"
                   h="100%"
@@ -92,7 +93,7 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
             inset="0 0 0 0"
             pointerEvents="none"
             sx={{
-              ...(isSP && {
+              ...(isMobile && {
                 maxH: '70vh',
               }),
             }}
@@ -107,15 +108,15 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
               fontSize={{ base: '1.3rem', sm: '1.6rem' }}
               pointerEvents="auto"
               sx={{
-                ...(isSP && {
+                ...(isMobile && {
                   ml: 'calc((100vw - 70vh / 3 * 2) / 2)',
                 }),
               }}
             >
-              {data.date.split('T')[0].replaceAll('-', '/')}
+              {formatDate(data.date)}
               <br />
               {`${data.place}${
-                data.prefecture && !isSP ? `, ${data.prefecture}` : ''
+                data.prefecture && !isMobile ? `, ${data.prefecture}` : ''
               }`}
             </Center>
             {/* 矢印 */}
@@ -151,9 +152,9 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                     content: '""',
                     display: 'block',
                     width: '1px',
-                    height: isSP ? '24px' : '40px',
+                    height: isMobile ? '24px' : '40px',
                     background: 'base.600',
-                    margin: isSP ? '0 0 17px' : '0 0 28px',
+                    margin: isMobile ? '0 0 17px' : '0 0 28px',
                     transition: '0.2s background',
                     position: 'absolute',
                     transform: 'rotateZ(45deg)',
@@ -163,9 +164,9 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                     content: '""',
                     display: 'block',
                     width: '1px',
-                    height: isSP ? '24px' : '40px',
+                    height: isMobile ? '24px' : '40px',
                     background: 'base.600',
-                    margin: isSP ? '16px 0 0' : '28px 0 0',
+                    margin: isMobile ? '16px 0 0' : '28px 0 0',
                     transition: '0.2s background',
                     position: 'absolute',
                     transform: 'rotateZ(135deg)',
@@ -196,9 +197,9 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                     content: '""',
                     display: 'block',
                     width: '1px',
-                    height: isSP ? '24px' : '40px',
+                    height: isMobile ? '24px' : '40px',
                     background: 'base.600',
-                    margin: isSP ? '0 0 17px' : '0 0 28px',
+                    margin: isMobile ? '0 0 17px' : '0 0 28px',
                     transition: '0.2s background',
                     position: 'absolute',
                     transform: 'rotateZ(135deg)',
@@ -208,9 +209,9 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                     content: '""',
                     display: 'block',
                     width: '1px',
-                    height: isSP ? '24px' : '40px',
+                    height: isMobile ? '24px' : '40px',
                     background: 'base.600',
-                    margin: isSP ? '16px 0 0' : '28px 0 0',
+                    margin: isMobile ? '16px 0 0' : '28px 0 0',
                     transition: '0.2s background',
                     position: 'absolute',
                     transform: 'rotateZ(45deg)',
@@ -228,7 +229,7 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
               pos="absolute"
               inset={{ base: 'auto 0 -24px 0', sm: 'auto 0 24px 0' }}
             >
-              {data.images.map((item, i) => (
+              {data.images.map((_, i) => (
                 <Center
                   as="button"
                   type="button"
@@ -300,7 +301,7 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                 content: '""',
                 display: 'block',
                 width: '1px',
-                height: isSP ? '48px' : '64px',
+                height: isMobile ? '48px' : '64px',
                 background: 'base.600',
                 transition: '0.2s background-color',
                 boxShadow: '0 0 10px $white',
@@ -310,7 +311,7 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                 content: '""',
                 display: 'block',
                 width: '1px',
-                height: isSP ? '48px' : '64px',
+                height: isMobile ? '48px' : '64px',
                 background: 'base.600',
                 transition: '0.2s background-color',
                 boxShadow: '0 0 10px $white',

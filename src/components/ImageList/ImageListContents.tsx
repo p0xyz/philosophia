@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import { Box, Flex, Center, Image } from '@chakra-ui/react';
-
 import { PhotographType } from '@/types/microCMS';
-import { useWidth } from '@/contexts/useWidth';
+import { useUserAgent } from '@/contexts/useUserAgent';
 
 type Props = {
   data: PhotographType[];
@@ -10,7 +9,8 @@ type Props = {
 };
 
 const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
-  const { isSP } = useWidth();
+  const { userAgent } = useUserAgent();
+  const isMobile = userAgent === 'mobile';
 
   return (
     <Flex
@@ -46,7 +46,7 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
           overflow="hidden"
           aspectRatio={1}
           sx={{
-            ...(isSP
+            ...(isMobile
               ? {
                   width: 'calc((100vw - 2px * 2) / 3)',
                   aspectRatio: 1,
@@ -89,7 +89,7 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
             <Image
               src={`${item.images[0].url}?${
                 item.images[0].width > item.images[0].height ? 'w' : 'h'
-              }=${isSP ? 400 : 1200}`}
+              }=${isMobile ? 400 : 1200}`}
               alt={item.alt}
               w="100%"
               h="100%"

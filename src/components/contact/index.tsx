@@ -8,22 +8,18 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react';
-
 import Layout from '@/components/Layout';
 import TextPageLayout from '@/components/TextPageLayout';
-
 import { FormType } from '@/types/microCMS';
-
 import { APP_REGULATION_EMAIL, APP_TITLE } from '@/constant/common';
-
 import { sendForm } from '@/libs/api';
-
-import { useWidth } from '@/contexts/useWidth';
+import { useUserAgent } from '@/contexts/useUserAgent';
 import { useSetPageContext } from '@/contexts/usePageContext';
 
 const Contact: FC = () => {
   const router = useRouter();
-  const { isSP } = useWidth();
+  const { userAgent } = useUserAgent();
+  const isMobile = userAgent === 'mobile';
 
   useSetPageContext({
     type: 'contact',
@@ -165,7 +161,7 @@ const Contact: FC = () => {
                   variant="flushed"
                   onBlur={(e) => content.onError(e.target.value)}
                   h="120px"
-                  fontSize={isSP ? '1.6rem' : '1.4rem'}
+                  fontSize={isMobile ? '1.6rem' : '1.4rem'}
                   _placeholder={{ color: 'base.400' }}
                 />
               ) : (
@@ -180,7 +176,7 @@ const Contact: FC = () => {
                   variant="flushed"
                   onBlur={(e) => content.onError(e.target.value)}
                   py="16px"
-                  fontSize={isSP ? '1.6rem' : '1.4rem'}
+                  fontSize={isMobile ? '1.6rem' : '1.4rem'}
                   _placeholder={{ color: 'base.400' }}
                 />
               )}
