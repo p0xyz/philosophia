@@ -18,6 +18,7 @@ const NotFound: NextPage = () => {
       <TextPageLayout
         title="404 Page not found"
         description="申し訳ありません。お探しのページは見つかりませんでした。"
+        isToHomeLink
       />
     </Layout>
   );
