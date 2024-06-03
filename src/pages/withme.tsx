@@ -73,15 +73,18 @@ const WithMe: FC = () => {
                   key={item}
                   as="li"
                   alignItems="center"
-                  gap="6px"
+                  gap="8px"
                   pl="8px"
+                  flex="none"
+                  lineHeight="2.4rem"
                   sx={{
                     '&::before': {
                       content: '""',
                       display: 'block',
                       boxSize: '6px',
-                      bg: 'base.600',
+                      bg: 'base.400',
                       rounded: 'full',
+                      flex: "none",
                     },
                   }}
                 >
