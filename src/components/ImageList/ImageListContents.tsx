@@ -88,7 +88,7 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
             <Image
               src={`${item.images[0].url}?${
                 item.images[0].width > item.images[0].height ? 'w' : 'h'
-              }=${isMobile ? 800 : 1200}`}
+              }=${isMobile ? 1000 : 1200}`}
               alt={item.alt}
               w="100%"
               h="100%"

@@ -12,6 +12,7 @@ import { PhotographType } from '@/types/microCMS';
 import { formatDate } from '@/libs/format';
 import { useUserAgent } from '@/contexts/useUserAgent';
 import { useWidth } from '@/contexts/useWidth';
+import { IMAGE_WATERMARK } from '@/constant/common';
 
 type Props = {
   data?: PhotographType;
@@ -75,7 +76,7 @@ const OriginalModal: FC<Props> = ({ data, isOpen, onClose }) => {
                   as="img"
                   src={`${item.url}?${item.width > item.height ? 'w' : 'h'}=${
                     isMobile ? '1000' : 1800
-                  }`}
+                  }${IMAGE_WATERMARK}`}
                   w="100%"
                   h="100%"
                   objectFit="contain"
