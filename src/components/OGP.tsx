@@ -1,17 +1,17 @@
 import { FC } from 'react';
 import Head from 'next/head';
-
 import {
   APP_URL,
   APP_TITLE_FULL,
   APP_MAIN_IMAGE,
   APP_DESCRIPTION,
 } from '@/constant/common';
-
 import { usePageContext } from '@/contexts/usePageContext';
+import { useRouter } from 'next/router';
 
 const OGP: FC = () => {
   const pageContext = usePageContext();
+  const router = useRouter();
 
   const title = !!pageContext?.title.length
     ? `${pageContext.title}｜${APP_TITLE_FULL}`
@@ -27,7 +27,7 @@ const OGP: FC = () => {
       />
       <meta
         property="og:url"
-        content={`${APP_URL}${pageContext?.path ?? ''}`}
+        content={`${APP_URL}${router.asPath.slice(1)}`}
       />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={APP_TITLE_FULL} />
