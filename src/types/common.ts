@@ -8,7 +8,7 @@ export type AppLinkType = {
 };
 
 export type PageContextType = {
-  type: 'photographs' | 'profile' | 'contact' | 'none';
+  type: 'photographs' | 'none';
   title: string;
   description: string;
   path: string;
