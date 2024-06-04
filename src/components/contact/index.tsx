@@ -22,7 +22,7 @@ const Contact: FC = () => {
   const isMobile = userAgent === 'mobile';
 
   useSetPageContext({
-    type: 'contact',
+    type: 'none',
     title: 'お問い合わせ',
     description: `${APP_TITLE}のお問い合わせフォームです。`,
     path: '/contact',
