@@ -10,14 +10,13 @@ const WITH_ME_DESCRIPTIONS = [
     heading: '@p0_xyzについて',
     list: [
       '関西在住 女 20代',
-      '土日祝のみ動けます',
       'ポトレはめちゃくちゃ初心者です。ゆるゆるまったり歩きながら撮りたいです。',
     ],
   },
   {
     heading: '撮影場所',
     list: [
-      '関西（大阪、京都、奈良、滋賀、神戸）近郊であればどこでもいきます',
+      '関西（大阪、京都、奈良、滋賀、神戸）近郊',
       '周囲の方のご迷惑になる場所での撮影は苦手です（人通りの多い細路地など…）',
     ],
   },
@@ -65,26 +64,29 @@ const WithMe: FC = () => {
         description="関西近郊でポトレを撮らせていただける方がいらっしゃれば是非 Ig: @p0_xyz までご連絡ください。"
       >
         {WITH_ME_DESCRIPTIONS.map(({ heading, list }) => (
-          <Flex key={heading} flexDir="column" gap="24px">
-            <Heading as="h3">{heading}</Heading>
-            <Flex as="ul" flexDir="column" gap="8px">
+          <Flex key={heading} flexDir="column" gap="20px" mt={0}>
+            <Heading as="h3" fontSize="1.8rem">
+              {heading}
+            </Heading>
+            <Flex as="ul" flexDir="column" gap="6px">
               {list.map((item) => (
                 <Flex
                   key={item}
                   as="li"
-                  alignItems="center"
+                  alignItems="flex-start"
                   gap="8px"
                   pl="8px"
                   flex="none"
-                  lineHeight="2.4rem"
+                  lineHeight="2.2rem"
                   sx={{
                     '&::before': {
                       content: '""',
                       display: 'block',
                       boxSize: '6px',
                       bg: 'base.400',
+                      mt: '8px',
                       rounded: 'full',
-                      flex: "none",
+                      flex: 'none',
                     },
                   }}
                 >
