@@ -33,6 +33,11 @@ export type FormType = {
   isReplied: boolean;
 };
 
-export type ProfileType = {
-  description: string;
+export type DocumentsType = MicroCMSType & {
+  overview: string;
+};
+
+export type OverviewType = {
+  heading: string;
+  list: string[];
 };
