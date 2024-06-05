@@ -20,7 +20,7 @@ const Me: NextPage<Props> = ({ photographs, isPublicMePage }) => {
   const [modalIndex, setModalIndex] = useState<number>();
 
   useSetPageContext({
-    type: 'photographs',
+    type: isPublicMePage ? 'photographs' : 'none',
     title: isPublicMePage ? '撮っていただいたもの' : 'Page is private',
     description: APP_DESCRIPTION,
     path: '/me',
