@@ -1,14 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  Box,
-  Center,
-  Flex,
-  Heading,
-  Spacer,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Center, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
 import { APP_LATEST_YEAR, APP_PAGE_YEARS, APP_TITLE } from '@/constant/common';
 import { Z_INDEX_NAVIGATION } from '@/constant/style';
 import ShareLink from '@/components/ShareLink';
@@ -26,6 +19,7 @@ const Navigation: FC = () => {
 
   const isMobile = userAgent === 'mobile' || isMdSP;
 
+  const [isNavigationFocus, setIsNavigationFocus] = useState(false);
   const [isOpenNavigationDrawer, setIsOpenNavigationDrawer] =
     useState<boolean>(false);
 
@@ -214,6 +208,9 @@ const Navigation: FC = () => {
           }}
         >
           <Box
+            tabIndex={0}
+            onFocus={() => setIsNavigationFocus(true)}
+            onBlur={() => setIsNavigationFocus(false)}
             pos="relative"
             _hover={{
               '>div': {
@@ -224,6 +221,28 @@ const Navigation: FC = () => {
                 opacity: 1,
                 pointerEvents: 'auto',
               },
+            }}
+            _focus={{
+              '>div': {
+                color: 'white',
+                bg: 'base.800',
+              },
+              '>ul': {
+                opacity: 1,
+                pointerEvents: 'auto',
+              },
+            }}
+            sx={{
+              ...(isNavigationFocus && {
+                '>div': {
+                  color: 'white',
+                  bg: 'base.800',
+                },
+                '>ul': {
+                  opacity: 1,
+                  pointerEvents: 'auto',
+                },
+              }),
             }}
           >
             <Center
@@ -278,6 +297,10 @@ const Navigation: FC = () => {
                               background: 'rgba(255, 255, 255, 0.9)',
                             }),
                         '&:hover': {
+                          color: 'white',
+                          background: 'base.800',
+                        },
+                        '&:focus': {
                           color: 'white',
                           background: 'base.800',
                         },
