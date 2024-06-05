@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import ImageList from '@/components/ImageList';
 import Layout from '@/components/Layout';
-import OriginalModal from '@/components/OriginalModal';
+import PhotographMainModal from '@/components/PhotographModal/PhotographMainModal';
 import { APP_DESCRIPTION, APP_LATEST_YEAR } from '@/constant/common';
 import { client } from '@/libs/client';
 import { formatModalPageTitle } from '@/libs/format';
@@ -38,11 +38,13 @@ const Home: NextPage<Props> = ({ photographs }) => {
           }
         />
       </Layout>
-      <OriginalModal
-        data={modalData}
-        isOpen={!!id}
-        onClose={() => router.push('/', undefined, { scroll: false })}
-      />
+      {modalData && (
+        <PhotographMainModal
+          photograph={modalData}
+          isOpen={!!id}
+          onClose={() => router.push('/', undefined, { scroll: false })}
+        />
+      )}
     </>
   );
 };

@@ -24,19 +24,19 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
       m="0 auto"
       sx={{
         '@media screen and (min-width: 1361px)': {
-          width: `${320 * 4 + 16 * 3}px`,
+          w: `${320 * 4 + 16 * 3}px`,
         },
         '@media screen and (max-width: 1360px)': {
-          width: `${320 * 3 + 16 * 2}px`,
+          w: `${320 * 3 + 16 * 2}px`,
         },
         '@media screen and (max-width: 1040px)': {
-          width: `${320 * 2 + 16 * 1}px`,
+          w: `${320 * 2 + 16 * 1}px`,
         },
         '@media screen and (max-width: 720px)': {
-          width: '320px',
+          w: `calc(${45 * 2}vw + ${16 * 1}px)`,
         },
         '@media screen and (max-width: 480px)': {
-          width: '100vw',
+          w: '100vw',
         },
       }}
     >
@@ -48,18 +48,18 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
           overflow="hidden"
           aspectRatio={1}
           sx={{
-            '@media screen and (min-width: 481px)': {
-              width: '320px',
-              position: 'relative',
+            '@media screen and (min-width: 721px)': {
+              w: '320px',
+              pos: 'relative',
               '&::before': {
                 content: '""',
                 display: 'block',
-                width: '100%',
-                height: '100%',
-                background: '#000000',
-                position: 'absolute',
+                w: '100%',
+                h: '100%',
+                bbg: '#000000',
+                pos: 'absolute',
                 inset: '0 auto auto 0',
-                opacity: 0.7,
+                opacity: 0.6,
                 transition: '0.2s opacity',
                 mixBlendMode: 'hue',
                 zIndex: 1,
@@ -73,8 +73,17 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
                 },
               },
             },
+            '@media screen and (max-width: 720px)': {
+              w: '45vw',
+              aspectRatio: 1,
+              opacity: 1,
+              transition: '0.6s opacity',
+              '&:hover': {
+                opacity: 0.7,
+              },
+            },
             '@media screen and (max-width: 480px)': {
-              width: '78vw',
+              w: '78vw',
               aspectRatio: 1,
               opacity: 1,
               transition: '0.6s opacity',

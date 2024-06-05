@@ -35,9 +35,25 @@ export type FormType = {
 
 export type DocumentsType = MicroCMSType & {
   overview: string;
+  isPublicMePage: boolean;
+};
+
+export type PresentsType = MicroCMSType & {
+  image: MicroCMSImageType;
 };
 
 export type OverviewType = {
   heading: string;
   list: string[];
+};
+
+export type PhotographModalPropsType = {
+  images: MicroCMSImageType[];
+  data?: {
+    id: string;
+    date: string;
+    place: string;
+    prefecture: string | undefined;
+    alt: string;
+  };
 };
