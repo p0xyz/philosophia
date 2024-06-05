@@ -47,16 +47,16 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
           onClick={() => onOpenModal(item.id)}
           overflow="hidden"
           aspectRatio={1}
+          opacity={1}
+          pos="relative"
           sx={{
-            '@media screen and (min-width: 721px)': {
-              w: '320px',
-              pos: 'relative',
+            '@media screen and (min-width: 881px)': {
               '&::before': {
                 content: '""',
                 display: 'block',
                 w: '100%',
                 h: '100%',
-                bbg: '#000000',
+                bg: '#000000',
                 pos: 'absolute',
                 inset: '0 auto auto 0',
                 opacity: 0.6,
@@ -73,23 +73,20 @@ const ImageListContents: FC<Props> = ({ data, onOpenModal }) => {
                 },
               },
             },
-            '@media screen and (max-width: 720px)': {
-              w: '45vw',
-              aspectRatio: 1,
-              opacity: 1,
+            '@media screen and (max-width: 880px)': {
               transition: '0.6s opacity',
               '&:hover': {
                 opacity: 0.7,
               },
             },
+            '@media screen and (min-width: 721px)': {
+              w: '320px',
+            },
+            '@media screen and (max-width: 720px)': {
+              w: '45vw',
+            },
             '@media screen and (max-width: 480px)': {
               w: '78vw',
-              aspectRatio: 1,
-              opacity: 1,
-              transition: '0.6s opacity',
-              '&:hover': {
-                opacity: 0.7,
-              },
             },
           }}
         >
